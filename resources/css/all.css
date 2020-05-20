@@ -7164,9 +7164,9 @@
      font-style: normal;
      font-weight: 400;
      font-display: block;
-     src: url(../fonts/fa-brands-4000.eot);
-     src: url(../fonts/fa-brands-4000.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-brands-4000.woff2) format("woff2"), url(../fonts/fa-brands-4000.woff) format("woff"),
-         url(../fonts/fa-brands-4000.ttf) format("truetype"), url(../fonts/fa-brands-4000.svg#fontawesome) format("svg");
+     src: url(../fonts/fa-brands-400.eot);
+     src: url(../fonts/fa-brands-400.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-brands-400.woff2) format("woff2"), url(../fonts/fa-brands-400.woff) format("woff"),
+         url(../fonts/fa-brands-400.ttf) format("truetype"), url(../fonts/fa-brands-400.svg#fontawesome) format("svg");
      unicode-range: U+f4d5, U+f4e5;
  }
  @font-face {
@@ -7174,9 +7174,9 @@
      font-style: normal;
      font-weight: 400;
      font-display: block;
-     src: url(../fonts/fa-brands-4001.eot);
-     src: url(../fonts/fa-brands-4001.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-brands-4001.woff2) format("woff2"), url(../fonts/fa-brands-4001.woff) format("woff"),
-         url(../fonts/fa-brands-4001.ttf) format("truetype"), url(../fonts/fa-brands-4001.svg#fontawesome) format("svg");
+     src: url(../fonts/fa-brands-400.eot);
+     src: url(../fonts/fa-brands-400.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-brands-400.woff2) format("woff2"), url(../fonts/fa-brands-400.woff) format("woff"),
+         url(../fonts/fa-brands-400.ttf) format("truetype"), url(../fonts/fa-brands-400.svg#fontawesome) format("svg");
      unicode-range: U+f203, U+f4e6-f4f2, U+f4f8;
  }
  @font-face {
@@ -7184,9 +7184,9 @@
      font-style: normal;
      font-weight: 400;
      font-display: block;
-     src: url(../fonts/fa-brands-4002.eot);
-     src: url(../fonts/fa-brands-4002.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-brands-4002.woff2) format("woff2"), url(../fonts/fa-brands-4002.woff) format("woff"),
-         url(../fonts/fa-brands-4002.ttf) format("truetype"), url(../fonts/fa-brands-4002.svg#fontawesome) format("svg");
+     src: url(../fonts/fa-brands-400.eot);
+     src: url(../fonts/fa-brands-400.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-brands-400.woff2) format("woff2"), url(../fonts/fa-brands-400.woff) format("woff"),
+         url(../fonts/fa-brands-400.ttf) format("truetype"), url(../fonts/fa-brands-400.svg#fontawesome) format("svg");
      unicode-range: U+f4f7, U+f50a, U+f50c-f50d, U+f510, U+f512-f513;
  }
  @font-face {
@@ -7438,9 +7438,9 @@
      font-style: normal;
      font-weight: 900;
      font-display: block;
-     src: url(../fonts/fa-duotone-9000.eot);
-     src: url(../fonts/fa-duotone-9000.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-duotone-9000.woff2) format("woff2"), url(../fonts/fa-duotone-9000.woff) format("woff"),
-         url(../fonts/fa-duotone-9000.ttf) format("truetype"), url(../fonts/fa-duotone-9000.svg#fontawesome) format("svg");
+     src: url(../fonts/fa-duotone-900.eot);
+     src: url(../fonts/fa-duotone-900.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-duotone-900.woff2) format("woff2"), url(../fonts/fa-duotone-900.woff) format("woff"),
+         url(../fonts/fa-duotone-900.ttf) format("truetype"), url(../fonts/fa-duotone-900.svg#fontawesome) format("svg");
      unicode-range: U+f471, U+f4ca, U+10f471, U+10f4ca;
  }
  @font-face {
@@ -7448,9 +7448,9 @@
      font-style: normal;
      font-weight: 900;
      font-display: block;
-     src: url(../fonts/fa-duotone-9001.eot);
-     src: url(../fonts/fa-duotone-9001.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-duotone-9001.woff2) format("woff2"), url(../fonts/fa-duotone-9001.woff) format("woff"),
-         url(../fonts/fa-duotone-9001.ttf) format("truetype"), url(../fonts/fa-duotone-9001.svg#fontawesome) format("svg");
+     src: url(../fonts/fa-duotone-900.eot);
+     src: url(../fonts/fa-duotone-900.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-duotone-900.woff2) format("woff2"), url(../fonts/fa-duotone-900.woff) format("woff"),
+         url(../fonts/fa-duotone-900.ttf) format("truetype"), url(../fonts/fa-duotone-900.svg#fontawesome) format("svg");
      unicode-range: U+f007, U+f0c0, U+f0c2, U+f0ed-f0ee, U+f0f0, U+f1de, U+f21b, U+f234-f235, U+f381-f382, U+f3f1, U+f406, U+f4e6, U+f4fa-f501, U+f503-f509, U+10f007, U+10f0c0, U+10f0c2, U+10f0ed-10f0ee, U+10f0f0, U+10f1de, U+10f21b,
          U+10f234-10f235, U+10f381-10f382, U+10f3f1, U+10f406, U+10f4e6, U+10f4fa-10f501, U+10f503-10f509;
  }
@@ -7459,9 +7459,9 @@
      font-style: normal;
      font-weight: 900;
      font-display: block;
-     src: url(../fonts/fa-duotone-9003.eot);
-     src: url(../fonts/fa-duotone-9003.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-duotone-9003.woff2) format("woff2"), url(../fonts/fa-duotone-9003.woff) format("woff"),
-         url(../fonts/fa-duotone-9003.ttf) format("truetype"), url(../fonts/fa-duotone-9003.svg#fontawesome) format("svg");
+     src: url(../fonts/fa-duotone-900.eot);
+     src: url(../fonts/fa-duotone-900.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-duotone-900.woff2) format("woff2"), url(../fonts/fa-duotone-900.woff) format("woff"),
+         url(../fonts/fa-duotone-900.ttf) format("truetype"), url(../fonts/fa-duotone-900.svg#fontawesome) format("svg");
      unicode-range: U+f010, U+f067, U+f072, U+f0ad, U+f0d6, U+f0e8, U+f130-f131, U+f24e, U+f3c9, U+f3d1, U+f517, U+f519-f51e, U+f520-f52c, U+f52e, U+f530-f533, U+f535-f543, U+f545-f54b, U+f54d, U+f54f-f552, U+f554-f555, U+10f010, U+10f067,
          U+10f072, U+10f0ad, U+10f0d6, U+10f0e8, U+10f130-10f131, U+10f24e, U+10f3c9, U+10f3d1, U+10f517, U+10f519-10f51e, U+10f520-10f52c, U+10f52e, U+10f530-10f533, U+10f535-10f543, U+10f545-10f54b, U+10f54d, U+10f54f-10f552,
          U+10f554-10f555;
@@ -13406,9 +13406,9 @@
      font-style: normal;
      font-weight: 300;
      font-display: block;
-     src: url(../fonts/fa-light-3000.eot);
-     src: url(../fonts/fa-light-3000.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-light-3000.woff2) format("woff2"), url(../fonts/fa-light-3000.woff) format("woff"),
-         url(../fonts/fa-light-3000.ttf) format("truetype"), url(../fonts/fa-light-3000.svg#fontawesome) format("svg");
+     src: url(../fonts/fa-light-300.eot);
+     src: url(../fonts/fa-light-300.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-light-300.woff2) format("woff2"), url(../fonts/fa-light-300.woff) format("woff"),
+         url(../fonts/fa-light-300.ttf) format("truetype"), url(../fonts/fa-light-300.svg#fontawesome) format("svg");
      unicode-range: U+f471, U+f4ca;
  }
  @font-face {
@@ -13416,9 +13416,9 @@
      font-style: normal;
      font-weight: 300;
      font-display: block;
-     src: url(../fonts/fa-light-3001.eot);
-     src: url(../fonts/fa-light-3001.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-light-3001.woff2) format("woff2"), url(../fonts/fa-light-3001.woff) format("woff"),
-         url(../fonts/fa-light-3001.ttf) format("truetype"), url(../fonts/fa-light-3001.svg#fontawesome) format("svg");
+     src: url(../fonts/fa-light-300.eot);
+     src: url(../fonts/fa-light-300.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-light-300.woff2) format("woff2"), url(../fonts/fa-light-300.woff) format("woff"),
+         url(../fonts/fa-light-300.ttf) format("truetype"), url(../fonts/fa-light-300.svg#fontawesome) format("svg");
      unicode-range: U+f007, U+f0c0, U+f0c2, U+f0ed-f0ee, U+f0f0, U+f1de, U+f21b, U+f234-f235, U+f381-f382, U+f3f1, U+f406, U+f4e6, U+f4fa-f501, U+f503-f509;
  }
  @font-face {
@@ -13426,9 +13426,9 @@
      font-style: normal;
      font-weight: 300;
      font-display: block;
-     src: url(../fonts/fa-light-3003.eot);
-     src: url(../fonts/fa-light-3003.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-light-3003.woff2) format("woff2"), url(../fonts/fa-light-3003.woff) format("woff"),
-         url(../fonts/fa-light-3003.ttf) format("truetype"), url(../fonts/fa-light-3003.svg#fontawesome) format("svg");
+     src: url(../fonts/fa-light-300.eot);
+     src: url(../fonts/fa-light-300.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-light-300.woff2) format("woff2"), url(../fonts/fa-light-300.woff) format("woff"),
+         url(../fonts/fa-light-300.ttf) format("truetype"), url(../fonts/fa-light-300.svg#fontawesome) format("svg");
      unicode-range: U+f010, U+f067, U+f072, U+f0ad, U+f0d6, U+f0e8, U+f130-f131, U+f24e, U+f3c9, U+f3d1, U+f517, U+f519-f51e, U+f520-f52c, U+f52e, U+f530-f533, U+f535-f543, U+f545-f54b, U+f54d, U+f54f-f552, U+f554-f555;
  }
  @font-face {
@@ -13795,9 +13795,9 @@
      font-style: normal;
      font-weight: 400;
      font-display: block;
-     src: url(../fonts/fa-regular-4000.eot);
-     src: url(../fonts/fa-regular-4000.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-regular-4000.woff2) format("woff2"), url(../fonts/fa-regular-4000.woff) format("woff"),
-         url(../fonts/fa-regular-4000.ttf) format("truetype"), url(../fonts/fa-regular-4000.svg#fontawesome) format("svg");
+     src: url(../fonts/fa-regular-400.eot);
+     src: url(../fonts/fa-regular-400.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-regular-400.woff2) format("woff2"), url(../fonts/fa-regular-400.woff) format("woff"),
+         url(../fonts/fa-regular-400.ttf) format("truetype"), url(../fonts/fa-regular-400.svg#fontawesome) format("svg");
      unicode-range: U+f471, U+f4ca;
  }
  @font-face {
@@ -13805,9 +13805,9 @@
      font-style: normal;
      font-weight: 400;
      font-display: block;
-     src: url(../fonts/fa-regular-4001.eot);
-     src: url(../fonts/fa-regular-4001.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-regular-4001.woff2) format("woff2"), url(../fonts/fa-regular-4001.woff) format("woff"),
-         url(../fonts/fa-regular-4001.ttf) format("truetype"), url(../fonts/fa-regular-4001.svg#fontawesome) format("svg");
+     src: url(../fonts/fa-regular-400.eot);
+     src: url(../fonts/fa-regular-400.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-regular-400.woff2) format("woff2"), url(../fonts/fa-regular-400.woff) format("woff"),
+         url(../fonts/fa-regular-400.ttf) format("truetype"), url(../fonts/fa-regular-400.svg#fontawesome) format("svg");
      unicode-range: U+f007, U+f4e6;
  }
  @font-face {
@@ -13815,9 +13815,9 @@
      font-style: normal;
      font-weight: 400;
      font-display: block;
-     src: url(../fonts/fa-regular-4001.eot);
-     src: url(../fonts/fa-regular-4001.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-regular-4001.woff2) format("woff2"), url(../fonts/fa-regular-4001.woff) format("woff"),
-         url(../fonts/fa-regular-4001.ttf) format("truetype"), url(../fonts/fa-regular-4001.svg#fontawesome) format("svg");
+     src: url(../fonts/fa-regular-400.eot);
+     src: url(../fonts/fa-regular-400.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-regular-400.woff2) format("woff2"), url(../fonts/fa-regular-400.woff) format("woff"),
+         url(../fonts/fa-regular-400.ttf) format("truetype"), url(../fonts/fa-regular-400.svg#fontawesome) format("svg");
      unicode-range: U+f0c0, U+f0c2, U+f0ed-f0ee, U+f0f0, U+f1de, U+f21b, U+f234-f235, U+f381-f382, U+f3f1, U+f406, U+f4fa-f501, U+f503-f509;
  }
  @font-face {
@@ -13825,9 +13825,9 @@
      font-style: normal;
      font-weight: 400;
      font-display: block;
-     src: url(../fonts/fa-regular-4003.eot);
-     src: url(../fonts/fa-regular-4003.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-regular-4003.woff2) format("woff2"), url(../fonts/fa-regular-4003.woff) format("woff"),
-         url(../fonts/fa-regular-4003.ttf) format("truetype"), url(../fonts/fa-regular-4003.svg#fontawesome) format("svg");
+     src: url(../fonts/fa-regular-400.eot);
+     src: url(../fonts/fa-regular-400.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-regular-400.woff2) format("woff2"), url(../fonts/fa-regular-400.woff) format("woff"),
+         url(../fonts/fa-regular-400.ttf) format("truetype"), url(../fonts/fa-regular-400.svg#fontawesome) format("svg");
      unicode-range: U+f3d1;
  }
  @font-face {
@@ -13835,9 +13835,9 @@
      font-style: normal;
      font-weight: 400;
      font-display: block;
-     src: url(../fonts/fa-regular-4003.eot);
-     src: url(../fonts/fa-regular-4003.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-regular-4003.woff2) format("woff2"), url(../fonts/fa-regular-4003.woff) format("woff"),
-         url(../fonts/fa-regular-4003.ttf) format("truetype"), url(../fonts/fa-regular-4003.svg#fontawesome) format("svg");
+     src: url(../fonts/fa-regular-400.eot);
+     src: url(../fonts/fa-regular-400.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-regular-400.woff2) format("woff2"), url(../fonts/fa-regular-400.woff) format("woff"),
+         url(../fonts/fa-regular-400.ttf) format("truetype"), url(../fonts/fa-regular-400.svg#fontawesome) format("svg");
      unicode-range: U+f010, U+f067, U+f072, U+f0ad, U+f0d6, U+f0e8, U+f130-f131, U+f24e, U+f3c9, U+f517, U+f519-f51e, U+f520-f52c, U+f52e, U+f530-f533, U+f535-f543, U+f545-f54b, U+f54d, U+f54f-f552, U+f554-f555;
  }
  @font-face {
@@ -14314,9 +14314,9 @@
      font-style: normal;
      font-weight: 900;
      font-display: block;
-     src: url(../fonts/fa-solid-9000.eot);
-     src: url(../fonts/fa-solid-9000.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-solid-9000.woff2) format("woff2"), url(../fonts/fa-solid-9000.woff) format("woff"),
-         url(../fonts/fa-solid-9000.ttf) format("truetype"), url(../fonts/fa-solid-9000.svg#fontawesome) format("svg");
+     src: url(../fonts/fa-solid-900.eot);
+     src: url(../fonts/fa-solid-900.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-solid-900.woff2) format("woff2"), url(../fonts/fa-solid-900.woff) format("woff"),
+         url(../fonts/fa-solid-900.ttf) format("truetype"), url(../fonts/fa-solid-900.svg#fontawesome) format("svg");
      unicode-range: U+f471;
  }
  @font-face {
@@ -14324,9 +14324,9 @@
      font-style: normal;
      font-weight: 900;
      font-display: block;
-     src: url(../fonts/fa-solid-9000.eot);
-     src: url(../fonts/fa-solid-9000.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-solid-9000.woff2) format("woff2"), url(../fonts/fa-solid-9000.woff) format("woff"),
-         url(../fonts/fa-solid-9000.ttf) format("truetype"), url(../fonts/fa-solid-9000.svg#fontawesome) format("svg");
+     src: url(../fonts/fa-solid-900.eot);
+     src: url(../fonts/fa-solid-900.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-solid-900.woff2) format("woff2"), url(../fonts/fa-solid-900.woff) format("woff"),
+         url(../fonts/fa-solid-900.ttf) format("truetype"), url(../fonts/fa-solid-900.svg#fontawesome) format("svg");
      unicode-range: U+f4ca;
  }
  @font-face {
@@ -14334,9 +14334,9 @@
      font-style: normal;
      font-weight: 900;
      font-display: block;
-     src: url(../fonts/fa-solid-9001.eot);
-     src: url(../fonts/fa-solid-9001.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-solid-9001.woff2) format("woff2"), url(../fonts/fa-solid-9001.woff) format("woff"),
-         url(../fonts/fa-solid-9001.ttf) format("truetype"), url(../fonts/fa-solid-9001.svg#fontawesome) format("svg");
+     src: url(../fonts/fa-solid-900.eot);
+     src: url(../fonts/fa-solid-900.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-solid-900.woff2) format("woff2"), url(../fonts/fa-solid-900.woff) format("woff"),
+         url(../fonts/fa-solid-900.ttf) format("truetype"), url(../fonts/fa-solid-900.svg#fontawesome) format("svg");
      unicode-range: U+f007, U+f0c0, U+f0c2, U+f0f0, U+f1de, U+f21b, U+f234-f235, U+f381-f382, U+f406, U+f4e6, U+f4fa-f501, U+f503-f509;
  }
  @font-face {
@@ -14344,9 +14344,9 @@
      font-style: normal;
      font-weight: 900;
      font-display: block;
-     src: url(../fonts/fa-solid-9001.eot);
-     src: url(../fonts/fa-solid-9001.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-solid-9001.woff2) format("woff2"), url(../fonts/fa-solid-9001.woff) format("woff"),
-         url(../fonts/fa-solid-9001.ttf) format("truetype"), url(../fonts/fa-solid-9001.svg#fontawesome) format("svg");
+     src: url(../fonts/fa-solid-900.eot);
+     src: url(../fonts/fa-solid-900.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-solid-900.woff2) format("woff2"), url(../fonts/fa-solid-900.woff) format("woff"),
+         url(../fonts/fa-solid-900.ttf) format("truetype"), url(../fonts/fa-solid-900.svg#fontawesome) format("svg");
      unicode-range: U+f0ed-f0ee, U+f3f1;
  }
  @font-face {
@@ -14354,9 +14354,9 @@
      font-style: normal;
      font-weight: 900;
      font-display: block;
-     src: url(../fonts/fa-solid-9003.eot);
-     src: url(../fonts/fa-solid-9003.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-solid-9003.woff2) format("woff2"), url(../fonts/fa-solid-9003.woff) format("woff"),
-         url(../fonts/fa-solid-9003.ttf) format("truetype"), url(../fonts/fa-solid-9003.svg#fontawesome) format("svg");
+     src: url(../fonts/fa-solid-900.eot);
+     src: url(../fonts/fa-solid-900.eot?#iefix) format("embedded-opentype"), url(../fonts/fa-solid-900.woff2) format("woff2"), url(../fonts/fa-solid-900.woff) format("woff"),
+         url(../fonts/fa-solid-900.ttf) format("truetype"), url(../fonts/fa-solid-900.svg#fontawesome) format("svg");
      unicode-range: U+f010, U+f067, U+f072, U+f0ad, U+f0d6, U+f0e8, U+f130-f131, U+f24e, U+f3c9, U+f3d1, U+f517, U+f519-f51e, U+f520-f52c, U+f52e, U+f530-f533, U+f535-f543, U+f545-f54b, U+f54d, U+f54f-f552, U+f554-f555;
  }
  @font-face {
