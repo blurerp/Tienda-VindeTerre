@@ -8,34 +8,31 @@ Dashboard::headerTemplate('Iniciar sesión');
             <div class="container inner">
                 <div class="row">
                     <div class="col">
-
                         <div id="logo">
                             <img src="../../resources/img/logo.png">
                         </div>
-
                         <h3 class="text-center">Iniciar Sesión</h3>
-                        <div class="input-group input-focus mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text bg-white"><i class="far fa-user-alt"></i></span>
+                        <form class="needs-validation" id="sesion-form" novalidate>
+                            <div class="input-group input-focus mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white"><i class="far fa-user-alt"></i></span>
+                                </div>
+                                <input type="text" placeholder="Usuario" class="form-control border-left-0" required>
                             </div>
-                            <input type="text" placeholder="Usuario" class="form-control border-left-0">
-                        </div>
-
-                        <div class="input-group input-focus mb-3">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text bg-white"><i class="far fa-key"></i></span>
+                            <div class="input-group input-focus mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white"><i class="far fa-key"></i></span>
+                                </div>
+                                <input type="password" placeholder="Contraseña" class="form-control border-left-0" required>
                             </div>
-                            <input type="password" placeholder="Contraseña" class="form-control border-left-0">
-                        </div>
-
-                        <div class="row">
-                          <div class="col">
-                            <a href="#" class="btn btn-primary col-12 text-white" style="margin-bottom: 20px;">Ingresar</a>
-                          </div>
-                        </div> 
-                                              
+                            <div class="row">
+                                <div class="col">
+                                    <button type="submit" class="btn btn-primary col-12 text-white" style="margin-bottom: 20px;">Ingresar</button></a>
+                                </div>
+                            </div>  
+                        </form>                                                  
                     </div>
-                </div>
+                </div>                   
             </div>
         </div>
     </div>
