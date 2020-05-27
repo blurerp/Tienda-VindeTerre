@@ -72,10 +72,6 @@ Dashboard::headerTemplate('Iniciar sesión');
                                     <label for="validationDefault01">Nombre</label>
                                     <input type="text" class="form-control" id="validationDefault01" required>
                                 </div>
-                                <div class="col-md-4 my-4">
-                                    <input type="file" class="custom-file-input" id="customFile">
-                                    <label class="custom-file-label" for="customFile">Choose file</label>
-                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
