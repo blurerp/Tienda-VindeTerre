@@ -32,4 +32,4 @@ $( '#sesion-form' ).submit(function( event ) {
             console.log( jqXHR.status + ' ' + jqXHR.statusText );
         }
     });
-});
+});                     
