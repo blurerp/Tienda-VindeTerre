@@ -11,10 +11,10 @@
                     <meta charset="utf-8">
                     <title>Inicio de sesión del Cliente</title>
                     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-                    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
-                    <link rel="stylesheet" href="../../resources/css/datatables.min.css">
-                    <link rel="stylesheet" href="../../resources/css/dataTables.bootstrap4.min.css">
-                    <link rel="stylesheet" href="../../resources/css/all.css">
+                    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap.min.css">
+                    <link type="text/css" rel="stylesheet" href="../../resources/css/datatables.min.css">
+                    <link type="text/css" rel="stylesheet" href="../../resources/css/dataTables.bootstrap4.min.css">
+                    <link type="text/css" rel="stylesheet" href="../../resources/css/all.css">
                     <link type="text/css" rel="stylesheet" href="../../resources/css/dashboard.css"/>
                     <link type="image/png" rel="icon" href="../../resources/img/logo.png"/>
                 </head>
@@ -93,10 +93,11 @@
         public static function footerTemplate($controller)
         {
             print('
-                <script src="../../resources/js/jquery-3.5.1.min.js"></script>
-                <script src="../../resources/js/popper.min.js"></script>
-                <script src="../../resources/js/bootstrap.min.js"></script>
-                <script src="../../resources/js/datatables.min.js"></script>
+                <script type="text/javascript" src="../../resources/js/jquery-3.5.1.min.js"></script>
+                <script type="text/javascript" src="../../resources/js/popper.min.js"></script>
+                <script type="text/javascript" src="../../resources/js/bootstrap.min.js"></script>
+                <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
+                <script type="text/javascript" src="../../resources/js/datatables.min.js"></script>
                 <script type="text/javascript" src="../../core/helpers/components.js"></script>
             </body>
             </html>
