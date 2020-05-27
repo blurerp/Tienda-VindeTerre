@@ -1,15 +1,7 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Inicio de sesión del Cliente</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../resources/css/all.css">
-    <link type="text/css" rel="stylesheet" href="../../resources/css/dashboard.css"/>
-    <link type="image/png" rel="icon" href="../../resources/img/logo.png"/>
-  </head>
-  <body>
+<?php
+require_once('../../core/helpers/template.php');
+Dashboard::headerTemplate('Iniciar sesión');
+?>
     <div id="background"></div>
     <div id="container">
         <div class="box">
@@ -38,7 +30,7 @@
 
                         <div class="row">
                           <div class="col">
-                            <a href="#" class="btn btn-primary col-12">Ingresar</a>
+                            <a href="#" class="btn btn-primary col-12 text-white" style="margin-bottom: 20px;">Ingresar</a>
                           </div>
                         </div> 
                                               
@@ -47,8 +39,6 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="../../resources/js/bootstrap.min.js"></script>
-  </body>
-</html>
+<?php
+Dashboard::footerTemplate('index.js');
+?>
