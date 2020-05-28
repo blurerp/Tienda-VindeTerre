@@ -58,7 +58,7 @@ Dashboard::headerTemplate('Iniciar sesión');
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="save-modal">Modal title</h5>
+                            <h5 class="modal-title" id="save-modal">Nuevo Producto</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -94,13 +94,34 @@ Dashboard::headerTemplate('Iniciar sesión');
                                     <input id="stock_producto" type="text" class="form-control" name="stock_producto" required>
                                 </div>
                                 <div class="col-md-3">
-
+                                    <label for="bodega">Bodega</label>
+                                    <select class="custom-select" id="bodega" name="bodega" required>
+                                        <option selected disabled value="">Seleccionar...</option>
+                                        <option>...</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Debe seleccionar almenos 1 bodega
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
-
+                                    <label for="categoria_producto">Categoria</label>
+                                    <select class="custom-select" id="categoria_producto" name="categoria_producto" required>
+                                        <option selected disabled value="">Seleccionar...</option>
+                                        <option>...</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Debe seleccionar almenos 1 Categoria
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
-
+                                <label for="estado_producto">Estado</label>
+                                    <select class="custom-select" id="estado_producto" name="estado_producto" required>
+                                        <option selected disabled value="">Seleccionar...</option>
+                                        <option>...</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Debe seleccionar almenos 1 estado
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-footer">

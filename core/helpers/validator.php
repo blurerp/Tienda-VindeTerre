@@ -1,8 +1,4 @@
 <?php
-/*
-*	Clase para validar todos los datos de entrada del lado del servidor.
-*   Es clase padre de los modelos porque los datos se validan en los métodos setter.
-*/
 class Validator
 {
     // Propiedades para manejar la validación de archivos de imagen.
