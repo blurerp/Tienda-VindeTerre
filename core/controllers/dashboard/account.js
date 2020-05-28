@@ -11,7 +11,7 @@ function checkUser() {
             let current = window.location.pathname;
 
             if (current == '/Tienda-vindeterre/views/dashboard/register.php') {
-                // Si ya existe un usuario registrado se envía a iniciar sesión, de lo contrario se pide crear el primero.
+                
                 if (response.status) {
                     sweetAlert(3, response.message, 'index.php');
                 } else {
@@ -19,7 +19,7 @@ function checkUser() {
                 }
 
             } else {
-                //Si un usuario existe un usuario, se deve autenticar, si no se crea el mimsmo
+                
                 if (response.status) {
                     sweetAlert(4, 'Debe autenticarse para ingresar', null);
                 } else {
@@ -28,7 +28,6 @@ function checkUser() {
             }
         })
         .fail(function (jqXHR) {
-            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
             if (jqXHR.status == 200) {
                 console.log(jqXHR.responseText);
             } else {

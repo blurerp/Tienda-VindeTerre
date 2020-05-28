@@ -213,6 +213,18 @@ class Validator
         }
     }
 
+    /**Validacion DUI */
+
+    public function validateDui($value)
+    {
+        // Se verifica que el número tenga una parte entera y como máximo dos cifras decimales.
+        if (preg_match('/^[0-9]{8}+[\-][0-9]{1})?$/', $value)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /*
     *   Método para validar una contraseña.
     *

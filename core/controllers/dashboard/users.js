@@ -2,7 +2,7 @@
 // Constante para establecer la ruta y parámetros de comunicación con la API.
 const API_USUARIOS = '../../core/api/dashboard/usuarios.php?action=';
 
-// Método que se ejecuta cuando el documento está listo.
+
 $( document ).ready(function() {
     // Se llama a la función que obtiene los registros para llenar la tabla. Se encuentra en el archivo components.js
     readRows( API_USUARIOS );
@@ -14,7 +14,7 @@ function fillTable( dataset )
     let content = '';
     // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
     dataset.forEach(function( row ) {
-        // Se crean y concatenan las filas de la tabla con los datos de cada registro.
+        
         content += `
             <tr>
                 <td>${row.apellidos_usuario}</td>

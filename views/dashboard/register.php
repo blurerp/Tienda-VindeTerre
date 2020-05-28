@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,57 +21,57 @@
 
             </div>
             <div class="col-md-9 register-right">
+                <form method="post" id="register-form">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <h3 class="register-heading">Registrarse</h3>
 
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <h3 class="register-heading">Registrarse</h3>
-                        <div class="row register-form">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Usuario *" value="" />
+                            <div class="row register-form">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input name="usuario" id="usuario" type="text" class="form-control" placeholder="Usuario *" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="nombre_usuario" id="nombre_usuario" type="text" class="form-control" placeholder="Nombres *" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="apellido_usuario" id="apellido_usuario" type="text" class="form-control" placeholder="Apellidos *" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <span class="small text-secondary">Fecha de nacimiento</span>
+                                        <input name="fecha_nacimiento" id="fecha_nacimiento" type="date" class="form-control" placeholder="Fecha de nacimiento *" value="" />
+                                    </div>
+
                                 </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Nombres *" value="" />
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input name="email_usuario" id="email_usuario" type="email" class="form-control" placeholder="Correo *" value="" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input name="dui_usuario" id="dui_usuario" type="text" minlength="10" maxlength="10" class="form-control" placeholder="DUI - Formato: 1234567-9 *" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="contrasenia_usuario" id="contrasenia_usuario" type="password" class="form-control" placeholder="Contraseña *" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="contrasenia_usuario2" id="contrasenia_usuario2" type="password" class="form-control" placeholder="Comfirmar contraseña *" value="" />
+                                    </div>
+
+                                    <button class='btn btn-block bg' type="submit">
+                                            <p class='txt-black'>Registrarse</p>
+                                    </button>    
+
+                                    
                                 </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Apellidos *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <span class="small text-secondary">Fecha de nacimiento</span>
-                                    <input type="date" class="form-control" placeholder="Fecha de nacimiento *"
-                                        value="" />
-                                </div>
-                                
+
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Correo *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" minlength="8" maxlength="8" name="txtEmpPhone"
-                                        class="form-control" placeholder="Telefono *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" minlength="10" maxlength="10" name="txtEmpPhone"
-                                        class="form-control" placeholder="DUI - Formato: 1234567-9 *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Contraseña *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Comfirmar contraseña *"
-                                        value="" />
-                                </div>
-
-                                
-
-                                <input type="submit" class="btnRegister" value="Registrarse" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
+    </div>
+    </div>
     </div>
     </div>
 
@@ -82,6 +81,10 @@
     <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
     <script type="text/javascript" src="../../resources/js/datatables.min.js"></script>
     <script type="text/javascript" src="../../core/helpers/components.js"></script>
+    <script type="text/javascript" src="../../core/controllers/dashboard/register.js"></script>
+
+
 </body>
 
 </html>
+
