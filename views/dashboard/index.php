@@ -1,5 +1,5 @@
 <?php
-require_once('../../core/helpers/template.php');
+require_once('../../core/helpers/template.');
 Dashboard::headerTemplate('Iniciar sesión');
 ?>
     <div id="background"></div>

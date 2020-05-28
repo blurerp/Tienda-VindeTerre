@@ -10,7 +10,7 @@ function checkUser() {
 
             let current = window.location.pathname;
 
-            if (current == '/Tienda-vindeterre/views/dashboard/register.php?') {
+            if (current == '/Tienda-vindeterre/views/dashboard/register.php') {
                 // Si ya existe un usuario registrado se envía a iniciar sesión, de lo contrario se pide crear el primero.
                 if (response.status) {
                     sweetAlert(3, response.message, 'index.php');
