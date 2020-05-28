@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,58 +26,45 @@
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <h3 class="register-heading">Registrarse</h3>
                         <div class="row register-form">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Usuario *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Nombres *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Apellidos *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <span class="small text-secondary">Fecha de nacimiento</span>
-                                    <input type="date" class="form-control" placeholder="Fecha de nacimiento *"
-                                        value="" />
-                                </div>
-                                <div class="form-group">
-                                    <div class="maxl">
-                                        <label class="radio inline">
-                                            <input type="radio" name="gender" value="male" checked>
-                                            <span> Hombre </span>
-                                        </label>
-                                        <label class="radio inline">
-                                            <input type="radio" name="gender" value="female">
-                                            <span>Mujer </span>
-                                        </label>
+                            <form method="post" id="register-form" >
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Usuario *" value="" />
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Correo *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" minlength="8" maxlength="8" name="txtEmpPhone"
-                                        class="form-control" placeholder="Telefono *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" minlength="10" maxlength="10" name="txtEmpPhone"
-                                        class="form-control" placeholder="DUI - Formato: 1234567-9 *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Contraseña *" value="" />
-                                </div>
-                                <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Comfirmar contraseña *"
-                                        value="" />
-                                </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Nombres *" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" placeholder="Apellidos *" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <span class="small text-secondary">Fecha de nacimiento</span>
+                                        <input type="date" class="form-control" placeholder="Fecha de nacimiento *" value="" />
+                                    </div>
 
-                                
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" placeholder="Correo *" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" minlength="8" maxlength="8" name="txtEmpPhone" class="form-control" placeholder="Telefono *" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="DUI - Formato: 1234567-9 *" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" placeholder="Contraseña *" value="" />
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" class="form-control" placeholder="Comfirmar contraseña *" value="" />
+                                    </div>
 
-                                <input type="submit" class="btnRegister" value="Register" />
-                            </div>
+
+
+                                    <input type="submit" class="btnRegister" value="Registrarse" />
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -96,3 +82,6 @@
 </body>
 
 </html>
+<?php
+Dashboard::footerTemplate('register.js');
+?>
