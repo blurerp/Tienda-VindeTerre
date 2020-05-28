@@ -26,8 +26,14 @@
                         </div>
                         <div class="menu list-group-flush">
                             <a href="" class="list-group-item list-group-item-action bg-light p-3 border=0"><i class="far fa-home p-2 border-0"></i> Tablero</a>
-                            <a href="" class="list-group-item list-group-item-action bg-light p-3 border=0"><i class="far fa-box-check p-2 border-0"></i> Pedidos</a>
-                            <a href="" class="list-group-item list-group-item-action bg-light p-3 border=0"><i class="far fa-cubes p-2 border-0"></i> Productos</a>
+                            <a href="" class="list-group-item list-group-item-action bg-light p-3 border=0"><i class="far fa-box-check p-2 border-0"></i> Pedidos</a>                            
+                            <button class="dropdown-btn list-group-item list-group-item-action p-3 border=0" style="outline: none;">Inventario 
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown-container">
+                                <a href="productos.php" class="list-group-item list-group-item-action bg-light p-3 border=0"><i class="far fa-cubes p-2 border-0"></i> Productos</a>
+                                <a href="categorias.php" class="list-group-item list-group-item-action bg-light p-3 border=0"><i class="fab fa-elementor p-2 border-0"></i> Categorias</a>
+                            </div>
                             <a href="" class="list-group-item list-group-item-action bg-light p-3 border=0"><i class="far fa-users p-2 border-0"></i> Usuarios</a>
                             <a href="" class="list-group-item list-group-item-action bg-light p-3 border=0"><i class="far fa-user-friends p-2 border-0"></i> Clientes</a>
                             <a href="" class="list-group-item list-group-item-action bg-light p-3 border=0"><i class="far fa-shopping-bag p-2 border-0"></i> Ordenes</a>
@@ -99,6 +105,7 @@
                 <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/datatables.min.js"></script>
                 <script type="text/javascript" src="../../core/helpers/components.js"></script>
+                <script type="text/javascript" src="../../core/controllers/dashboard/'.$controller.'"></script>
             </body>
             </html>
             ');

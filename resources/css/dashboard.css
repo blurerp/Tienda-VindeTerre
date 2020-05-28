@@ -90,7 +90,7 @@ main {
     font-size: 1.2rem;
 }
 
-#sidebar-container .menu {
+#sidebar-container .menu .dropdown-btn{
     width: 18rem;
 }
 
@@ -114,6 +114,12 @@ main {
 .circle {
     width: 50px;
     height: 50px;
+}
+
+.dropdown-container {
+    display: none;
+    background-color: #1e46c9;
+    padding-left: 8px;
 }
 
 @media only screen and (max-width: 480px) {
