@@ -6,7 +6,7 @@ Dashboard::headerTemplate('Iniciar sesión');
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <button id="btn_nuevo" type="button" class="btn btn-success">Nuevo</button>
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#save-modal" id="btn_nuevo" style="margin-bottom: 20px;">Nuevo</button>
                     </div>
                 </div>     
             </div>
@@ -14,7 +14,7 @@ Dashboard::headerTemplate('Iniciar sesión');
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="table-responsive">
-                            <table id="tabla_productos" class="table table-striped table-bordered table-condensed" style="width: 100%;">
+                            <table id="tabla" class="table table-striped table-bordered table-condensed" style="width: 100%;">
                                 <thead class="text-center">
                                     <tr>
                                         <th>Id</th>
@@ -54,23 +54,53 @@ Dashboard::headerTemplate('Iniciar sesión');
                 </div>     
             </div>
 
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_crud">
-                Launch static backdrop modal
-            </button>
-            <div class="modal fade" id="modal_crud" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="save-modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="modal_crud">Modal title</h5>
+                            <h5 class="modal-title" id="save-modal">Modal title</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form class="needs-validation" id="form_productos" novalidate>
+                        <form class="needs-validation" id="save-form" novalidate>
+                            <input id="id_producto" type="hidden" name="id_producto"/>
                             <div class="form-row m-3">
                                 <div class="col-md-8 mb-3">
-                                    <label for="validationDefault01">Nombre</label>
-                                    <input type="text" class="form-control" id="validationDefault01" required>
+                                    <label for="nombre_producto">Nombre</label>
+                                    <input id="nombre_producto" type="text" class="form-control" name="nombre_producto" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="precio_producto">Precio</label>                                   
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">$</span>
+                                        <span class="input-group-text">0.00</span>
+                                        <input id="precio_producto" type="text" name="precio_producto" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row m-3">
+                                <div class="col-md-12">
+                                    <label>Imagen</label>
+                                    <div class="custom-file">
+                                        <input id="archivo_producto" type="file" name="archivo_producto" class="custom-file-input" lang="es" accept=".gif, .jpg, .png">
+                                        <label class="custom-file-label" for="archivo_producto" data-browse="Elegir">Formatos aceptados: gif, jpg y png</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row m-3">
+                                <div class="col-md-3">
+                                    <label for="stock_producto">Stock</label>
+                                    <input id="stock_producto" type="text" class="form-control" name="stock_producto" required>
+                                </div>
+                                <div class="col-md-3">
+
+                                </div>
+                                <div class="col-md-3">
+
+                                </div>
+                                <div class="col-md-3">
+
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -84,5 +114,5 @@ Dashboard::headerTemplate('Iniciar sesión');
         </div>
     </div>
 <?php
-Dashboard::footerTemplate('index.js');
+Dashboard::footerTemplate('productos.js');
 ?>
