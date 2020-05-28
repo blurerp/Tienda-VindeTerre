@@ -13,6 +13,8 @@ class Usuarios extends Validator
     private $dui = null;
     private $correo = null;
     private $clave = null;
+    private $estado = null;
+    private $tipo = null;
 
     /*
     *   Métodos para asignar valores a los atributos.
@@ -120,6 +122,17 @@ class Usuarios extends Validator
         return $this->clave;
     }
 
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+
+
     /*
     *   Métodos para gestionar la cuenta del usuario.
     */
@@ -172,8 +185,8 @@ class Usuarios extends Validator
     */
     public function searchUsuarios($value)
     {
-        $sql = 'SELECT id_usuario, nombre_usuario, apellido_usuario, email_usuario,fecha_nacimiento,dui_usuario, usuario FROM usuarios
-                WHERE apellidos_usuario ILIKE ? OR nombres_usuario ILIKE ?
+        $sql = 'SELECT id_usuario, usuario, nombre_usuario, apellido_usuario, email_usuario,fecha_nacimiento, email_usuario, dui_usuario, estado_usuario FROM usuarios
+                WHERE apellido_usuario ILIKE ? OR nombre_usuario ILIKE ?
                 ORDER BY apellidos_usuario';
         $params = array("%$value%", "%$value%");
         return Database::getRows($sql, $params);
@@ -183,24 +196,27 @@ class Usuarios extends Validator
     {
         // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
         $hash = password_hash($this->clave, PASSWORD_DEFAULT);
-        $sql = 'INSERT INTO usuarios(nombres_usuario, apellidos_usuario, correo_usuario, alias_usuario, clave_usuario)
-                VALUES(?, ?, ?, ?, ?)';
-        $params = array($this->nombres, $this->apellidos, $this->correo, $this->usuario, $hash);
+        $estado = 'Activo';
+        $tipo = '2';
+        $sql = 'INSERT INTO usuarios(usuario, nombre_usuario, apellido_usuario, email_usuario,fecha_nacimiento, dui_usuario, contrasena_usuario, estado_usuario, tipo_usuario)
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)';
+        $params = array($this->usuario, $this->nombres, $this->apellidos, $this->correo, $this->fecha, $this->dui, $hash, $estado, $tipo);
         return Database::executeRow($sql, $params);
     }
 
+
     public function readAllUsuarios()
     {
-        $sql = 'SELECT id_usuario, nombres_usuario, apellidos_usuario, correo_usuario, alias_usuario
+        $sql = 'SELECT id_usuario, nombre_usuario, apellido_usuario, email_usuario, usuario
                 FROM usuarios
-                ORDER BY apellidos_usuario';
+                ORDER BY apellido_usuario';
         $params = null;
         return Database::getRows($sql, $params);
     }
 
     public function readOneUsuario()
     {
-        $sql = 'SELECT id_usuario, nombres_usuario, apellidos_usuario, correo_usuario, alias_usuario
+        $sql = 'SELECT id_usuario, nombre_usuario, apellido_usuario, email_usuario, usuario
                 FROM usuarios
                 WHERE id_usuario = ?';
         $params = array($this->id);
@@ -210,7 +226,7 @@ class Usuarios extends Validator
     public function updateUsuario()
     {
         $sql = 'UPDATE usuarios 
-                SET nombres_usuario = ?, apellidos_usuario = ?, correo_usuario = ?
+                SET nombre_usuario = ?, apellido_usuario = ?, email_usuario = ?
                 WHERE id_usuario = ?';
         $params = array($this->nombres, $this->apellidos, $this->correo, $this->id);
         return Database::executeRow($sql, $params);
