@@ -1,6 +1,6 @@
 <?php
 require_once('../../core/helpers/template.php');
-Dashboard::headerTemplate('Categoria');
+Dashboard::headerTemplate('categorias');
 ?>
             <div id="content" class="container-fluid p-5">
             <div class="container">
@@ -17,9 +17,9 @@ Dashboard::headerTemplate('Categoria');
                             <table id="tabla" class="table table-striped table-bordered table-condensed" style="width: 100%;">
                                 <thead class="text-center">
                                     <tr>
-                                        <th>Id</th>
-                                        <th>Nombre</th>
                                         <th>Imagen</th>
+                                        <th>Nombre</th>                      
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbody-rows">

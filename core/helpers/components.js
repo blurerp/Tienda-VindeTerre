@@ -41,7 +41,7 @@ $(document).ready(function() {
     });
 } );
 
-$('#archivo_categoria').on('change',function(){
+$('.archivo_categoria').on('change',function(){
     var fileName = $(this).val();
     $(this).next('.custom-file-label').html(fileName);
 })

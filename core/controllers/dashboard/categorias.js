@@ -15,8 +15,8 @@ function fillTable( dataset )
                 <td>
                     <div class="text-center">
                         <div class="btn-group">
-                            <button onclick: "openUpdateModal(${row.id_categoria})" class="btn btn-primary btn_editar">Editar</button>
-                            <button onclick: "openDeleteDialog(${row.id_categoria})" class="btn btn-danger btn_eliminar">Eliminar</button>
+                            <button onclick= "openUpdateModal(${row.id_categoria})" class="btn btn-primary btn_editar" data-toggle="modal" data-target="#save-modal">Editar</button>
+                            <button onclick= "openDeleteDialog(${row.id_categoria})" class="btn btn-danger btn_eliminar">Eliminar</button>
                         </div>
                     </div>
                 </td>
@@ -25,19 +25,19 @@ function fillTable( dataset )
     });
     $( '#tbody-rows' ).html( content );
 }
-
+/*
 // Evento para mostrar los resultados de una búsqueda.
 $( '#search-form' ).submit(function( event ) {
     // Se evita recargar la página web después de enviar el formulario.
     event.preventDefault();
     // Se llama a la función que realiza la búsqueda. Se encuentra en el archivo components.js
     searchRows( API_CATEGORIAS, this );
-});
+});*/
 
 function openCreateModal()
 {
     $( '#save-form' )[0].reset();
-    $( '.modal-header' ).css( 'background-color', '#28a745' );
+    $( '.modal-header' ).css( 'background-color', '#78e08f' );
     $( '.modal-header' ).css( 'color', 'white' );
     $( '.modal-title' ).text( 'Nueva categoría' );
     $( '#archivo_categoria' ).prop( 'required', true );
@@ -47,9 +47,9 @@ function openCreateModal()
 function openUpdateModal( id )
 {
     $( '#save-form' )[0].reset();
-    $( '.modal-header' ).css( 'background-color', '#28a745' );
+    $( '.modal-header' ).css( 'background-color', '#4a69bd' );
     $( '.modal-header' ).css( 'color', 'white' );
-    $( '.modal-title' ).text( 'NModificar categoría' );
+    $( '.modal-title' ).text( 'Modificar categoría' );
     $( '#archivo_categoria' ).prop( 'required', false );
     $( '#save-modal' ).modal( 'show' );
 

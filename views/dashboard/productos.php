@@ -1,6 +1,6 @@
 <?php
 require_once('../../core/helpers/template.php');
-Dashboard::headerTemplate('Iniciar sesión');
+Dashboard::headerTemplate('productos');
 ?>
         <div id="content" class="container-fluid p-5">
             <div class="container">
