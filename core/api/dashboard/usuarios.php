@@ -128,12 +128,12 @@ if (isset($_GET['action'])) {
                 break;
             case 'create':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setNombres($_POST['nombres_usuario'])) {
-                    if ($usuario->setApellidos($_POST['apellidos_usuario'])) {
+                if ($usuario->setNombres($_POST['nombre_usuario'])) {
+                    if ($usuario->setApellidos($_POST['apellido_usuario'])) {
                         if ($usuario->setCorreo($_POST['correo_usuario'])) {
-                            if ($usuario->setAlias($_POST['alias_usuario'])) {
-                                if ($_POST['clave_usuario'] == $_POST['confirmar_clave']) {
-                                    if ($usuario->setClave($_POST['clave_usuario'])) {
+                            if ($usuario->setUsuario($_POST['usuario'])) {
+                                if ($_POST['contrasenia_usuario'] == $_POST['contrasenia_usuario2']) {
+                                    if ($usuario->setClave($_POST['contrasenia_usuario'])) {
                                         if ($usuario->createUsuario()) {
                                             $result['status'] = 1;
                                             $result['message'] = 'Usuario creado correctamente';
@@ -147,7 +147,7 @@ if (isset($_GET['action'])) {
                                     $result['exception'] = 'Claves diferentes';
                                 }
                             } else {
-                                $result['exception'] = 'Alias incorrecto';
+                                $result['exception'] = 'Usuario incorrecto';
                             }
                         } else {
                             $result['exception'] = 'Correo incorrecto';
@@ -234,13 +234,13 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'register':
-                $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setNombres($_POST['nombres'])) {
-                    if ($usuario->setApellidos($_POST['apellidos'])) {
-                        if ($usuario->setCorreo($_POST['correo'])) {
-                            if ($usuario->setAlias($_POST['alias'])) {
-                                if ($_POST['clave1'] == $_POST['clave2']) {
-                                    if ($usuario->setClave($_POST['clave1'])) {
+                $_POST = $usuario->validateForm($_POST);                             
+                if ($usuario->setNombres($_POST['nombre_usuario'])) {
+                    if ($usuario->setApellidos($_POST['apellido_usuario'])) {
+                        if ($usuario->setCorreo($_POST['email_usuario'])) {
+                            if ($usuario->setUsuario($_POST['usuario'])) {
+                                if ($_POST['contrasenia_usuario'] == $_POST['contrasenia_usuario2']) {
+                                    if ($usuario->setClave($_POST['contrasenia_usuario'])) {
                                         if ($usuario->createUsuario()) {
                                             $result['status'] = 1;
                                             $result['message'] = 'Usuario registrado correctamente';

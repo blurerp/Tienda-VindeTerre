@@ -59,7 +59,7 @@ class Usuarios extends Validator
         }
     }
 
-    public function setAlias($value)
+    public function setUsuario($value)
     {
         if ($this->validateAlphanumeric($value, 1, 50)) {
             $this->usuario = $value;
@@ -67,6 +67,18 @@ class Usuarios extends Validator
         } else {
             return false;
         }
+    }
+
+    public function setDui($value)
+    {
+        if($this->validateDui($value)){
+            $this->dui = $value;
+            return true;
+        }else{
+            return false;
+        }
+        
+
     }
 
     public function setClave($value)
