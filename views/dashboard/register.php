@@ -18,7 +18,7 @@
                 <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
                 <h3>Bienvenido</h3>
                 <p>No hay un usuario registrado, procede ingresando tus datos ;)</p>
-
+                
             </div>
             <div class="col-md-9 register-right">
                 <form method="post" id="register-form">
@@ -49,6 +49,7 @@
                                         <input name="email_usuario" id="email_usuario" type="email" class="form-control" placeholder="Correo *" value="" />
                                     </div>
 
+
                                     <div class="form-group">
                                         <input name="dui_usuario" id="dui_usuario" type="text" minlength="10" maxlength="10" class="form-control" placeholder="DUI - Formato: 1234567-9 *" value="" />
                                     </div>
@@ -60,10 +61,10 @@
                                     </div>
 
                                     <button class='btn btn-block bg' type="submit">
-                                            <p class='txt-black'>Registrarse</p>
-                                    </button>    
+                                        <p class='txt-black'>Registrarse</p>
+                                    </button>
 
-                                    
+
                                 </div>
 
                             </div>
@@ -87,4 +88,3 @@
 </body>
 
 </html>
-

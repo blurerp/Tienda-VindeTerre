@@ -49,6 +49,13 @@ class Usuarios extends Validator
         }
     }
 
+    public function setFecha($value)
+    {
+        if ($this->validateDate()) {
+            # code...
+        }
+    }
+
     public function setCorreo($value)
     {
         if ($this->validateEmail($value)) {

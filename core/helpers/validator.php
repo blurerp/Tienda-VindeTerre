@@ -4,7 +4,9 @@ class Validator
     // Propiedades para manejar la validación de archivos de imagen.
     private $imageError = null;
     private $imageName = null;
-
+    // Propiedades para manejar la validación de fecha.
+    private $dateError = null;
+    
     /*
     *   Método para obtener el nombre del archivo de la imagen validada previamente.
     */
@@ -34,6 +36,15 @@ class Validator
                 break;
             default:
                 $error = 'Ocurrió un problema con la imagen';
+        }
+        return $error;
+    }
+
+    public function getDateError(){
+        switch($this->dateError) {
+            case 1:
+                $error = 'La edad minima para registrarse es de 18 años';
+            break;            
         }
         return $error;
     }
@@ -224,6 +235,22 @@ class Validator
             return false;
         }
     }
+/**Validacion de fecha nacimiento 
+ * Ojo, como para registrarse tiene que ser mayor de edad,
+ * No es posible registrarse si tiene menos de 18 años de edad.
+*/
+    function validateDate($value)
+    {
+        list($ano, $mes, $dia) = explode("/", $value);
+        $ano_diferencia  = date("Y") - $ano;
+        $mes_diferencia = date("m") - $mes;
+        $dia_diferencia   = date("d") - $dia;
+        if ($dia_diferencia < 0 || $mes_diferencia < 0)
+            $ano_diferencia--;
+        return $ano_diferencia;
+    }
+
+
 
     /*
     *   Método para validar una contraseña.

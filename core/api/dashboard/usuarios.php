@@ -3,17 +3,15 @@ require_once('../../helpers/database.php');
 require_once('../../helpers/validator.php');
 require_once('../../models/usuarios.php');
 
-// Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
-if (isset($_GET['action'])) {
-    // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
+
+if (isset($_GET['Action'])) {
     session_start();
-    // Se instancia la clase correspondiente.
-    $usuario = new Usuarios;
-    // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
+    
+    $usuarios = new Usuarios;
+
     $result = array('status' => 0, 'message' => null, 'exception' => null);
-    // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
+
     if (isset($_SESSION['id_usuario'])) {
-        // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'logout':
                 if (session_destroy()) {
@@ -23,273 +21,54 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ocurrió un problema al cerrar la sesión';
                 }
                 break;
-            case 'readProfile':
+            case 'readProfile';
                 if ($usuario->setId($_SESSION['id_usuario'])) {
                     if ($result['dataset'] = $usuario->readOneUsuario()) {
-                        $result['status'] = 1;
+                    $result['status'] = 1;
                     } else {
-                        $result['exception'] = 'Usuario inexistente';
-                    }
-                } else {
-                    $result['exception'] = 'Usuario incorrecto';
+                    $result['exception'] = 'Usuario inexistente';
                 }
-                break;
-            case 'editProfile':
-                if ($usuario->setId($_SESSION['id_usuario'])) {
-                    if ($usuario->readOneUsuario()) {
-                        $_POST = $usuario->validateForm($_POST);
-                        if ($usuario->setNombres($_POST['nombres_perfil'])) {
-                            if ($usuario->setApellidos($_POST['apellidos_perfil'])) {
-                                if ($usuario->setCorreo($_POST['correo_perfil'])) {
-                                    if ($usuario->setAlias($_POST['alias_perfil'])) {
-                                        if ($usuario->editProfile()) {
-                                            $_SESSION['alias_usuario'] = $usuario->getUsuario();
-                                            $result['status'] = 1;
-                                            $result['message'] = 'Perfil modificado correctamente';
-                                        } else {
-                                            $result['exception'] = Database::getException();
-                                        }
-                                    } else {
-                                        $result['exception'] = 'Alias incorrecto';
-                                    }
-                                } else {
-                                    $result['exception'] = 'Correo incorrecto';
-                                }
-                            } else {
-                                $result['exception'] = 'Apellidos incorrectos';
-                            }
-                        } else {
-                            $result['exception'] = 'Nombres incorrectos';
-                        }
-                    } else {
-                        $result['exception'] = 'Usuario inexistente';
-                    }
-                } else {
-                    $result['exception'] = 'Usuario incorrecto';
-                }
-                break;
-            case 'password':
-                if ($usuario->setId($_SESSION['id_usuario'])) {
+            } else {
+                $result['exception'] = 'Usuario incorrecto';
+            }
+            break;
+        case 'editProfile':
+            if ($usuario->setId($_SESSION['id_usuario'])) {
+                if ($usuario->readOneUsuario()) {
                     $_POST = $usuario->validateForm($_POST);
-                    if ($_POST['clave_actual_1'] == $_POST['clave_actual_2']) {
-                        if ($usuario->setClave($_POST['clave_actual_1'])) {
-                            if ($usuario->checkPassword($_POST['clave_actual_1'])) {
-                                if ($_POST['clave_nueva_1'] == $_POST['clave_nueva_2']) {
-                                    if ($usuario->setClave($_POST['clave_nueva_1'])) {
-                                        if ($usuario->changePassword()) {
-                                            $result['status'] = 1;
-                                            $result['message'] = 'Contraseña cambiada correctamente';
-                                        } else {
-                                            $result['exception'] = Database::getException();
-                                        }
-                                    } else {
-                                        $result['exception'] = 'Clave nueva menor a 6 caracteres';
+                    if ($usuario->setUsuario($_POST('username_profile'))) {
+                        if ($usuario->setNombres($_POST('name_profile'))) {
+                            if ($usuario->setApellidos($_POST('lastname_profile'))) {
+                                if ($usuario->setFecha($_POST('date_profile'))) {
+                                    if () {
+                                        # code...
+                                    }else{
+
                                     }
-                                } else {
-                                    $result['exception'] = 'Claves nuevas diferentes';
-                                }
-                            } else {
-                                $result['exception'] = 'Clave actual incorrecta';
-                            }
-                        } else {
-                            $result['exception'] = 'Clave actual menor a 6 caracteres';
-                        }
-                    } else {
-                        $result['exception'] = 'Claves actuales diferentes';
-                    }
-                } else {
-                    $result['exception'] = 'Usuario incorrecto';
-                }
-                break;
-            case 'readAll':
-                if ($result['dataset'] = $usuario->readAllUsuarios()) {
-                    $result['status'] = 1;
-                } else {
-                    $result['exception'] = 'No hay usuarios registrados';
-                }
-                break;
-            case 'search':
-                $_POST = $usuario->validateForm($_POST);
-                if ($_POST['search'] != '') {
-                    if ($result['dataset'] = $usuario->searchUsuarios($_POST['search'])) {
-                        $result['status'] = 1;
-                        $rows = count($result['dataset']);
-						if ($rows > 1) {
-							$result['message'] = 'Se encontraron '.$rows.' coincidencias';
-						} else {
-							$result['message'] = 'Solo existe una coincidencia';
-						}
-                    } else {
-                        $result['exception'] = 'No hay coincidencias';
-                    }
-                } else {
-                    $result['exception'] = 'Ingrese un valor para buscar';
-                }
-                break;
-            case 'create':
-                $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setNombres($_POST['nombre_usuario'])) {
-                    if ($usuario->setApellidos($_POST['apellido_usuario'])) {
-                        if ($usuario->setCorreo($_POST['correo_usuario'])) {
-                            if ($usuario->setUsuario($_POST['usuario'])) {
-                                if ($_POST['contrasenia_usuario'] == $_POST['contrasenia_usuario2']) {
-                                    if ($usuario->setClave($_POST['contrasenia_usuario'])) {
-                                        if ($usuario->createUsuario()) {
-                                            $result['status'] = 1;
-                                            $result['message'] = 'Usuario creado correctamente';
-                                        } else {
-                                            $result['exception'] = Database::getException();
-                                        }
-                                    } else {
-                                        $result['exception'] = 'Clave menor a 6 caracteres';
+                                    if ($usuario->setDui($_POST('dui_profile'))) {
+                                        
                                     }
-                                } else {
-                                    $result['exception'] = 'Claves diferentes';
+                                }else {
+                                    $result['exception'] = $fecha->getDateError();
                                 }
-                            } else {
-                                $result['exception'] = 'Usuario incorrecto';
-                            }
-                        } else {
-                            $result['exception'] = 'Correo incorrecto';
-                        }
-                    } else {
-                        $result['exception'] = 'Apellidos incorrectos';
-                    }
-                } else {
-                    $result['exception'] = 'Nombres incorrectos';
-                }
-                break;
-            case 'readOne':
-                if ($usuario->setId($_POST['id_usuario'])) {
-                    if ($result['dataset'] = $usuario->readOneUsuario()) {
-                        $result['status'] = 1;
-                    } else {
-                        $result['exception'] = 'Usuario inexistente';
-                    }
-                } else {
-                    $result['exception'] = 'Usuario incorrecto';
-                }
-                break;
-            case 'update':
-                $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setId($_POST['id_usuario'])) {
-                    if ($usuario->readOneUsuario()) {
-                        if ($usuario->setNombres($_POST['nombres_usuario'])) {
-                            if ($usuario->setApellidos($_POST['apellidos_usuario'])) {
-                                if ($usuario->setCorreo($_POST['correo_usuario'])) {
-                                    if ($usuario->updateUsuario()) {
-                                        $result['status'] = 1;
-                                        $result['message'] = 'Usuario modificado correctamente';
-                                    } else {
-                                        $result['exception'] = Database::getException();
-                                    }
-                                } else {
-                                    $result['exception'] = 'Correo incorrecto';
-                                }
-                            } else {
+                            }else {
                                 $result['exception'] = 'Apellidos incorrectos';
                             }
-                        } else {
-                            $result['exception'] = 'Nombres incorrectos';
+                        }else {
+                            $result['exception'] = 'Nombre incorrecto';
                         }
-                    } else {
-                        $result['exception'] = 'Usuario inexistente';
+                    }else {
+                        $result['exception'] = 'Nombre de Usuario incorrecto';
                     }
-                } else {
-                    $result['exception'] = 'Usuario incorrecto';
+                }else{
+                    $result['exception'] = 'Usuario inexistente';
                 }
-                break;
-            case 'delete':
-                if ($_POST['id_usuario'] != $_SESSION['id_usuario']) {
-                    if ($usuario->setId($_POST['id_usuario'])) {
-                        if ($usuario->readOneUsuario()) {
-                            if ($usuario->deleteUsuario()) {
-                                $result['status'] = 1;
-                                $result['message'] = 'Usuario eliminado correctamente';
-                            } else {
-                                $result['exception'] = Database::getException();
-                            }
-                        } else {
-                            $result['exception'] = 'Usuario inexistente';
-                        }
-                    } else {
-                        $result['exception'] = 'Usuario incorrecto';
-                    }
-                } else {
-                    $result['exception'] = 'No se puede eliminar a sí mismo';
-                }
-                break;
-            default:
-                exit('Acción no disponible log');
-        }
-    } else {
-        // Se compara la acción a realizar cuando el administrador no ha iniciado sesión.
-        switch ($_GET['action']) {
-            case 'readAll':
-                if ($usuario->readAllUsuarios()) {
-                    $result['status'] = 1;
-                    $result['message'] = 'Existe al menos un usuario registrado';
-                } else {
-                    $result['exception'] = 'No existen usuarios registrados';
-                }
-                break;
-            case 'register':
-                $_POST = $usuario->validateForm($_POST);                             
-                if ($usuario->setNombres($_POST['nombre_usuario'])) {
-                    if ($usuario->setApellidos($_POST['apellido_usuario'])) {
-                        if ($usuario->setCorreo($_POST['email_usuario'])) {
-                            if ($usuario->setUsuario($_POST['usuario'])) {
-                                if ($_POST['contrasenia_usuario'] == $_POST['contrasenia_usuario2']) {
-                                    if ($usuario->setClave($_POST['contrasenia_usuario'])) {
-                                        if ($usuario->createUsuario()) {
-                                            $result['status'] = 1;
-                                            $result['message'] = 'Usuario registrado correctamente';
-                                        } else {
-                                            $result['exception'] = Database::getException();
-                                        }
-                                    } else {
-                                        $result['exception'] = 'Clave menor a 6 caracteres';
-                                    }
-                                } else {
-                                    $result['exception'] = 'Claves diferentes';
-                                }
-                            } else {
-                                $result['exception'] = 'Alias incorrecto';
-                            }
-                        } else {
-                            $result['exception'] = 'Correo incorrecto';
-                        }
-                    } else {
-                        $result['exception'] = 'Apellidos incorrectos';
-                    }
-                } else {
-                    $result['exception'] = 'Nombres incorrectos';
-                }
-                break;
-            case 'login':
-                $_POST = $usuario->validateForm($_POST);
-                    if ($usuario->checkAlias($_POST['alias'])) {
-                        if ($usuario->checkPassword($_POST['clave'])) {
-                            $_SESSION['id_usuario'] = $usuario->getId();
-                            $_SESSION['alias_usuario'] = $usuario->getUsuario();
-                            $result['status'] = 1;
-                            $result['message'] = 'Autenticación correcta';
-                        } else {
-                            $result['exception'] = 'Clave incorrecta';
-                        }
-                    } else {
-                        $result['exception'] = 'Alias incorrecto';
-                    }
-                break;
-            default:
-                exit('Acción no disponible');
-        }
+            }else {
+                # code...
+            }
     }
-    // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
-    header('content-type: application/json; charset=utf-8');
-    // Se imprime el resultado en formato JSON y se retorna al controlador.
-	print(json_encode($result));
-} else {
-	exit('Recurso denegado');
+}else{
+    exit('Recurso denegado');
 }
+
 ?>
