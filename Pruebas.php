@@ -4,22 +4,23 @@
  * Para usar en recuperacion de contraseñas
  */
 
-$permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
 //strength determina la cantidad de caracteres
-function generate_string($input, $strength = 5)
+function generate_string($strength)
 {
-    $input_length = strlen($input);
+    $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $input_length = strlen($permitted_chars);
     $random_string = '';
     for ($i = 0; $i < $strength; $i++) {
-        $random_character = $input[mt_rand(0, $input_length - 1)];
+        $random_character = $permitted_chars[mt_rand(0, $input_length - 1)];
         $random_string .= $random_character;
     }
 
     return $random_string;
 }
 
-// Pertenece a $input
-echo generate_string($permitted_chars);
+// Pertenece a strength
+echo generate_string(4);
 
 
 
