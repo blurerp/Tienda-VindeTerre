@@ -1,9 +1,12 @@
-/** Ganerador de codigo para recuperar contraseña */
 <?php
+/**
+ * Generador de cadenas alfanumericas aleatorias
+ * Para usar en recuperacion de contraseñas
+ */
 
 $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-function generate_string($input, $strength = 4)
+//strength determina la cantidad de caracteres
+function generate_string($input, $strength = 5)
 {
     $input_length = strlen($input);
     $random_string = '';
@@ -15,7 +18,7 @@ function generate_string($input, $strength = 4)
     return $random_string;
 }
 
-// Output: iNCHNGzByPjhApvn7XBD
+// Pertenece a $input
 echo generate_string($permitted_chars);
 
 
