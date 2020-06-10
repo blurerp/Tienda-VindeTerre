@@ -23,5 +23,26 @@ function generate_string($strength)
 echo generate_string(4);
 
 
+function validateDate($value)
+    {
+        list($ano, $mes, $dia) = explode("/", $value);
+        $ano_diferencia  = date("Y") - $ano;
+        $mes_diferencia = date("m") - $mes;
+        $dia_diferencia   = date("d") - $dia;
+        if ($dia_diferencia < 0 || $mes_diferencia < 0){
+            $ano_diferencia--;
+            if ($ano_diferencia < 18) {                
+                echo 'no permitido';
+                return $ano_diferencia;
+                                
+            }else{
+                echo 'permitido';   
+                return $ano_diferencia;
+                
+            }
+        }
+        
+    }
 
+    echo validateDate('2002/03/13')
 ?>

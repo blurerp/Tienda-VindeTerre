@@ -51,8 +51,8 @@ class Usuarios extends Validator
 
     public function setFecha($value)
     {
-        if ($this->validateDate()) {
-            # code...
+        if ($this->validateDate) {
+            
         }
     }
 

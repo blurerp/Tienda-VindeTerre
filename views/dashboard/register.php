@@ -60,7 +60,7 @@
                                         <input name="contrasenia_usuario2" id="contrasenia_usuario2" type="password" class="form-control" placeholder="Comfirmar contraseña *" value="" />
                                     </div>
 
-                                    <button class='btn btn-block bg' type="submit">
+                                    <button class='btn btn-block btn-outline-info' type="submit">
                                         <p class='txt-black'>Registrarse</p>
                                     </button>
 
