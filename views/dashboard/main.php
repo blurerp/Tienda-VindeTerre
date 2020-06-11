@@ -67,6 +67,7 @@ Dashboard::headerTemplate('Iniciar sesión');
                 </div>
               </div>
             </section>
+            
           </div>
         </div>
     </div>
