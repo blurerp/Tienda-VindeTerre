@@ -312,10 +312,10 @@ if (isset($_GET['action'])) {
                 break;
             case 'login':
                 $_POST = $usuario->validateForm($_POST);
-                    if ($usuario->checkAlias($_POST['usuarios'])) {
+                    if ($usuario->checkAlias($_POST['nombre_usuario'])) {
                         if ($usuario->checkPassword($_POST['clave'])) {
                             $_SESSION['id_usuario'] = $usuario->getId();
-                            $_SESSION['alias_usuario'] = $usuario->getUsuario();
+                            $_SESSION['nombre_usuario'] = $usuario->getUsuario();
                             $result['status'] = 1;
                             $result['message'] = 'Autenticación correcta';
                         } else {

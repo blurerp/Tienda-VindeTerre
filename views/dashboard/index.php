@@ -17,7 +17,7 @@ Dashboard::headerTemplate('Iniciar sesión');
                                 <div class="input-group-prepend">   
                                     <span class="input-group-text bg-white"><i class="far fa-user-alt"></i></span>
                                 </div>
-                                <input name="usuario" id="usuario" type="text" placeholder="Usuario" class="form-control border-left-0" required>
+                                <input name="nombre_usuario" id="nombre_usuario" type="text" placeholder="Usuario" class="form-control border-left-0" required>
                             </div>
                             <div class="input-group input-focus mb-3">
                                 <div class="input-group-prepend">
