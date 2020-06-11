@@ -7,12 +7,12 @@ class Usuarios extends Validator
     // Declaración de atributos (propiedades).
     private $id = null;
     private $usuario = null;
+    private $clave = null;    
     private $nombres = null;
     private $apellidos = null;
     private $fecha = null;
     private $dui = null;
     private $correo = null;
-    private $clave = null;
     private $estado = null;
     private $tipo = null;
 
@@ -29,9 +29,29 @@ class Usuarios extends Validator
         }
     }
 
+    public function setUsuario($value)
+    {
+        if ($this->validateAlphanumeric($value, 1, 20)) {
+            $this->usuario = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setClave($value)
+    {
+        if ($this->validatePassword($value)) {
+            $this->clave = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function setNombres($value)
     {
-        if ($this->validateAlphabetic($value, 1, 50)) {
+        if ($this->validateAlphabetic($value, 1, 40)) {
             $this->nombres = $value;
             return true;
         } else {
@@ -41,10 +61,26 @@ class Usuarios extends Validator
 
     public function setApellidos($value)
     {
-        if ($this->validateAlphabetic($value, 1, 50)) {
+        if ($this->validateAlphabetic($value, 1, 40)) {
             $this->apellidos = $value;
             return true;
         } else {
+            return false;
+        }
+    }    
+//  AGREGAR VALIDATOR OF DATE
+    public function setFecha($value)
+    {
+        $this->fecha = $value;
+        return true;
+    }
+
+    public function setDui($value)
+    {
+        if($this->validateDui($value)){
+            $this->dui = $value;
+            return true;
+        }else{
             return false;
         }
     }
@@ -59,38 +95,26 @@ class Usuarios extends Validator
         }
     }
 
-    public function setUsuario($value)
+    public function setEstado($value)
     {
-        if ($this->validateAlphanumeric($value, 1, 50)) {
-            $this->usuario = $value;
+        if ($this->validateAlphabetic($value, 1, 40)) {
+            $this->estado = $value;
             return true;
         } else {
             return false;
         }
-    }
+    } 
 
-    public function setDui($value)
+    public function setTipo($value)
     {
-        if($this->validateDui($value)){
-            $this->dui = $value;
-            return true;
-        }else{
-            return false;
-        }
-        
-
-    }
-
-    public function setClave($value)
-    {
-        if ($this->validatePassword($value)) {
-            $this->clave = $value;
+        if ($this->validateNaturalNumber($value)) {
+            $this->tipo = $value;
             return true;
         } else {
             return false;
         }
-    }
-
+    } 
+    
     /*
     *   Métodos para obtener valores de los atributos.
     */
@@ -104,6 +128,11 @@ class Usuarios extends Validator
         return $this->usuario;
     }
 
+    public function getClave()
+    {
+        return $this->clave;
+    }
+    
     public function getNombres()
     {
         return $this->nombres;
@@ -127,12 +156,7 @@ class Usuarios extends Validator
     public function getCorreo()
     {
         return $this->correo;
-    }
-
-    public function getClave()
-    {
-        return $this->clave;
-    }
+    }   
 
     public function getEstado()
     {
@@ -197,7 +221,8 @@ class Usuarios extends Validator
     */
     public function searchUsuarios($value)
     {
-        $sql = 'SELECT id_usuario, usuario, nombre_usuario, apellido_usuario, email_usuario,fecha_nacimiento, email_usuario, dui_usuario, estado_usuario FROM usuarios
+        $sql = 'SELECT id_usuario, usuario, nombre_usuario, apellido_usuario, email_usuario,fecha_nacimiento, email_usuario, dui_usuario, tipo_usuario, estado_usuario 
+                FROM Usuarios INNER JOIN Tipo_Usuario USING(id_tipo_usuario)
                 WHERE apellido_usuario ILIKE ? OR nombre_usuario ILIKE ?
                 ORDER BY apellidos_usuario';
         $params = array("%$value%", "%$value%");
@@ -208,45 +233,42 @@ class Usuarios extends Validator
     {
         // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
         $hash = password_hash($this->clave, PASSWORD_DEFAULT);
-        $estado = 'Activo';
-        $tipo = '2';
-        $sql = 'INSERT INTO usuarios(usuario, nombre_usuario, apellido_usuario, email_usuario,fecha_nacimiento, dui_usuario, contrasena_usuario, estado_usuario, tipo_usuario)
+        $sql = 'INSERT INTO Usuarios(usuario, contrasena_usuario, nombre_usuario, apellido_usuario, fecha_nacimiento, dui_usuario, email_usuario, id_tipo_usuario, estado_usuario)
                 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->usuario, $this->nombres, $this->apellidos, $this->correo, $this->fecha, $this->dui, $hash, $estado, $tipo);
+        $params = array($this->usuario, $hash, $this->nombres, $this->apellidos, $this->fecha, $this->dui, $this->correo, $this->tipo, $this->estado);
         return Database::executeRow($sql, $params);
     }
 
-
     public function readAllUsuarios()
     {
-        $sql = 'SELECT id_usuario, nombre_usuario, apellido_usuario, email_usuario, usuario
-                FROM usuarios
-                ORDER BY apellido_usuario';
+        $sql = 'SELECT id_usuario, usuario, nombre_usuario, apellido_usuario, email_usuario,fecha_nacimiento, email_usuario, dui_usuario, tipo_usuario, estado_usuario 
+                FROM Usuarios INNER JOIN Tipo_Usuario USING(id_tipo_usuario)
+                ORDER BY usuario';
         $params = null;
         return Database::getRows($sql, $params);
     }
 
     public function readOneUsuario()
     {
-        $sql = 'SELECT id_usuario, nombre_usuario, apellido_usuario, email_usuario, usuario
-                FROM usuarios
-                WHERE id_usuario = ?';
+        $sql = 'SELECT id_usuario, usuario, nombre_usuario, apellido_usuario, fecha_nacimiento, dui_usuario, email_usuario, id_tipo_usuario, estado_usuario 
+                FROM Usuarios  
+                where id_usuario =  ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
 
     public function updateUsuario()
     {
-        $sql = 'UPDATE usuarios 
-                SET nombre_usuario = ?, apellido_usuario = ?, email_usuario = ?
+        $sql = 'UPDATE Usuarios 
+                SET nombre_usuario = ?, apellido_usuario = ?, fecha_nacimiento = ?, dui_usuario = ?, email_usuario = ?, id_tipo_usuario = ?, estado_usuario = ?
                 WHERE id_usuario = ?';
-        $params = array($this->nombres, $this->apellidos, $this->correo, $this->id);
+        $params = array($this->nombres, $this->apellidos, $this->fecha, $this->dui, $this->correo, $this->tipo, $this->estado, $this->id);
         return Database::executeRow($sql, $params);
     }
 
     public function deleteUsuario()
     {
-        $sql = 'DELETE FROM usuarios
+        $sql = 'DELETE FROM Usuarios
                 WHERE id_usuario = ?';
         $params = array($this->id);
         return Database::executeRow($sql, $params);

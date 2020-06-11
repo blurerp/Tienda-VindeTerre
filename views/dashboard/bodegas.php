@@ -1,8 +1,8 @@
 <?php
 require_once('../../core/helpers/template.php');
-Dashboard::headerTemplate('Clientes');
+Dashboard::headerTemplate('bodegas');
 ?>
-    <div id="content" class="container-fluid p-5">
+            <div id="content" class="container-fluid p-5">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
@@ -17,11 +17,10 @@ Dashboard::headerTemplate('Clientes');
                             <table id="tabla" class="table table-striped table-bordered table-condensed" style="width: 100%;">
                                 <thead class="text-center">
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Apellidos</th>                      
-                                        <th>Usuario</th>
-                                        <th>Contraseña</th>
-                                        
+                                        <th>Capacidad</th>
+                                        <th>Dirección</th>                      
+                                        <th>Telefono</th>
+                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbody-rows">
@@ -68,5 +67,5 @@ Dashboard::headerTemplate('Clientes');
                 </div>
             </div>
 <?php
-Dashboard::footerTemplate('clientes.js');
+Dashboard::footerTemplate('bodegas.js');
 ?>

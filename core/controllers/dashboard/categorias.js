@@ -42,6 +42,7 @@ function openCreateModal()
     $( '.modal-title' ).text( 'Nueva categoría' );
     $( '#archivo_categoria' ).prop( 'required', true );
     $( '#save-modal' ).modal( 'show' );
+    $( '#save-modal' ).modal( 'novalidate' );
 }
 
 function openUpdateModal( id )

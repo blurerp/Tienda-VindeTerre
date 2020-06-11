@@ -40,7 +40,7 @@ Dashboard::headerTemplate('categorias');
                             </button>
                         </div>
                         <form method="post" class="needs-validation" id="save-form" enctype="multipart/form-data" novalidate>
-                            <input id="id_categoria" type="hidden" name="id_categoria"/>
+                            <input id="id_categoria" class="invisible" name="id_categoria"/>
                             <div class="form-row m-3">
                                 <div class="col-md-8 mb-3">
                                     <label for="categoria">Nombre</label>

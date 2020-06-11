@@ -218,13 +218,44 @@ class Validator
     public function validateDui($value)
     {
         // Se verifica que el número tenga una parte entera y como máximo dos cifras decimales.
-        if (preg_match('/^[0-9]{8}+[\-][0-9]{1})?$/', $value)) {
+        if (preg_match('/^[0-9]{8}+([\-][0-9]{1})?$/', $value)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    /**Validación numero de telefono */
+    public function validateTelefono($value)
+    {
+        // Se verifica que el número tenga 2 partes de 4 digitos separadas por guión
+        if (preg_match('/^[0-9]{4}-[0-9]{4}$/', $value)) {
             return true;
         } else {
             return false;
         }
     }
 
+    /**Validación de URL */ 
+    public function validateUrl($value)
+    {
+        // Se verifica que el url sea valido
+        if (preg_match('/^(http|https):\\/\\/[a-z0-9_]+([\\-\\.]{1}[a-z_0-9]+)*\\.[_a-z]{2,5}'.'((:[0-9]{1,5})?\\/.*)?$/i', $value)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function validateNumerodocumento($value, $minimum, $maximum)
+    {
+        // Se verifica el contenido y la longitud de acuerdo con la base de datos.
+        if (preg_match('/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\,\;\.\-\_\°]{'.$minimum.','.$maximum.'}$/', $value)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     /*
     *   Método para validar una contraseña.
     *

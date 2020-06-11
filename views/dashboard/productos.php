@@ -64,7 +64,7 @@ Dashboard::headerTemplate('productos');
                             </button>
                         </div>
                         <form class="needs-validation" id="save-form" novalidate>
-                            <input id="id_producto" type="hidden" name="id_producto"/>
+                            <input id="id_producto" class="invisible" name="id_producto"/>
                             <div class="form-row m-3">
                                 <div class="col-md-8 mb-3">
                                     <label for="nombre_producto">Nombre</label>
