@@ -64,7 +64,7 @@
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="#">Mi perfil</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Cerrar sesión</a>
+                                            <a class="dropdown-item" onclick="signOff()">Cerrar sesión</a>
                                         </div>
                                         </li>
                                     </ul>
@@ -137,6 +137,7 @@
                 <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/datatables.min.js"></script>
                 <script type="text/javascript" src="../../core/helpers/components.js"></script>
+                <script type="text/javascript" src="../../core/controllers/dashboard/account.js"></script>
                 <script type="text/javascript" src="../../core/controllers/dashboard/'.$controller.'"></script>
             </body>
             </html>
