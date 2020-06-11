@@ -34,7 +34,7 @@ function checkUsuarios() {
                 console.log(jqXHR.status + ' ' + jqXHR.statusText);
             }
         });
-
+}
     //Funcion de cerrar sesión de usuario.
     function signOff() {
         swal({
@@ -77,4 +77,3 @@ function checkUsuarios() {
 
     }
 
-}
