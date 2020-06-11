@@ -1,7 +1,7 @@
 <?php 
 
     class Dashboard
-    {
+    {   
         public static function headerTemplate($title)
         {
             print('  
@@ -55,16 +55,14 @@
                                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                     <ul class="navbar-nav ml-auto">            
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Inicio</a>
+                                            <a class="nav-link" href="main.php">Inicio</a>
                                         </li>
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                USUARIO
-                                            </a>
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">USUARIO</a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <a class="dropdown-item" href="#">Mi perfil</a>
                                             <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Cerrar sesión</a>
+                                            <a class="dropdown-item" href="#" onclick="signOff()">Cerrar sesión</a>
                                         </div>
                                         </li>
                                     </ul>
@@ -137,7 +135,7 @@
                 <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/datatables.min.js"></script>
                 <script type="text/javascript" src="../../core/helpers/components.js"></script>
-                <script type="text/javascript" src="../../core/controllers/dashboard/account.js"></script>
+                <script type="text/javascript" src="../../core/controllers/dashboard/account.js"></script>                
                 <script type="text/javascript" src="../../core/controllers/dashboard/'.$controller.'"></script>
             </body>
             </html>
