@@ -17,8 +17,8 @@ Dashboard::headerTemplate('bodegas');
                             <table id="tabla" class="table table-striped table-bordered table-condensed" style="width: 100%;">
                                 <thead class="text-center">
                                     <tr>
-                                        <th>Capacidad</th>
-                                        <th>Dirección</th>                      
+                                        <th>Dirección</th>
+                                        <th>Capacidad</th>                                                              
                                         <th>Telefono</th>
                                         <th>Acciones</th>
                                     </tr>

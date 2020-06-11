@@ -70,7 +70,7 @@ class Usuarios extends Validator
     }    
 //  AGREGAR VALIDATOR OF DATE
     public function setFecha($value)
-    {
+    { 
         $this->fecha = $value;
         return true;
     }
@@ -241,7 +241,7 @@ class Usuarios extends Validator
 
     public function readAllUsuarios()
     {
-        $sql = 'SELECT id_usuario, usuario, nombre_usuario, apellido_usuario, email_usuario,fecha_nacimiento, email_usuario, dui_usuario, tipo_usuario, estado_usuario 
+        $sql = 'SELECT id_usuario, usuario, nombre_usuario, apellido_usuario, email_usuario, fecha_nacimiento, email_usuario, dui_usuario, tipo_usuario, estado_usuario 
                 FROM Usuarios INNER JOIN Tipo_Usuario USING(id_tipo_usuario)
                 ORDER BY usuario';
         $params = null;

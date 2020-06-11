@@ -135,12 +135,15 @@
                 <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/datatables.min.js"></script>
                 <script type="text/javascript" src="../../core/helpers/components.js"></script>
+<<<<<<< HEAD
                 <script type="text/javascript" src="../../core/controllers/dashboard/account.js"></script>                
+=======
+                <script type="text/javascript" src="../../core/controllers/dashboard/account.js"></script>
+>>>>>>> ff26f3a6ea52935bcc1079d4af354d3776f914f7
                 <script type="text/javascript" src="../../core/controllers/dashboard/'.$controller.'"></script>
             </body>
             </html>
             ');
         }
-    }
-    
+    } 
 ?>

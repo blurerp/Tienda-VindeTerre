@@ -16,6 +16,7 @@
     }, false);
   })();
 
+
 $("#menu-toggle").click(function(e) {
     e.preventDefault();
     $('#content-wrapper').toggleClass("toggled");
@@ -40,6 +41,21 @@ $(document).ready(function() {
         }
     });
 } );
+
+$(function(){
+    var dtToday = new Date();
+
+    var month = dtToday.getMonth() + 1;// jan=0; feb=1 .......
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear() - 18;
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    var minDate = year + '-' + month + '-' + day;
+    var maxDate = year + '-' + month + '-' + day;
+    $('#fecha_nacimiento').attr('max', maxDate);
+});
 
 $('.archivo_categoria').on('change',function(){
     var fileName = $(this).val();
@@ -179,6 +195,8 @@ function saveRow( api, action, form, modalId)
 *
 *   Retorno: ninguno.
 */
+var myModal = $('#save-modal');
+
 function confirmDelete( api, identifier )
 {
     swal({
@@ -203,7 +221,7 @@ function confirmDelete( api, identifier )
                 if ( response.status ) {
                     // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro.
                     readRows( api );
-                    sweetAlert( 1, response.message, null );
+                    sweetAlert( 1, response.message, null );        
                 } else {
                     sweetAlert( 2, response.exception, null );
                 }
@@ -248,27 +266,55 @@ function sweetAlert( type, text, url )
             icon = "info";
     }
     // Si existe una ruta definida, se muestra el mensaje y se direcciona a dicha ubicación, de lo contrario solo se muestra el mensaje.
-    if ( url ) {
-        swal({
-            title: title,
-            text: text,
-            icon: icon,
-            button: 'Aceptar',
-            closeOnClickOutside: false,
-            closeOnEsc: false
-        })
-        .then(function() {
-            location.href = url
-        });
+    if (title == "Éxito") {
+        if ( url ) {
+            swal({
+                title: title,
+                text: text,
+                icon: icon,
+                button: 'Aceptar',
+                closeOnClickOutside: false,
+                closeOnEsc: false
+            })
+            .then(function() {
+                location.href = url
+                myModal.modal('hide');
+            });
+        } else {
+            swal({
+                title: title,
+                text: text,
+                icon: icon,
+                button: 'Aceptar',
+                closeOnClickOutside: false,
+                closeOnEsc: false
+            }).then(function() {
+                myModal.modal('hide');
+            });
+        }
     } else {
-        swal({
-            title: title,
-            text: text,
-            icon: icon,
-            button: 'Aceptar',
-            closeOnClickOutside: false,
-            closeOnEsc: false
-        });
+        if ( url ) {
+            swal({
+                title: title,
+                text: text,
+                icon: icon,
+                button: 'Aceptar',
+                closeOnClickOutside: false,
+                closeOnEsc: false
+            })
+            .then(function() {
+                location.href = url
+            });
+        } else {
+            swal({
+                title: title,
+                text: text,
+                icon: icon,
+                button: 'Aceptar',
+                closeOnClickOutside: false,
+                closeOnEsc: false
+            });
+        }
     }
 }
 
