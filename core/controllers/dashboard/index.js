@@ -1,9 +1,7 @@
 const API_USUARIOS = '../../core/api/dashboard/usuarios.php?action=';
 
 $(document).ready(function(){
-
     checkUser()
-
 });
 
 // Evento para validar el usuario al momento de iniciar sesión.

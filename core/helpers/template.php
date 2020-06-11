@@ -137,11 +137,11 @@
                 <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
                 <script type="text/javascript" src="../../resources/js/datatables.min.js"></script>
                 <script type="text/javascript" src="../../core/helpers/components.js"></script>
+                <script type="text/javascript" src="../../core/controllers/dashboard/account.js"></script>
                 <script type="text/javascript" src="../../core/controllers/dashboard/'.$controller.'"></script>
             </body>
             </html>
             ');
         }
-    }
-    
+    } 
 ?>

@@ -258,12 +258,33 @@ class Validator
             return false;
         }
     }
+
+    /**Validación de año */
+    public function validateYear($value)
+    {
+        if (preg_match('/^[0-9]{4}$/', $value)) {
+            return true;
+        } else {
+            return false;
+        }
+    } 
+
+    /**Validación de procentaje */
+    public function validatePercentage($value)
+    {
+        // Se verifica que el número tenga una parte entera y como máximo dos cifras decimales.
+        if (preg_match('/^([1-9]([0-9])?|0)(\.[0-9]{1,2})?$/', $value)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    /**NO FUNCIONA */
     /**Validacion de fecha nacimiento 
      * Ojo, como para registrarse tiene que ser mayor de edad,
      * No es posible registrarse si tiene menos de 18 años de edad.
      */
-    
-    function validateDate($value)
+    /*function validateDate($value)
     {
         list($ano, $mes, $dia) = explode("/", $value);
         $ano_diferencia  = date("Y") - $ano;
@@ -274,16 +295,13 @@ class Validator
             if ($ano_diferencia < 18) {
                 $this->dateError=1;
                 return false;
-                                
             }else{
                 return true;
             }
         }
         
-    }
-    
-
-    
+    }*/
+    /**NO FUNCIONA */
 
     public function validateNumerodocumento($value, $minimum, $maximum)
     {

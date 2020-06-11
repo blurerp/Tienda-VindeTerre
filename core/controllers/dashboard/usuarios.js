@@ -24,8 +24,8 @@ function fillTable( dataset )
                 <td>${row.estado_usuario}</td>
                 <td>${row.tipo_usuario}</td>
                 <td>
-                <button onclick= "openUpdateModal(${row.id_usuario})" class="btn btn-primary btn_editar" data-toggle="modal" data-target="#save-modal">Editar</button>
-                <button onclick= "openDeleteDialog(${row.id_usuario})" class="btn btn-danger btn_eliminar">Eliminar</button>
+                    <button onclick= "openUpdateModal(${row.id_usuario})" class="btn btn-primary btn_editar" data-toggle="modal" data-target="#save-modal">Editar</button>
+                    <button onclick= "openDeleteDialog(${row.id_usuario})" class="btn btn-danger btn_eliminar">Eliminar</button>
                 </td>
             </tr>
         `;
