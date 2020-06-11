@@ -4,6 +4,8 @@ class Validator
     // Propiedades para manejar la validación de archivos de imagen.
     private $imageError = null;
     private $imageName = null;
+    // Propiedades para manejar la validación de fecha.
+    private $dateError = null;
 
     /*
     *   Método para obtener el nombre del archivo de la imagen validada previamente.
@@ -34,6 +36,16 @@ class Validator
                 break;
             default:
                 $error = 'Ocurrió un problema con la imagen';
+        }
+        return $error;
+    }
+
+    public function getDateError()
+    {
+        switch ($this->dateError) {
+            case 1:
+                $error = 'La edad minima para registrarse es de 18 años';
+                break;
         }
         return $error;
     }
@@ -93,7 +105,7 @@ class Validator
                         // Se obtiene la extensión del archivo.
                         $extension = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
                         // Se establece un nombre único para el archivo.
-                        $this->imageName = uniqid().'.'.$extension;
+                        $this->imageName = uniqid() . '.' . $extension;
                         return true;
                     } else {
                         $this->imageError = 1;
@@ -103,10 +115,10 @@ class Validator
                     $this->imageError = 2;
                     return false;
                 }
-             } else {
+            } else {
                 $this->imageError = 3;
                 return false;
-             }
+            }
         } else {
             $this->imageError = 4;
             return false;
@@ -155,7 +167,7 @@ class Validator
     public function validateString($value, $minimum, $maximum)
     {
         // Se verifica el contenido y la longitud de acuerdo con la base de datos.
-        if (preg_match('/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\,\;\.]{'.$minimum.','.$maximum.'}$/', $value)) {
+        if (preg_match('/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s\,\;\.]{' . $minimum . ',' . $maximum . '}$/', $value)) {
             return true;
         } else {
             return false;
@@ -172,7 +184,7 @@ class Validator
     public function validateAlphabetic($value, $minimum, $maximum)
     {
         // Se verifica el contenido y la longitud de acuerdo con la base de datos.
-        if (preg_match('/^[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{'.$minimum.','.$maximum.'}$/', $value)) {
+        if (preg_match('/^[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{' . $minimum . ',' . $maximum . '}$/', $value)) {
             return true;
         } else {
             return false;
@@ -189,7 +201,7 @@ class Validator
     public function validateAlphanumeric($value, $minimum, $maximum)
     {
         // Se verifica el contenido y la longitud de acuerdo con la base de datos.
-        if (preg_match('/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s]{'.$minimum.','.$maximum.'}$/', $value)) {
+        if (preg_match('/^[a-zA-Z0-9ñÑáÁéÉíÍóÓúÚ\s]{' . $minimum . ',' . $maximum . '}$/', $value)) {
             return true;
         } else {
             return false;
@@ -246,6 +258,32 @@ class Validator
             return false;
         }
     }
+    /**Validacion de fecha nacimiento 
+     * Ojo, como para registrarse tiene que ser mayor de edad,
+     * No es posible registrarse si tiene menos de 18 años de edad.
+     */
+    
+    function validateDate($value)
+    {
+        list($ano, $mes, $dia) = explode("/", $value);
+        $ano_diferencia  = date("Y") - $ano;
+        $mes_diferencia = date("m") - $mes;
+        $dia_diferencia   = date("d") - $dia;
+        if ($dia_diferencia < 0 || $mes_diferencia < 0){
+            $ano_diferencia--;
+            if ($ano_diferencia < 18) {
+                $this->dateError=1;
+                return false;
+                                
+            }else{
+                return true;
+            }
+        }
+        
+    }
+    
+
+    
 
     public function validateNumerodocumento($value, $minimum, $maximum)
     {
@@ -287,7 +325,7 @@ class Validator
             // Se comprueba que la ruta en el servidor exista.
             if (file_exists($path)) {
                 // Se verifica que el archivo sea movido al servidor.
-                if (move_uploaded_file($file['tmp_name'], $path.$name)) {
+                if (move_uploaded_file($file['tmp_name'], $path . $name)) {
                     return true;
                 } else {
                     return false;
@@ -312,7 +350,7 @@ class Validator
         // Se verifica que la ruta exista.
         if (file_exists($path)) {
             // Se comprueba que el archivo sea borrado del servidor.
-            if (@unlink($path.$name)) {
+            if (@unlink($path . $name)) {
                 return true;
             } else {
                 return false;
@@ -322,4 +360,3 @@ class Validator
         }
     }
 }
-?>

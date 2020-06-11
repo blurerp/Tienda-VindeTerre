@@ -41,7 +41,7 @@ if (isset($_GET['action'])) {
                         if ($usuario->setNombres($_POST['nombres_perfil'])) {
                             if ($usuario->setApellidos($_POST['apellidos_perfil'])) {
                                 if ($usuario->setCorreo($_POST['correo_perfil'])) {
-                                    if ($usuario->setAlias($_POST['alias_perfil'])) {
+                                    if ($usuario->setUsuario($_POST['alias_perfil'])) {
                                         if ($usuario->editProfile()) {
                                             $_SESSION['alias_usuario'] = $usuario->getUsuario();
                                             $result['status'] = 1;
@@ -298,7 +298,7 @@ if (isset($_GET['action'])) {
                                     $result['exception'] = 'Claves diferentes';
                                 }
                             } else {
-                                $result['exception'] = 'Alias incorrecto';
+                                $result['exception'] = 'Usuario incorrecto';
                             }
                         } else {
                             $result['exception'] = 'Correo incorrecto';
@@ -312,7 +312,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'login':
                 $_POST = $usuario->validateForm($_POST);
-                    if ($usuario->checkAlias($_POST['alias'])) {
+                    if ($usuario->checkAlias($_POST['usuarios'])) {
                         if ($usuario->checkPassword($_POST['clave'])) {
                             $_SESSION['id_usuario'] = $usuario->getId();
                             $_SESSION['alias_usuario'] = $usuario->getUsuario();
@@ -322,7 +322,7 @@ if (isset($_GET['action'])) {
                             $result['exception'] = 'Clave incorrecta';
                         }
                     } else {
-                        $result['exception'] = 'Alias incorrecto';
+                        $result['exception'] = 'Usuario incorrecto';
                     }
                 break;
             default:
@@ -336,4 +336,3 @@ if (isset($_GET['action'])) {
 } else {
 	exit('Recurso denegado');
 }
-?>
