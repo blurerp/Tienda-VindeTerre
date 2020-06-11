@@ -1,6 +1,6 @@
 const API = '../../core/api/dashboard/usuarios.php?action=';
 
-function checkUser() {
+function checkUsuarios() {
     $.ajax({
         dataType: 'json',
         url: API + 'readAll'
