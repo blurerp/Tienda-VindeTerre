@@ -12,7 +12,7 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (isset($_SESSION['id_usuario'])) {
+    if (true) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'logout':
@@ -128,35 +128,59 @@ if (isset($_GET['action'])) {
                 break;
             case 'create':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setNombres($_POST['nombre_usuario'])) {
-                    if ($usuario->setApellidos($_POST['apellido_usuario'])) {
-                        if ($usuario->setCorreo($_POST['correo_usuario'])) {
-                            if ($usuario->setUsuario($_POST['usuario'])) {
-                                if ($_POST['contrasenia_usuario'] == $_POST['contrasenia_usuario2']) {
-                                    if ($usuario->setClave($_POST['contrasenia_usuario'])) {
-                                        if ($usuario->createUsuario()) {
-                                            $result['status'] = 1;
-                                            $result['message'] = 'Usuario creado correctamente';
+                if ($usuario->setUsuario($_POST['usuario'])) {
+                    if ($_POST['contrasena_usuario'] == $_POST['confirmar_contrasena']) {
+                        if ($usuario->setClave($_POST['contrasena_usuario'])) {
+                            if ($usuario->setNombres($_POST['nombre_usuario'])) {
+                                if ($usuario->setApellidos($_POST['apellido_usuario'])) {
+                                    if ($usuario->setFecha($_POST['fecha_nacimiento'])) {
+                                        if ($usuario->setDui($_POST['dui_usuario'])) {
+                                            if ($usuario->setCorreo($_POST['email_usuario'])) {
+                                                if ($_POST['estado_usuario'] == 'Activo' || 'Inactivo') {
+                                                    if ($usuario->setEstado($_POST['estado_usuario'])) {
+                                                        if (isset($_POST['tipo_usuario'])) {
+                                                            if ($usuario->setTipo($_POST['tipo_usuario'])) {
+                                                                if ($usuario->createUsuario()) {
+                                                                    $result['status'] = 1;
+                                                                    $result['message'] = 'Usuario creado correctamente';
+                                                                } else {
+                                                                    $result['exception'] = Database::getException();
+                                                                }
+                                                            } else {
+                                                                $result['exception'] = 'Tipo de usuario inválido';
+                                                            }
+                                                        } else {
+                                                            $result['exception'] = 'Seleccione un tipo de usuario';
+                                                        }
+                                                    } else {
+                                                        $result['exception'] = 'El estado es incorrecto';
+                                                    }
+                                                } else {
+                                                    $result['exception'] = 'El estado elegido es inválido';
+                                                }
+                                            } else {
+                                                $result['exception'] = 'Correo electrónico inválido';
+                                            }
                                         } else {
-                                            $result['exception'] = Database::getException();
+                                            $result['exception'] = 'DUI inválido';
                                         }
                                     } else {
-                                        $result['exception'] = 'Clave menor a 6 caracteres';
+                                        $result['exception'] = 'La fecha de nacimiento es invalida';
                                     }
                                 } else {
-                                    $result['exception'] = 'Claves diferentes';
+                                    $result['exception'] = 'Apellidos incorrectos';
                                 }
                             } else {
-                                $result['exception'] = 'Usuario incorrecto';
+                                $result['exception'] = 'Nombres inválido';
                             }
                         } else {
-                            $result['exception'] = 'Correo incorrecto';
+                            $result['exception'] = 'Clave menor a 6 caracteres';
                         }
                     } else {
-                        $result['exception'] = 'Apellidos incorrectos';
+                        $result['exception'] = 'Las Contraseñas no coinciden';
                     }
                 } else {
-                    $result['exception'] = 'Nombres incorrectos';
+                    $result['exception'] = 'Nombre de usuario invalido';
                 }
                 break;
             case 'readOne':
@@ -169,34 +193,54 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Usuario incorrecto';
                 }
-                break;
+                break;                                  
             case 'update':
                 $_POST = $usuario->validateForm($_POST);
                 if ($usuario->setId($_POST['id_usuario'])) {
-                    if ($usuario->readOneUsuario()) {
-                        if ($usuario->setNombres($_POST['nombres_usuario'])) {
-                            if ($usuario->setApellidos($_POST['apellidos_usuario'])) {
-                                if ($usuario->setCorreo($_POST['correo_usuario'])) {
-                                    if ($usuario->updateUsuario()) {
-                                        $result['status'] = 1;
-                                        $result['message'] = 'Usuario modificado correctamente';
+                    if ($data = $usuario->readOneUsuario()) {
+                        if ($usuario->setNombres($_POST['nombre_usuario'])) {
+                            if ($usuario->setApellidos($_POST['apellido_usuario'])) {
+                                if ($usuario->setFecha($_POST['fecha_nacimiento'])) {
+                                    if ($usuario->setDui($_POST['dui_usuario'])) {
+                                        if ($usuario->setCorreo($_POST['email_usuario'])) {
+                                            if ($_POST['estado_usuario'] == 'Activo' || 'Inactivo') {
+                                                if ($usuario->setEstado($_POST['estado_usuario'])) {
+                                                    if ($usuario->setTipo($_POST['tipo_usuario'])) {
+                                                        if ($usuario->updateUsuario()) {
+                                                            $result['status'] = 1;
+                                                            $result['message'] = 'Usuario modificado correctamente';
+                                                        } else {
+                                                            $result['exception'] = Database::getException();
+                                                        }
+                                                    } else {
+                                                            $result['exception'] = 'Tipo de usuario inválido';
+                                                        }
+                                                } else {
+                                                    $result['exception'] = 'El estado es incorrecto';
+                                                }
+                                            } else {
+                                                $result['exception'] = 'El estado elegido es inválido';
+                                            }
+                                        } else {
+                                            $result['exception'] = 'Correo electrónico inválido';
+                                        }
                                     } else {
-                                        $result['exception'] = Database::getException();
+                                        $result['exception'] = 'DUI inválido';
                                     }
                                 } else {
-                                    $result['exception'] = 'Correo incorrecto';
+                                    $result['exception'] = 'La fecha de nacimiento es invalida';
                                 }
                             } else {
                                 $result['exception'] = 'Apellidos incorrectos';
                             }
                         } else {
-                            $result['exception'] = 'Nombres incorrectos';
+                            $result['exception'] = 'Nombres inválido';
                         }
                     } else {
                         $result['exception'] = 'Usuario inexistente';
                     }
                 } else {
-                    $result['exception'] = 'Usuario incorrecto';
+                    $result['exception'] = 'Usuario invalido';
                 }
                 break;
             case 'delete':

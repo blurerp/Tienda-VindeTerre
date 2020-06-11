@@ -8,6 +8,7 @@
         private $ruta = '../../../resources/img/categorias/';
         private $maxWidth = 500;
         private $maxHeigth = 500;
+        
         public function setId($value)
         {
             if ($this->validateNaturalNumber($value)) {
