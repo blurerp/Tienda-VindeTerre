@@ -145,6 +145,7 @@
                 </head>
                 <body>                                               
             ');
+            }
 
         public static function footerTemplate($controller)
         {
@@ -161,5 +162,5 @@
             </html>
             ');
         }
-    } 
+    }
 ?>
