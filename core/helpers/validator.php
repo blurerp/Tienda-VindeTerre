@@ -322,7 +322,7 @@ class Validator
     public function validatePassword($value)
     {
         // Se verifica que la longitud de la contraseña sea de al menos 6 caracteres.
-        if (strlen($value) >= 6) {
+        if (strlen($value) >= 8) {
             return true;
         } else {
             return false;

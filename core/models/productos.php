@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Productos extends Validator
 {
@@ -17,6 +17,7 @@ class Productos extends Validator
     private $stock_activo = null;
     private $stock_minimo = null;
     private $estado = null;
+    private $estado_1 = "En existencia";
 
     public function setId($value)
     {
@@ -39,15 +40,15 @@ class Productos extends Validator
     }
 
     public function setImagen($file)
-        {
-            if ($this->validateImageFile($file, 500, 500)) {
-                $this->imagen = $this->getImageName();
-                $this->archivo = $file;
-                return true;
-            } else {
-                return false;
-            }
+    {
+        if ($this->validateImageFile($file, 500, 500)) {
+            $this->imagen = $this->getImageName();
+            $this->archivo = $file;
+            return true;
+        } else {
+            return false;
         }
+    }
 
     public function setPrecio_venta($value)
     {
@@ -77,7 +78,7 @@ class Productos extends Validator
         } else {
             return false;
         }
-    } 
+    }
 
     public function setDescripcion_producto($value)
     {
@@ -97,7 +98,7 @@ class Productos extends Validator
         } else {
             return false;
         }
-    } 
+    }
 
     public function setCosecha($value)
     {
@@ -107,7 +108,7 @@ class Productos extends Validator
         } else {
             return false;
         }
-    } 
+    }
 
     public function setAlcohol($value)
     {
@@ -160,9 +161,9 @@ class Productos extends Validator
     }
 
     public function getImagen()
-        {
-            return $this->imagen;
-        }
+    {
+        return $this->imagen;
+    }
 
     public function getRuta()
     {
@@ -220,68 +221,76 @@ class Productos extends Validator
     }
 
     public function searchProductos($value)
-        {
-            $sql = 'SELECT id_producto, nombre_producto, imagen_producto, precio_venta, precio_compra, categoria, descripcion_producto, id_bodega, cosecha, alcohol, stock_activo, stock_minimo, estado_producto
+    {
+        $sql = 'SELECT id_producto, nombre_producto, imagen_producto, precio_venta, precio_compra, categoria, descripcion_producto, id_bodega, cosecha, alcohol, stock_activo, stock_minimo, estado_producto
                     FROM productos INNER JOIN Categoria USING (id_categoria)
                     WHERE nombre_producto ILIKE ?
                     ORDER BY nombre_producto';
-            $params = array("%$value%", "%$value%");
-            return Database::getRows($sql, $params);
-        }
-    
+        $params = array("%$value%", "%$value%");
+        return Database::getRows($sql, $params);
+    }
+
     public function createProductos()
-        {
-            $stock_act = 0;
-            if ($this->saveFile($this->archivo, $this->ruta, $this->imagen)) {
-                $sql = 'INSERT INTO Productos (nombre_producto, imagen_producto, precio_venta, precio_compra, id_categoria, descripcion_producto, id_bodega, cosecha, alcohol, stock_activo, stock_minimo, estado_producto)
+    {
+        $stock_act = 0;
+        if ($this->saveFile($this->archivo, $this->ruta, $this->imagen)) {
+            $sql = 'INSERT INTO Productos (nombre_producto, imagen_producto, precio_venta, precio_compra, id_categoria, descripcion_producto, id_bodega, cosecha, alcohol, stock_activo, stock_minimo, estado_producto)
                         VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-                $params = array($this->nombre, $this->imagen, $this->precio_venta, $this->precio_compra, $this->categoria, $this->descripcion_producto, $this->bodega, $this->cosecha, $this->alcohol, $stock_act, $this->stock_minimo, $this->estado);
-                return Database::executeRow($sql, $params);
-            } else {
-                return false;
-            }
+            $params = array($this->nombre, $this->imagen, $this->precio_venta, $this->precio_compra, $this->categoria, $this->descripcion_producto, $this->bodega, $this->cosecha, $this->alcohol, $stock_act, $this->stock_minimo, $this->estado);
+            return Database::executeRow($sql, $params);
+        } else {
+            return false;
         }
-    
+    }
+
     public function readAllProductos()
-        {
-            $sql = 'SELECT id_producto, nombre_producto, imagen_producto, precio_venta, precio_compra, categoria, descripcion_producto, id_bodega, cosecha, alcohol, stock_activo, stock_minimo, estado_producto
+    {
+        $sql = 'SELECT id_producto, nombre_producto, imagen_producto, precio_venta, precio_compra, categoria, descripcion_producto, id_bodega, cosecha, alcohol, stock_activo, stock_minimo, estado_producto
                     FROM Productos INNER JOIN Categoria USING (id_categoria)
                     ORDER BY nombre_producto';
-            $params = null;
-            return Database::getRows($sql, $params);
-        }
-    
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
     public function readOneProductos()
-        {
-            $sql = 'SELECT id_producto, nombre_producto, imagen_producto, precio_venta, precio_compra, id_categoria, descripcion_producto, id_bodega, cosecha, alcohol, stock_activo, stock_minimo, estado_producto
+    {
+        $sql = 'SELECT id_producto, nombre_producto, imagen_producto, precio_venta, precio_compra, id_categoria, descripcion_producto, id_bodega, cosecha, alcohol, stock_activo, stock_minimo, estado_producto
                     FROM Productos
                     WHERE id_producto = ?';
-            $params = array($this->id);
-            return Database::getRow($sql, $params);
-        }
+        $params = array($this->id);
+        return Database::getRow($sql, $params);
+    }
 
+    public function readProductosCategoria()
+    {
+        $sql = 'SELECT categoria, id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_venta
+                FROM productos INNER JOIN categorias USING(id_categoria)
+                WHERE id_categoria = ? AND estado_producto = ?
+                ORDER BY nombre_producto';
+        $params = array($this->categoria, $this->estado_1);
+        return Database::getRows($sql, $params);
+    }
     public function updateProductos()
-        {
-            if ($this->saveFile($this->archivo, $this->ruta, $this->imagen)) {
-                $sql = 'UPDATE Productos 
+    {
+        if ($this->saveFile($this->archivo, $this->ruta, $this->imagen)) {
+            $sql = 'UPDATE Productos 
                         SET nombre_producto = ?, imagen_producto = ?, precio_venta = ?, precio_compra = ?, id_categoria = ?, descripcion_producto = ?, id_bodega = ?, cosecha = ?, alcohol = ?, stock_minimo = ?, estado_producto = ?
                         WHERE id_producto = ?';
-                $params = array($this->nombre, $this->imagen, $this->precio_venta, $this->precio_compra, $this->categoria, $this->descripcion_producto, $this->bodega, $this->cosecha, $this->alcohol, $this->stock_minimo, $this->estado, $this->id);
-            } else {
-                $sql = 'UPDATE Productos 
+            $params = array($this->nombre, $this->imagen, $this->precio_venta, $this->precio_compra, $this->categoria, $this->descripcion_producto, $this->bodega, $this->cosecha, $this->alcohol, $this->stock_minimo, $this->estado, $this->id);
+        } else {
+            $sql = 'UPDATE Productos 
                         SET nombre_producto = ?, precio_venta = ?, precio_compra = ?, id_categoria = ?, descripcion_producto = ?, id_bodega = ?, cosecha = ?, alcohol = ?, stock_minimo = ?, estado_producto = ?
                         WHERE id_producto = ?';
-                $params = array($this->nombre, $this->precio_venta, $this->precio_compra, $this->categoria, $this->descripcion_producto, $this->bodega, $this->cosecha, $this->alcohol, $this->stock_minimo, $this->estado, $this->id);
-            }
-            return Database::executeRow($sql, $params);
+            $params = array($this->nombre, $this->precio_venta, $this->precio_compra, $this->categoria, $this->descripcion_producto, $this->bodega, $this->cosecha, $this->alcohol, $this->stock_minimo, $this->estado, $this->id);
         }
+        return Database::executeRow($sql, $params);
+    }
 
     public function deleteProductos()
-        {
-            $sql = 'DELETE FROM Productos
+    {
+        $sql = 'DELETE FROM Productos
                     WHERE id_producto = ?';
-            $params = array($this->id);
-            return Database::executeRow($sql, $params);
-        }
+        $params = array($this->id);
+        return Database::executeRow($sql, $params);
+    }
 }
-?>

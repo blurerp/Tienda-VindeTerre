@@ -35,32 +35,3 @@ function fillTable( dataset )
     });
     $( '#tbody-rows' ).html( content );
 }
-var id_pedd = $row.id_pedido;
-
-$( document ).ready(function() {
-        readRows2( API_PEDIDOS, id_pedd );
-    });
-    function fillTable( dataset )
-        {
-            let content2 = '';
-            dataset.forEach(function( row ) {
-                content2 += `
-                    <tr>
-                        <td>${row.numero_orden}</td>
-                        <td>${row.nombre_producto}</td>
-                        <td>${row.precio_producto_det}</td>
-                        <td>${row.cantidad_detalle}</td>
-                    </tr>
-                `;
-            });
-            $( '#tbody-rows2' ).html( content2 );
-        }
-function detallePedido( id )
-{
-    $( '.modal-header' ).css( 'background-color', '#b2d4ac' );
-    $( '.modal-header' ).css( 'color', 'white' );
-    $( '.modal-title' ).text( 'Detalle Pedido' );
-    $( '#save-modal' ).modal( 'show' );
-
-    
-}

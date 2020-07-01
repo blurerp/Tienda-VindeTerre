@@ -42,26 +42,6 @@ $(document).ready(function() {
     });
 } );
 
-$(document).ready(function() {
-    tabla_productos = $('#subtabla').DataTable({
-        "language": {
-            "lengthMenu": "Mostrar _MENU_ registros",
-            "zeroRecords": "No se encontraron resultados",
-            "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-            "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-            "infoFiltered": "(filtrando de un total de _MAX_ registros)",
-            "sSearch": "Buscar:",
-            "oPaginate": {
-                "sFirst": "Primero",
-                "sLast": "Ultimo",
-                "sNext": "Siguiente",
-                "sPrevious": "Anterior"
-            },
-            "sProcessing": "Procesando...",
-        }
-    });
-} );
-
 $(function(){
     var dtToday = new Date();
 
@@ -122,31 +102,6 @@ function readRows( api )
     });
 }
 
-function readRows2( api, id1 )
-{
-    $.ajax({
-        dataType: 'json',
-        url: api + 'readOned',
-        data: { id_pedido: id1 },
-        type: 'post'
-    })
-    .done(function( response ) {
-        // Si no hay datos se muestra un mensaje indicando la situación.
-        if ( ! response.status ) {
-            sweetAlert( 4, response.exception, null );
-        }
-        // Se envían los datos a la función del controlador para que llene la tabla en la vista.
-        fillTable( response.dataset );
-    })
-    .fail(function( jqXHR ) {
-        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
-        if ( jqXHR.status == 200 ) {
-            console.log( jqXHR.responseText );
-        } else {
-            console.log( jqXHR.status + ' ' + jqXHR.statusText );
-        }
-    });
-}
 /*
 *   Función para obtener los resultados de una búsqueda en los mantenimientos de tablas (operación search).
 *
