@@ -2,6 +2,7 @@
 require_once('../../core/helpers/commerce.php');
 Commerce::headerTemplate('Detalles del producto');
 ?>
+<!-- View de detalle producto-->
 <div class="container">
 	<div class="card">
 		<div class="row" id="detalle">
@@ -57,6 +58,7 @@ Commerce::headerTemplate('Detalles del producto');
 							</div>							
 						</div>  						
 						<hr>
+						<!-- Campo submit-->
 						<button type="submit" class="btn btn-lg btn-outline-primary text-uppercase"><i class="fas fa-shopping-cart"></i> Agregar al carrito</button>					
 					</form>					
 				</article>
