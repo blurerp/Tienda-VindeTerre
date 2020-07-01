@@ -21,12 +21,21 @@ class Commerce
             <html lang="es">  
             <head>
             <meta charset="utf-8">
-            <title>Dashboard · '.$title.'</title>
+            <title>'.$title.'</title>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mukta:300,400,700">
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+            <link rel="stylesheet" href="../../resources/fonts/icomoon/style.css">        
+
             <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap.min.css">
+            <link rel="stylesheet" href="../../resources/css/magnific-popup.css">
+            <link rel="stylesheet" href="../../resources/css/jquery-ui.css">
+            <link rel="stylesheet" href="../../resources/css/owl.carousel.min.css">
+            <link rel="stylesheet" href="../../resources/css/owl.theme.default.min.css">
+            <link rel="stylesheet" href="../../resources/css/aos.css">
+            <link rel="stylesheet" href="../../resources/css/style.css?v=<?php echo(rand()); ?>">
             <link type="text/css" rel="stylesheet" href="../../resources/css/all.min.css">
             <link type="text/css" rel="stylesheet" href="../../resources/css/commerce.css" />
-            <link type="image/png" rel="icon" href="../../resources/img/logo.png" />
+            <link type="image/png" rel="icon" href="../../resources/img/logo.png" /> 
             </head>
             <body class="d-flex flex-column">
         ');
@@ -37,53 +46,95 @@ class Commerce
             // Se verifica si la página web actual es diferente a login.php y register.php, de lo contrario se direcciona a index.php
             if ($filename != 'login.php' && $filename != 'signin.php') {
                 print('            
-                    <header>
-                    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-                    <a class="navbar-brand" href="index.php">
-                        <img src="../../resources/img/logo.png" height="50" alt="vindeterre logo">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarCollapse">
-                        <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index.php">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="productos.php">Vinos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php">Categorias</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="aboutus.php">Acerca de Nosotros</a>
-                        </li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item">
-                            <div class="searchbar">
-                            <input class="search_input" type="text" name="buscar" id="buscar" placeholder="Buscar...">
-                            <a href="search.php" class="search_icon"><i class="fas fa-search"></i></a>
+                <div class="site-wrap">
+                    <header class="site-navbar" role="banner">
+                        <div class="site-navbar-top">
+                            <div class="container">
+                                <div class="row align-items-center">
+            
+                                    <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
+                                        <form action="" class="site-block-top-search">
+                                            <span class="icon icon-search2"></span>
+                                            <input type="text" class="form-control border-0" placeholder="Buscar...">
+                                        </form>
+                                    </div>
+            
+                                    <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
+                                        <div class="site-logo">
+                                            <a href="index.php" class="js-logo-clone">Vin De Terre</a>
+                                        </div>
+                                    </div>
+            
+            
+                                    <div class="col-6 col-md-4 order-3 order-md-3 text-right">
+                                        <div class="site-top-icons">
+                                            <ul>
+                                                <li>
+                                                    <div class="site-navigation text-right text-md-center" role="navigation">
+                            
+                                                        <ul class="site-menu js-clone-nav d-none d-md-block">
+                                                            
+                                                            <li class="has-children">
+                                                                <a href="about.php"><span class="icon icon-person"></a>
+                                                                <ul class="dropdown">
+                                                                    <li><a href="login.php">Tu cuenta</a></li>
+                                                                    
+                                                                    <li><a href="signin.php">Cerrar Sesión</a></li>                                                                    
+                                                                </ul>
+                                                            </li>                                    
+                                                        </ul>                            
+                                                </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <a href="cart.php" class="site-cart">
+                                                        <span class="icon icon-shopping_cart"></span>
+                                                        <span class="count">+9</span>
+                                                    </a>
+                                                </li>
+                                                <li class="d-inline-block d-md-none ml-md-0"><a href="#"
+                                                        class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+            
+                                </div>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="cart.php"><span><i class="far fa-shopping-cart"></i></span></a>
-                        </li>
-                        <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mi cuenta</a>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <a href="pedidos.php" class="dropdown-item">Mis pedidos</a>
-                                <a href="#" class="dropdown-item">Editar perfil</a>
-                                <div class="dropdown-divider"></div>
-                                <a href="#" onclick="logOut()" class="dropdown-item">Cerrar sesión</a>
+                        </div>
+                        <nav class="site-navigation text-right text-md-center" role="navigation">
+                            <div class="container">
+                                <ul class="site-menu js-clone-nav d-none d-md-block">
+                                    <li class="has-children active">
+                                        <a href="index.html">Inicio</a>
+                                        <ul class="dropdown">
+                                            <li><a href="#">Menu One</a></li>
+                                            <li><a href="#">Menu Two</a></li>
+                                            <li><a href="#">Menu Three</a></li>
+                                            <li class="has-children">
+                                                <a href="#">Sub Menu</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="#">Menu One</a></li>
+                                                    <li><a href="#">Menu Two</a></li>
+                                                    <li><a href="#">Menu Three</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="has-children">
+                                        <a href="about.php">Sobre Nosotros</a>
+                                        <ul class="dropdown">
+                                            <li><a href="#">Menu One</a></li>
+                                            <li><a href="#">Menu Two</a></li>
+                                            <li><a href="#">Menu Three</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="shop.html">Vinos</a></li>
+            
+                                    <li><a href="contact.html">Contacto</a></li>
+                                </ul>
                             </div>
-                        </li>
-                        </ul>
-                    </div>
-                    </nav>
+                        </nav>
                     </header>
                     <main class="container-fluid flex-fill">
                 ');
@@ -94,47 +145,95 @@ class Commerce
             // Se verifica si la página web actual es diferente a index.php (Iniciar sesión) y a register.php (Crear primer usuario) para direccionar a index.php, de lo contrario se muestra un menú vacío.
             if ($filename != 'cart.php') {
                 print('
-                    <header>
-                    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-                    <a class="navbar-brand" href="index.php">
-                        <img src="../../resources/img/logo.png" height="50" alt="vindeterre logo">
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarCollapse">
-                        <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="index.php">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="productos.php">Vinos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php">Categorias</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="aboutus.php">Acerca de Nosotros</a>
-                        </li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item">
-                            <div class="searchbar">
-                            <input class="search_input" type="text" name="buscar" id="buscar" placeholder="Buscar...">
-                            <a href="search.php" class="search_icon"><i class="fas fa-search"></i></a>
+                <div class="site-wrap">
+                    <header class="site-navbar" role="banner">
+                        <div class="site-navbar-top">
+                            <div class="container">
+                                <div class="row align-items-center">
+            
+                                    <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
+                                        <form action="" class="site-block-top-search">
+                                            <span class="icon icon-search2"></span>
+                                            <input type="text" class="form-control border-0" placeholder="Buscar...">
+                                        </form>
+                                    </div>
+            
+                                    <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
+                                        <div class="site-logo">
+                                            <a href="index.php" class="js-logo-clone">Vin De Terre</a>
+                                        </div>
+                                    </div>
+            
+            
+                                    <div class="col-6 col-md-4 order-3 order-md-3 text-right">
+                                        <div class="site-top-icons">
+                                            <ul>
+                                                <li>
+                                                    <div class="site-navigation text-right text-md-center" role="navigation">
+                            
+                                                        <ul class="site-menu js-clone-nav d-none d-md-block">
+                                                            
+                                                            <li class="has-children">
+                                                                <a href="#"><span class="icon icon-person"></a>
+                                                                <ul class="dropdown">
+                                                                    <li><a href="login.php">Iniciar sesión</a></li>
+                                                                    <li><a href="signin.php">Crear Cuenta</a></li>                                                                    
+                                                                </ul>
+                                                            </li>                                    
+                                                        </ul>                            
+                                                </div>
+                                                </li>
+                                                
+                                                <li>
+                                                    <a href="cart.php" class="site-cart">
+                                                        <span class="icon icon-shopping_cart"></span>
+                                                        <span class="count">+9</span>
+                                                    </a>
+                                                </li>
+                                                <li class="d-inline-block d-md-none ml-md-0"><a href="#"
+                                                        class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+            
+                                </div>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="signin.php">Crear cuenta</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.php">Iniciar sesión</a>
-                        </li>          
-                        </ul>                        
-                    </div>
-                    </nav>
-                    </header>  
+                        </div>
+                        <nav class="site-navigation text-right text-md-center" role="navigation">
+                            <div class="container">
+                                <ul class="site-menu js-clone-nav d-none d-md-block">
+                                    <li class="has-children active">
+                                        <a href="index.html">Inicio</a>
+                                        <ul class="dropdown">
+                                            <li><a href="#">Menu One</a></li>
+                                            <li><a href="#">Menu Two</a></li>
+                                            <li><a href="#">Menu Three</a></li>
+                                            <li class="has-children">
+                                                <a href="#">Sub Menu</a>
+                                                <ul class="dropdown">
+                                                    <li><a href="#">Menu One</a></li>
+                                                    <li><a href="#">Menu Two</a></li>
+                                                    <li><a href="#">Menu Three</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="has-children">
+                                        <a href="about.php">Sobre Nosotros</a>
+                                        <ul class="dropdown">
+                                            <li><a href="#">Menu One</a></li>
+                                            <li><a href="#">Menu Two</a></li>
+                                            <li><a href="#">Menu Three</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="shop.html">Vinos</a></li>
+            
+                                    <li><a href="contact.html">Contacto</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </header>
                     <main class="container-fluid flex-fill">
                 ');
             } else {
@@ -203,12 +302,17 @@ class Commerce
             </div>
             </footer>
             <script type="text/javascript" src="../../resources/js/jquery-3.5.1.min.js"></script>
+            <script type="text/javascript" src="../../resources/js/jquery-ui.js"></script>
             <script type="text/javascript" src="../../resources/js/popper.min.js"></script>
-            <script type="text/javascript" src="../../resources/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="../../resources/js/bootstrap.min.js"></script>            
             <script type="text/javascript" src="../../resources/js/sweetalert.min.js"></script>
-            <script type="text/javascript" src="../../core/helpers/components.js"></script>
+                
             <script type="text/javascript" src="../../core/controllers/commerce/account.js"></script>
+            <script type="text/javascript" src="../../resources/js/owl.carousel.min.js"></script>
+            <script type="text/javascript" src="../../resources/js/jquery.magnific-popup.min.js"></script>            
+            <script type="text/javascript" src="../../resources/js/aos.js"></script>
             <script type="text/javascript" src="../../core/controllers/commerce/'.$controller.'"></script>
+            <script type="text/javascript" src="../../resources/js/main.js"></script>
             </body>            
             </html>
         ');
