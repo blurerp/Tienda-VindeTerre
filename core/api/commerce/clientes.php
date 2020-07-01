@@ -86,7 +86,7 @@ if (isset($_GET['action'])) {
                         $result['exception'] = 'Su cuenta ha sido desactivada';
                     }
                 } else {
-                    $result['exception'] = 'Correo electrónico invalido';
+                    $result['exception'] = 'Correo electronico invalido';
                 }
                 break;
             default:

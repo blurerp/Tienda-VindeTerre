@@ -1,6 +1,6 @@
 <?php
 require_once('../../core/helpers/template.php');
-Dashboard::headerTemplate('Iniciar sesión');
+Dashboard::headerLogin('Iniciar sesión');
 ?>
     <div id="background"></div>
     <div id="container">

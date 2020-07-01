@@ -34,8 +34,8 @@ class Commerce
             <link rel="stylesheet" href="../../resources/css/aos.css">
             <link rel="stylesheet" href="../../resources/css/style.css?v=<?php echo(rand()); ?>">
             <link type="text/css" rel="stylesheet" href="../../resources/css/all.min.css">
-            <link type="text/css" rel="stylesheet" href="../../resources/css/commerce.css" />             
-            <link type="image/png" rel="icon" href="../../resources/img/logo.png" />             
+            <link type="text/css" rel="stylesheet" href="../../resources/css/commerce.css" />
+            <link type="image/png" rel="icon" href="../../resources/img/logo.png" /> 
             </head>
             <body class="d-flex flex-column">
         ');
