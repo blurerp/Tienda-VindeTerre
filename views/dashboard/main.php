@@ -2,15 +2,16 @@
 require_once('../../core/helpers/template.php');
 Dashboard::headerTemplate('Iniciar sesión');
 ?>
-<div id="content" class="container-fluid p-5">  
-    <div class="row justify-content-center">
-      <div class="col">
-        <div class="jumbotron text-center">          
-          <h1 class="display-5">¡Bienvenido Administrador!</h1>
-          <hr class="my-4">                  
-        </div>
+<div id="content" class="container-fluid p-5">
+  <div class="row justify-content-center">
+    <div class="col">
+      <div class="jumbotron text-center">
+        <h1 class="display-5">¡Bienvenido Administrador!</h1>
+        <hr class="my-4">
+        <img src="/resources/img/9517-welcome.gif" style="width: 325px;" alt="gif">
       </div>
-    </div>  
+    </div>
+  </div>
 </div>
 <section class="py-3">
   <div class="row">

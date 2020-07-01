@@ -70,6 +70,7 @@
                             </div>  
                         </nav>                                 
             ');
+            
             $filename = basename($_SERVER['PHP_SELF']); 
 
             if ($filename != 'main.php') {
@@ -126,6 +127,26 @@
             */
         }
 
+        public static function headerLogin($title)
+        {
+            print('  
+                <!doctype html>
+                <html lang="en">
+                <head>
+                    <meta charset="utf-8">
+                    <title>Dashboard · '.$title.'</title>
+                    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                    <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap.min.css">
+                    <link type="text/css" rel="stylesheet" href="../../resources/css/datatables.min.css">
+                    <link type="text/css" rel="stylesheet" href="../../resources/css/dataTables.bootstrap4.min.css">
+                    <link type="text/css" rel="stylesheet" href="../../resources/css/all.min.css">
+                    <link type="text/css" rel="stylesheet" href="../../resources/css/dashboard.css"/>
+                    <link type="image/png" rel="icon" href="../../resources/img/logo.png"/>
+                </head>
+                <body>                                               
+            ');
+            }
+
         public static function footerTemplate($controller)
         {
             print('
@@ -141,5 +162,5 @@
             </html>
             ');
         }
-    } 
+    }
 ?>
