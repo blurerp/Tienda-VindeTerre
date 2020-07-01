@@ -10,7 +10,7 @@ Commerce::headerTemplate('Tu tienda de café');
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img class="d-block w-100" src="../../resources/img/slider/img01.png" alt="First slide">
+            <img class="d-block w-100" src="../../resources/img/slider/image1.jpg" alt="First slide">
             <div class="carousel-caption d-none d-md-block">
                 <h5>Vino Premiums</h5>
                 <p>Tenemos los mejores vinos importados desde Chile</p>
@@ -40,10 +40,10 @@ Commerce::headerTemplate('Tu tienda de café');
         <span class="sr-only">Siguiente</span>
     </a>
 </div>
-
+<hr class="my-4 bg-info">
 <div class="container">
     <!-- Título para la página web -->
-    <h4 class="font-weight-bold text-primary text-center" id="title">Nuestro catálogo</h4>
+    <h3 class="font-weight-italic text-primary text-center my-4" id="title">Categorias de vinos</h3>
     <!-- Fila para mostrar las categorías disponibles -->
     <div class="row" id="categorias"></div>
 </div>

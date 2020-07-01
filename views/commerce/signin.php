@@ -15,46 +15,56 @@ Commerce::headerTemplate('Registrarse');
       </div>
     </div>
     <div class="col-md-8 py-5 border">
+      <!-- Form de registrarse-->
       <form method="post" class="needs-validation" id="register-form" novalidate>
         <div class="form-row m-3">
           <div class="col-md-4 mb-3">
             <label for="nombre_cliente">Nombre</label>
+            <!-- Campo nombre-->
             <input id="nombre_cliente" type="text" class="form-control" pattern="[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{1,40}" name="nombre_cliente" required>
           </div>
           <div class="col-md-4 mb-3">
             <label for="apellido_cliente">Apellidos</label>
+            <!-- Campo apellidos-->
             <input id="apellido_cliente" type="text" class="form-control" pattern="[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{1,40}" name="apellido_cliente" required>
           </div>
           <div class="col-md-3 mb-3">
             <label for="dui_cliente">DUI</label>
+            <!-- Campo Dui-->
             <input id="dui_cliente" type="text" class="form-control" placeholder="00000000-0" pattern="[0-9]{8}[-][0-9]{1}" name="dui_cliente" required>
           </div>
         </div>
         <div class="form-row m-3">
           <div class="col-md-6 mb-3">
             <label for="email_cliente">Email</label>
+            <!-- Campo email-->
             <input id="email_cliente" type="text" class="form-control" maxlength="50" name="email_cliente" required>
           </div>
           <div class="col-md-3 mb-3">
             <label for="telefono_cliente">Telefóno</label>
+            <!-- Campo telefono-->
             <input id="telefono_cliente" type="text" class="form-control" placeholder="0000-0000" pattern="[2,6,7]{1}[0-9]{3}[-][0-9]{4}" name="telefono_cliente" required>
           </div>
           <div class="col-md-3 mb-3">
             <label for="nit_cliente">NIT (opcional)</label>
+            <!-- Campo NIT-->
             <input id="nit_cliente" type="text" class="form-control" placeholder="0101-010101-101-1" name="nit_cliente">
           </div>
         </div>
         <div class="form-row m-3">
           <div class="col-md-4 mb-3">
             <label for="contrasena_cliente">Contraseña</label>
+            <!-- Campo contraseña-->
             <input id="contrasena_cliente" type="password" class="form-control" name="contrasena_cliente" required>
           </div>
           <div class="col-md-4 mb-3">
             <label for="confirmar_contrasena">Confirmar contraseña</label>
+            <!-- Campo confirmar contraseña-->
             <input id="confirmar_contrasena" type="password" class="form-control" name="confirmar_contrasena" required>
           </div>
         </div>
         <div class="form-row m-3">
+          <!-- Campo submit-->
           <button type="submit" name="boton" id="boton" class="btn btn-primary">Registrarte</button>
         </div>
         <div class="form-row m-3">

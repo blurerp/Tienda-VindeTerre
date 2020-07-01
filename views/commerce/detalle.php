@@ -2,6 +2,7 @@
 require_once('../../core/helpers/commerce.php');
 Commerce::headerTemplate('Detalles del producto');
 ?>
+<!-- View de detalle producto-->
 <div class="container">
 	<div class="card">
 		<div class="row" id="detalle">
@@ -43,12 +44,13 @@ Commerce::headerTemplate('Detalles del producto');
 						<p class="font-weight-bold ml-3">Cantidad</p>
 						<div class="qty mt-2">
 							<span class="minus bg-dark">-</span>
-							<input type="number" class="count" name="qty" id="qty" value="1" style="width: 2%; border: 0;">
+							<input type="number" class="count" name="qty" id="qty" value="1" style="width: 5%; border: 0;">
 							<span class="plus bg-dark">+</span>
 						</div>
 						<input type="number" id="id_producto " class="invisible" name="id_producto" />
 						<input type="number" id="precio_producto " name="precio_producto " step="0.01" class="invisible"/>	
 						<hr>
+						<!-- Campo submit-->
 						<button type="submit" class="btn btn-lg btn-outline-primary text-uppercase"><i class="fas fa-shopping-cart"></i> Agregar al carrito</button>					
 					</form>					
 				</article>

@@ -2,6 +2,7 @@
 require_once('../../core/helpers/commerce.php');
 Commerce::headerTemplate('Iniciar sesión');
 ?>
+
     <div class="container inner">
       <div class="row ">
         <div class="col-md-4 py-5 bg-dark text-white text-center ">
@@ -14,16 +15,19 @@ Commerce::headerTemplate('Iniciar sesión');
           </div>
         </div>
         <div class="col-md-8 py-5 border">
+          <!-- Form de inicio de sesión-->
           <form method="post" class="needs-validation" id="session-form" novalidate>
             <div class="form-row m-3">
               <div class="col-md-5 mb-3">
                 <label for="email_cliente">Correo Electrónico</label>
+                <!-- Campo email-->
                 <input id="email_cliente" type="email" class="form-control" maxlength="50" name="email_cliente" required>
               </div>
             </div>
             <div class="form-row m-3">
               <div class="col-md-5 mb-3">
                 <label for="contrasena_cliente">Contraseña</label>
+                <!-- campo contraseña-->
                 <input id="contrasena_cliente" type="password" class="form-control" name="contrasena_cliente" required>
               </div>
             </div>

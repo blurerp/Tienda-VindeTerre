@@ -52,14 +52,12 @@ class Commerce
                             <a class="nav-link" href="index.php">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="productos.php">Vinos</a>
+                            <a class="nav-link" href="productos.php?id=3&nombre=Castillo%20de%20Molina">Vinos</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php">Categorias</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="aboutus.php">Acerca de Nosotros</a>
-                        </li>
+                        
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item">
@@ -76,7 +74,7 @@ class Commerce
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Mi cuenta</a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <a href="pedidos.php" class="dropdown-item">Mis pedidos</a>
-                                <a href="#" class="dropdown-item">Editar perfil</a>
+                                <a href="account.php" class="dropdown-item">Editar perfil</a>
                                 <div class="dropdown-divider"></div>
                                 <a href="#" onclick="logOut()" class="dropdown-item">Cerrar sesión</a>
                             </div>
@@ -113,10 +111,7 @@ class Commerce
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="index.php">Categorias</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="aboutus.php">Acerca de Nosotros</a>
-                        </li>
+                        </li>                        
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item">
