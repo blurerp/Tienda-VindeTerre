@@ -39,15 +39,23 @@ Commerce::headerTemplate('Detalles del producto');
 						</dd>
 					</dl>
 					<hr>
-					<form method="post" id="shopping-form" enctype="multipart/form-data">
+					<form method="post" id="shopping-form">
+						<input type="number" id="id_producto" name="id_producto" class="invisible"/>
+                        <input type="number" id="precio_producto_det" name="precio_producto_det" step="0.01" class="invisible"/>
 						<p class="font-weight-bold ml-3">Cantidad</p>
-						<div class="qty mt-2">
-							<span class="minus bg-dark">-</span>
-							<input type="number" class="count" name="qty" id="qty" value="1" style="width: 2%; border: 0;">
-							<span class="plus bg-dark">+</span>
-						</div>
-						<input type="number" id="id_producto " class="invisible" name="id_producto" />
-						<input type="number" id="precio_producto " name="precio_producto " step="0.01" class="invisible"/>	
+						<div class="input-group">
+							<div class="row">
+								<button type="button" class="btn btn-default btn-number" disabled="disabled" data-type="minus" data-field="cantidad_detalle">
+									<i class="far fa-minus-square"></i>
+								</button>
+								<div class="col-md-4">									
+									<input type="text" name="cantidad_detalle" id="cantidad_detalle " class="form-control input-number" value="1" min="1" max="1000">									
+								</div>
+								<button type="button" class="btn btn-default btn-number" data-type="plus" data-field="cantidad_detalle">
+									<i class="far fa-plus-square"></i>
+								</button>
+							</div>							
+						</div>  						
 						<hr>
 						<button type="submit" class="btn btn-lg btn-outline-primary text-uppercase"><i class="fas fa-shopping-cart"></i> Agregar al carrito</button>					
 					</form>					
@@ -56,6 +64,7 @@ Commerce::headerTemplate('Detalles del producto');
 		</div>
 	</div>
 </div>
+
 <?php
 Commerce::footerTemplate('detalle.js');
 ?>

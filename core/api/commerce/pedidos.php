@@ -17,33 +17,33 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un cliente ha iniciado sesión.
         switch ($_GET['action']) {
             case 'createDetail':
-                    if ($pedido->setCliente($_SESSION['id_cliente'])) {
-                        if ($pedido->readOrder()) {
-                            $_POST = $pedido->validateForm($_POST);
-                            if ($pedido->setProducto($_POST['id_producto'])) {
-                                if ($pedido->setCantidad($_POST['cantidad_detalle'])) {
-                                    if ($pedido->setPrecio($_POST['precio_producto_det'])) {
-                                        if ($pedido->createDetail()) {
-                                            $result['status'] = 1;
-                                            $result['message'] = 'Producto agregado correctamente';
-                                        } else {
-                                            $result['exception'] = 'Ocurrió un problema al agregar el producto';
-                                        }
+                if ($pedido->setCliente($_SESSION['id_cliente'])) {
+                    if ($pedido->readOrder()) {
+                        $_POST = $pedido->validateForm($_POST);
+                        if ($pedido->setProducto($_POST['id_producto'])) {
+                            if ($pedido->setCantidad($_POST['cantidad_detalle'])) {
+                                if ($pedido->setPrecio($_POST['precio_producto_det'])) {
+                                    if ($pedido->createDetail()) {
+                                        $result['status'] = 1;
+                                        $result['message'] = 'Producto agregado correctamente';
                                     } else {
-                                        $result['exception'] = 'Precio incorrecto';
+                                        $result['exception'] = 'Ocurrió un problema al agregar el producto';
                                     }
                                 } else {
-                                    $result['exception'] = 'Cantidad incorrecta';
+                                    $result['exception'] = 'Precio incorrecto';
                                 }
                             } else {
-                                $result['exception'] = 'Producto incorrecto';
+                                $result['exception'] = 'Cantidad incorrecta';
                             }
                         } else {
-                            $result['exception'] = 'Ocurrió un problema al obtener el pedido';
+                            $result['exception'] = 'Producto incorrecto';
                         }
                     } else {
-                        $result['exception'] = 'Cliente incorrecto';
+                        $result['exception'] = 'Ocurrió un problema al obtener el pedido';
                     }
+                } else {
+                    $result['exception'] = 'Cliente invalido';
+                }                    
                 break;
             case 'readCart':
                 if ($pedido->setCliente($_SESSION['id_cliente'])) {
@@ -64,7 +64,7 @@ if (isset($_GET['action'])) {
             case 'updateDetail':
                 if ($pedido->setId($_SESSION['id_pedido'])) {
                     $_POST = $pedido->validateForm($_POST);
-                    if ($pedido->setIdDetalle($_POST['id_detalle'])) {
+                    if ($pedido->setIdDetalle($_POST['id_det_pedido'])) {
                         if ($pedido->setCantidad($_POST['cantidad_detalle'])) {
                             if ($pedido->updateDetail()) {
                                 $result['status'] = 1;
@@ -84,7 +84,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'deleteDetail':
                 if ($pedido->setId($_SESSION['id_pedido'])) {
-                    if ($pedido->setIdDetalle($_POST['id_detalle'])) {
+                    if ($pedido->setIdDetalle($_POST['id_det_pedido'])) {
                         if ($pedido->deleteDetail()) {
                             $result['status'] = 1;
                             $result['message'] = 'Producto removido correctamente';

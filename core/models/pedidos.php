@@ -199,9 +199,9 @@
         // Método para obtener los productos que se encuentran en el carrito de compras.
         public function readCart()
         {
-            $sql = 'SELECT id_detalle, nombre_producto, detalle_pedido.precio_producto_det, detalle_pedido.cantidad_detalle
-                    FROM pedidos INNER JOIN detalle_pedido USING(id_pedido) INNER JOIN productos USING(id_producto)
-                    WHERE id_pedido = ?';
+            $sql = 'SELECT id_det_pedido, nombre_producto, d.precio_producto_det, d.cantidad_detalle
+                    FROM pedidos e, detalle_pedido d, productos p
+                    WHERE e.id_pedido = d.id_pedido and p.id_producto = d.id_producto and d.id_pedido = ?';
             $params = array($this->id_pedido);
             return Database::getRows($sql, $params);
         }

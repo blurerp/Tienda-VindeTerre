@@ -29,17 +29,17 @@ function readOneProducto( id )
             $( '#nombre_producto' ).text( response.dataset.nombre_producto );
             $( '#descripcion_producto' ).text( response.dataset.descripcion_producto );
             $( '#precio_venta' ).text( response.dataset.precio_venta  );
-            $( '#cosecha' ).text( response.dataset.cosecha  );
-            $( '#alcohol' ).text( response.dataset.alcohol  );
-            $( '#precio_venta' ).text( response.dataset.precio_venta  );
-            $( '#val' ).text( response.dataset.puntuacion  );
+            $( '#cosecha' ).text( response.dataset.cosecha );
+            $( '#alcohol' ).text( response.dataset.alcohol );
+            $( '#precio_venta' ).text( response.dataset.precio_venta );
+            $( '#val' ).text( response.dataset.puntuacion );
             const starTotal = 5;
             const starPercentage = (response.dataset.puntuacion / starTotal) * 100;
             const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
             document.querySelector(`#valoracion .stars-inner`).style.width = starPercentageRounded; 
             // Se asignan los valores a los campos ocultos del formulario.
             $( '#id_producto' ).val( response.dataset.id_producto );
-            $( '#precio_producto' ).val( response.dataset.precio_venta );
+            $( '#precio_producto_det' ).val( response.dataset.precio_venta );
         } else {
             // Se presenta un mensaje de error cuando no existen datos para mostrar.
             $( '#title' ).html( `<i class="far fa-times-square"></i><span class="text-danger">${response.exception}</span>` );
