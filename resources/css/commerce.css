@@ -7,6 +7,8 @@
 
 /* font-family: 'Montserrat', sans-serif;*/
 
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
 footer {
   background: #222;
   color: #aaa;
@@ -115,3 +117,84 @@ footer .copyright span {
     color:white;
     text-decoration:none;
     }
+
+    .stars-outer {
+      display: inline-block;
+      position: relative;
+      font-family: FontAwesome;
+    }
+     
+    .stars-outer::before {
+      content: "\f006 \f006 \f006 \f006 \f006";
+    }
+     
+    .stars-inner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      
+    }
+     
+    .stars-inner::before {
+      content: "\f005 \f005 \f005 \f005 \f005";
+      color: #f8ce0b;
+    }
+
+    .qty .count {
+      color: #000;
+      display: inline-block;
+      vertical-align: top;
+      font-size: 25px;
+      font-weight: 700;
+      line-height: 30px;
+      padding: 0 2px
+      ;min-width: 35px;
+      text-align: center;
+  }
+  .qty .plus {
+      cursor: pointer;
+      display: inline-block;
+      vertical-align: top;
+      color: white;
+      width: 30px;
+      height: 30px;
+      font: 30px/1 Arial,sans-serif;
+      text-align: center;
+      border-radius: 50%;
+      }
+  .qty .minus {
+      cursor: pointer;
+      display: inline-block;
+      vertical-align: top;
+      color: white;
+      width: 30px;
+      height: 30px;
+      font: 30px/1 Arial,sans-serif;
+      text-align: center;
+      border-radius: 50%;
+      background-clip: padding-box;
+  }
+
+  .minus:hover{
+      background-color: #717fe0 !important;
+  }
+  .plus:hover{
+      background-color: #717fe0 !important;
+  }
+  /*Prevent text selection*/
+  span{
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+  }
+
+nput::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input:disabled{
+    background-color:white;
+}

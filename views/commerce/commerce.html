@@ -8,6 +8,8 @@
   <link type="text/css" rel="stylesheet" href="../../resources/css/bootstrap.min.css">
   <link type="text/css" rel="stylesheet" href="../../resources/css/all.min.css">
   <link type="text/css" rel="stylesheet" href="../../resources/css/commerce.css" />
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link type="text/css" rel="stylesheet" media="all" href="../../resources/css/star-rating.css" />   
   <link type="image/png" rel="icon" href="../../resources/img/logo.png" />
 </head>
 
@@ -58,7 +60,9 @@
   </header>
 
   <main class="container-fluid flex-fill">
-    
+        <div class="stars-outer">
+      <div class="stars-inner"></div>
+    </div> 
   </main>
 
   <footer>
@@ -115,6 +119,7 @@
   <script type="text/javascript" src="../../core/helpers/components.js"></script>
   <script type="text/javascript" src="../../core/controllers/commerce/account.js"></script>
   <script type="text/javascript" src="../../core/controllers/commerce/'.$controller.'"></script>
+  <script type="text/javascript" src="../../resources/js/star-rating.js"></script>
 </body>
 
 </html>

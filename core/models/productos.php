@@ -17,7 +17,7 @@ class Productos extends Validator
     private $stock_activo = null;
     private $stock_minimo = null;
     private $estado = null;
-    private $estado_1 = "En existencia";
+    private $puntuacion = null;   
 
     public function setId($value)
     {
@@ -220,6 +220,11 @@ class Productos extends Validator
         return $this->estado;
     }
 
+    public function getPuntuacion()
+    {
+        return $this->puntuacion;
+    }
+
     public function searchProductos($value)
     {
         $sql = 'SELECT id_producto, nombre_producto, imagen_producto, precio_venta, precio_compra, categoria, descripcion_producto, id_bodega, cosecha, alcohol, stock_activo, stock_minimo, estado_producto
@@ -254,20 +259,21 @@ class Productos extends Validator
 
     public function readOneProductos()
     {
-        $sql = 'SELECT id_producto, nombre_producto, imagen_producto, precio_venta, precio_compra, id_categoria, descripcion_producto, id_bodega, cosecha, alcohol, stock_activo, stock_minimo, estado_producto
-                    FROM Productos
-                    WHERE id_producto = ?';
+        $sql = 'SELECT p.id_producto, nombre_producto, imagen_producto, precio_venta, precio_compra, id_categoria, descripcion_producto, id_bodega, cosecha, alcohol, stock_activo, stock_minimo, estado_producto, puntuacion
+                FROM Productos p, Valoración v
+                WHERE p.id_producto = v.id_producto  and p.id_producto = ?';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
 
     public function readProductosCategoria()
     {
-        $sql = 'SELECT categoria, id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_venta
-                FROM productos INNER JOIN categorias USING(id_categoria)
-                WHERE id_categoria = ? AND estado_producto = ?
-                ORDER BY nombre_producto';
-        $params = array($this->categoria, $this->estado_1);
+        $sql = "SELECT categoria, p.id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_venta, puntuacion
+                FROM productos p, valoración v, categoria c
+                WHERE p.id_producto = v.id_producto AND c.id_categoria = p.id_categoria
+                AND p.id_categoria = ? AND p.estado_producto = 'En existencia'
+                ORDER BY nombre_producto";
+        $params = array($this->categoria);
         return Database::getRows($sql, $params);
     }
     public function updateProductos()

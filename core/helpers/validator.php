@@ -312,6 +312,19 @@ class Validator
             return false;
         }
     }
+
+    public function validateSatatus($value)
+    {
+        $est_1 = 'En carrito';
+        $est_2 = 'Procesado';
+        $est_3 = 'Entregado';
+        $est_4 = 'Cancelado';
+        if ($value == $est_1 || $value == $est_2 || $value == $est_3 || $value == $est_4) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     /*
     *   Método para validar una contraseña.
     *
@@ -322,7 +335,7 @@ class Validator
     public function validatePassword($value)
     {
         // Se verifica que la longitud de la contraseña sea de al menos 6 caracteres.
-        if (strlen($value) >= 8) {
+        if (strlen($value) >= 6) {
             return true;
         } else {
             return false;
