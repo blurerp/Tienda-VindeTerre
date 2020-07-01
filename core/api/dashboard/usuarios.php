@@ -326,7 +326,7 @@ if (isset($_GET['action'])) {
                     }
                 break;
             default:
-                exit('Acción no disponible');
+                exit('Acción no disponible  ');
         }
     }
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
