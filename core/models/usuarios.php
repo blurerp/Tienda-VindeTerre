@@ -233,9 +233,11 @@ class Usuarios extends Validator
     {
         // Se encripta la clave por medio del algoritmo bcrypt que genera un string de 60 caracteres.
         $hash = password_hash($this->clave, PASSWORD_DEFAULT);
+        $id_tipo = 1;
+        $estado = 'Activo';
         $sql = 'INSERT INTO Usuarios(usuario, contrasena_usuario, nombre_usuario, apellido_usuario, fecha_nacimiento, dui_usuario, email_usuario, id_tipo_usuario, estado_usuario)
                 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)';
-        $params = array($this->usuario, $hash, $this->nombres, $this->apellidos, $this->fecha, $this->dui, $this->correo, $this->tipo, $this->estado);
+        $params = array($this->usuario, $hash, $this->nombres, $this->apellidos, $this->fecha, $this->dui, $this->correo, $id_tipo, $estado);
         return Database::executeRow($sql, $params);
     }
 

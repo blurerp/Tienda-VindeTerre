@@ -114,11 +114,11 @@ if (isset($_GET['action'])) {
                     if ($result['dataset'] = $usuario->searchUsuarios($_POST['search'])) {
                         $result['status'] = 1;
                         $rows = count($result['dataset']);
-						if ($rows > 1) {
-							$result['message'] = 'Se encontraron '.$rows.' coincidencias';
-						} else {
-							$result['message'] = 'Solo existe una coincidencia';
-						}
+                        if ($rows > 1) {
+                            $result['message'] = 'Se encontraron ' . $rows . ' coincidencias';
+                        } else {
+                            $result['message'] = 'Solo existe una coincidencia';
+                        }
                     } else {
                         $result['exception'] = 'No hay coincidencias';
                     }
@@ -193,7 +193,7 @@ if (isset($_GET['action'])) {
                 } else {
                     $result['exception'] = 'Usuario incorrecto';
                 }
-                break;                                  
+                break;
             case 'update':
                 $_POST = $usuario->validateForm($_POST);
                 if ($usuario->setId($_POST['id_usuario'])) {
@@ -213,8 +213,8 @@ if (isset($_GET['action'])) {
                                                             $result['exception'] = Database::getException();
                                                         }
                                                     } else {
-                                                            $result['exception'] = 'Tipo de usuario inválido';
-                                                        }
+                                                        $result['exception'] = 'Tipo de usuario inválido';
+                                                    }
                                                 } else {
                                                     $result['exception'] = 'El estado es incorrecto';
                                                 }
@@ -278,24 +278,32 @@ if (isset($_GET['action'])) {
                 }
                 break;
             case 'register':
-                $_POST = $usuario->validateForm($_POST);                             
+                $_POST = $usuario->validateForm($_POST);
                 if ($usuario->setNombres($_POST['nombre_usuario'])) {
                     if ($usuario->setApellidos($_POST['apellido_usuario'])) {
                         if ($usuario->setCorreo($_POST['email_usuario'])) {
                             if ($usuario->setUsuario($_POST['usuario'])) {
-                                if ($_POST['contrasenia_usuario'] == $_POST['contrasenia_usuario2']) {
-                                    if ($usuario->setClave($_POST['contrasenia_usuario'])) {
-                                        if ($usuario->createUsuario()) {
-                                            $result['status'] = 1;
-                                            $result['message'] = 'Usuario registrado correctamente';
+                                if ($usuario->setFecha($_POST['fecha_nacimiento'])) {
+                                    if ($usuario->setDui($_POST['dui_usuario'])) {
+                                        if ($_POST['contrasenia_usuario'] == $_POST['contrasenia_usuario2']) {
+                                            if ($usuario->setClave($_POST['contrasenia_usuario'])) {
+                                                if ($usuario->createUsuario()) {
+                                                    $result['status'] = 1;
+                                                    $result['message'] = 'Usuario registrado correctamente';
+                                                } else {
+                                                    $result['exception'] = Database::getException();
+                                                }
+                                            } else {
+                                                $result['exception'] = 'Clave menor a 6 caracteres';
+                                            }
                                         } else {
-                                            $result['exception'] = Database::getException();
+                                            $result['exception'] = 'Claves diferentes';
                                         }
                                     } else {
-                                        $result['exception'] = 'Clave menor a 6 caracteres';
+                                        $result['exception'] = 'DUI incorrecto';
                                     }
                                 } else {
-                                    $result['exception'] = 'Claves diferentes';
+                                    $result['exception'] = 'Fecha incorrecta';
                                 }
                             } else {
                                 $result['exception'] = 'Usuario incorrecto';
@@ -312,18 +320,18 @@ if (isset($_GET['action'])) {
                 break;
             case 'login':
                 $_POST = $usuario->validateForm($_POST);
-                    if ($usuario->checkAlias($_POST['nombre_usuario'])) {
-                        if ($usuario->checkPassword($_POST['clave'])) {
-                            $_SESSION['id_usuario'] = $usuario->getId();
-                            $_SESSION['nombre_usuario'] = $usuario->getUsuario();
-                            $result['status'] = 1;
-                            $result['message'] = 'Autenticación correcta';
-                        } else {
-                            $result['exception'] = 'Clave incorrecta';
-                        }
+                if ($usuario->checkAlias($_POST['nombre_usuario'])) {
+                    if ($usuario->checkPassword($_POST['clave'])) {
+                        $_SESSION['id_usuario'] = $usuario->getId();
+                        $_SESSION['nombre_usuario'] = $usuario->getUsuario();
+                        $result['status'] = 1;
+                        $result['message'] = 'Autenticación correcta';
                     } else {
-                        $result['exception'] = 'Usuario incorrecto';
+                        $result['exception'] = 'Clave incorrecta';
                     }
+                } else {
+                    $result['exception'] = 'Usuario incorrecto';
+                }
                 break;
             default:
                 exit('Acción no disponible  ');
@@ -332,7 +340,7 @@ if (isset($_GET['action'])) {
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
     header('content-type: application/json; charset=utf-8');
     // Se imprime el resultado en formato JSON y se retorna al controlador.
-	print(json_encode($result));
+    print(json_encode($result));
 } else {
-	exit('Recurso denegado');
+    exit('Recurso denegado');
 }

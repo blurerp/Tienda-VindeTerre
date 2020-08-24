@@ -10,7 +10,7 @@ function checkUsuarios() {
 
             let current = window.location.pathname;
 
-            if (current == '/Tienda-vindeterre/views/dashboard/register.php') {
+            if (current == '/Tienda-VindeTerre/views/dashboard/register.php') {
                 
                 if (response.status) {
                     sweetAlert(3, response.message, 'index.php');
