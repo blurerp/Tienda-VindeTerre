@@ -31,43 +31,48 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'register':
                 $_POST = $cliente->validateForm($_POST);
-                if ($cliente->setNombre_cliente($_POST['nombre_cliente'])) {
-                    if ($cliente->setApellido_cliente($_POST['apellido_cliente'])) {
-                        if ($cliente->setDui_cliente($_POST['dui_cliente'])) {
-                            if ($cliente->setEmail_cliente($_POST['email_cliente'])) {
-                                if ($cliente->setTelefono_cliente($_POST['telefono_cliente'])) {
-                                    if ($cliente->setNit_cliente($_POST['nit_cliente'])) {
-                                        if ($_POST['contrasena_cliente'] == $_POST['confirmar_contrasena']) {
-                                            if ($cliente->setContrasena_cliente($_POST['contrasena_cliente'])) {
-                                                if ($cliente->createRow()) {
-                                                    $result['status'] = 1;
-                                                    $result['message'] = 'Cliente registrado correctamente';
+                if ($cliente->setUsuario_cliente($_POST['usuario_cliente']))
+                    if ($cliente->setNombre_cliente($_POST['nombre_cliente'])) {
+                        if ($cliente->setApellido_cliente($_POST['apellido_cliente'])) {
+                            if ($cliente->setDui_cliente($_POST['dui_cliente'])) {
+                                if ($cliente->setEmail_cliente($_POST['email_cliente'])) {
+                                    if ($cliente->setTelefono_cliente($_POST['telefono_cliente'])) {
+                                        if ($cliente->setNit_cliente($_POST['nit_cliente'])) {
+                                            if($cliente->setTipo_cliente($_POST['tipo_cliente']))
+                                            if ($_POST['contrasena_cliente'] == $_POST['confirmar_contrasena']) {
+                                                if ($cliente->setContrasena_cliente($_POST['contrasena_cliente'])) {
+                                                    if ($cliente->createRow()) {
+                                                        $result['status'] = 1;
+                                                        $result['message'] = 'Cliente registrado correctamente';
+                                                    } else {
+                                                        $result['exception'] = 'Ocurrió un problema al registrar el cliente';
+                                                    }
                                                 } else {
-                                                    $result['exception'] = 'Ocurrió un problema al registrar el cliente';
+                                                    $result['exception'] = 'Clave menor a 8 caracteres';
                                                 }
                                             } else {
-                                                $result['exception'] = 'Clave menor a 8 caracteres';
+                                                $result['exception'] = 'Claves diferentes';
                                             }
                                         } else {
-                                            $result['exception'] = 'Claves diferentes';
+                                            $result['exception'] = 'NIT invalido';
                                         }
                                     } else {
-                                        $result['exception'] = 'NIT invalido';
+                                        $result['exception'] = 'Telefóno invalido';
                                     }
                                 } else {
-                                    $result['exception'] = 'Telefóno invalido';
+                                    $result['exception'] = 'Correo Electrónico invalido';
                                 }
                             } else {
-                                $result['exception'] = 'Correo Electrónico invalido';
+                                $result['exception'] = 'DUI invalido';
                             }
                         } else {
-                            $result['exception'] = 'DUI invalido';
+                            $result['exception'] = 'Apellidos invalidos';
                         }
                     } else {
-                        $result['exception'] = 'Apellidos invalidos';
+                        $result['exception'] = 'Nombres invalidos';
                     }
-                } else {
-                    $result['exception'] = 'Nombres invalidos';
+                else {
+                    $result['exception'] = 'Usuario invalido';
                 }
                 break;
             case 'login':
@@ -96,8 +101,7 @@ if (isset($_GET['action'])) {
     // Se indica el tipo de contenido a mostrar y su respectivo conjunto de caracteres.
     header('content-type: application/json; charset=utf-8');
     // Se imprime el resultado en formato JSON y se retorna al controlador.
-	print(json_encode($result));
+    print(json_encode($result));
 } else {
-	exit('Recurso denegado');
+    exit('Recurso denegado');
 }
-?>
