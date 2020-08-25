@@ -18,12 +18,17 @@ Commerce::headerTemplate('Registrarse');
       <!-- Form de registrarse-->
       <form method="post" class="needs-validation" id="register-form" novalidate>
         <div class="form-row m-3">
-          <div class="col-md-4 mb-3">
+          <div class="col-md-3 mb-3">
+            <label for="nombre_cliente">Usuario</label>
+            <!-- Campo usuario-->
+            <input id="usuario_cliente" type="text" class="form-control" pattern="[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{1,40}" name="usuario_cliente" required>
+          </div>
+          <div class="col-md-3 mb-3">
             <label for="nombre_cliente">Nombre</label>
             <!-- Campo nombre-->
             <input id="nombre_cliente" type="text" class="form-control" pattern="[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{1,40}" name="nombre_cliente" required>
           </div>
-          <div class="col-md-4 mb-3">
+          <div class="col-md-3 mb-3">
             <label for="apellido_cliente">Apellidos</label>
             <!-- Campo apellidos-->
             <input id="apellido_cliente" type="text" class="form-control" pattern="[a-zA-ZñÑáÁéÉíÍóÓúÚ\s]{1,40}" name="apellido_cliente" required>
@@ -35,12 +40,12 @@ Commerce::headerTemplate('Registrarse');
           </div>
         </div>
         <div class="form-row m-3">
-          <div class="col-md-6 mb-3">
+          <div class="col-md-4 mb-3">
             <label for="email_cliente">Email</label>
             <!-- Campo email-->
             <input id="email_cliente" type="text" class="form-control" maxlength="50" name="email_cliente" required>
           </div>
-          <div class="col-md-3 mb-3">
+          <div class="col-md-4 mb-3">
             <label for="telefono_cliente">Telefóno</label>
             <!-- Campo telefono-->
             <input id="telefono_cliente" type="text" class="form-control" placeholder="0000-0000" pattern="[2,6,7]{1}[0-9]{3}[-][0-9]{4}" name="telefono_cliente" required>
@@ -49,6 +54,16 @@ Commerce::headerTemplate('Registrarse');
             <label for="nit_cliente">NIT (opcional)</label>
             <!-- Campo NIT-->
             <input id="nit_cliente" type="text" class="form-control" placeholder="0101-010101-101-1" name="nit_cliente">
+          </div>
+          <label class="mr-2" for="tipo_cliente">Seleccione Tipo de Cliente:</label>
+          <div class="btn-group btn-group-toggle" data-toggle="buttons">
+          
+            <label class="btn btn-secondary active">
+              <input type="radio" name="tipo_cliente" id="tipo_cliente" value="Persona Natural" checked> Persona Natural
+            </label>
+            <label class="btn btn-secondary"> 
+              <input type="radio" name="tipo_cliente" id="tipo_cliente" value="Empresa"> Empresa
+            </label>            
           </div>
         </div>
         <div class="form-row m-3">
