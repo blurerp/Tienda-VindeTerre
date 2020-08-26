@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once('../../helpers/database.php');
 require_once('../../helpers/validator.php');
 require_once('../../models/productos.php');
@@ -11,7 +11,7 @@ if (isset($_GET['action'])) {
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
     // Se verifica si existe una sesión iniciada como administrador, de lo contrario se finaliza el script con un mensaje de error.
-    if (true) {//Cambiar cuando funcione usuarios
+    if (true) { //Cambiar cuando funcione usuarios
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'readAll':
@@ -28,7 +28,7 @@ if (isset($_GET['action'])) {
                         $result['status'] = 1;
                         $rows = count($result['dataset']);
                         if ($rows > 1) {
-                            $result['message'] = 'Se encontraron '.$rows.' coincidencias';
+                            $result['message'] = 'Se encontraron ' . $rows . ' coincidencias';
                         } else {
                             $result['message'] = 'Solo existe una coincidencia';
                         }
@@ -96,7 +96,7 @@ if (isset($_GET['action'])) {
                                                     $result['exception'] = 'Porcentaje de Alcohol invalido';
                                                 }
                                             } else {
-                                                $result['exception'] = 'Año de cosecha ingresado menor a 1650 o mayor a '.date("Y");
+                                                $result['exception'] = 'Año de cosecha ingresado menor a 1650 o mayor a ' . date("Y");
                                             }
                                         } else {
                                             $result['exception'] = 'Año de cosecha invalido';
@@ -122,6 +122,7 @@ if (isset($_GET['action'])) {
                 break;
             case 'readOne':
                 if ($producto->setId($_POST['id_producto'])) {
+
                     if ($result['dataset'] = $producto->readOneProductos()) {
                         $result['status'] = 1;
                     } else {
@@ -135,92 +136,96 @@ if (isset($_GET['action'])) {
                 $_POST = $producto->validateForm($_POST);
                 if ($producto->setId($_POST['id_producto'])) {
                     if ($data = $producto->readOneProductos()) {
-                        if ($producto->setNombre($_POST['nombre_producto'])) {
-                            if ($producto->setPrecio_venta($_POST['precio_venta'])) {
-                                if ($producto->setPrecio_compra($_POST['precio_compra'])) {
-                                    if ($producto->setDescripcion_producto($_POST['descripcion_producto'])) {
-                                        if ($producto->setCosecha($_POST['cosecha'])) {
-                                            if ($_POST['cosecha'] >= 1650 && $_POST['cosecha'] <= date("Y")) {
-                                                if ($producto->setAlcohol($_POST['alcohol'])) {
-                                                    if ($_POST['alcohol'] >= 5.5 && $_POST['alcohol'] <= 20) {
-                                                        if ($producto->setStock_minimo($_POST['stock_minimo'])) {
-                                                            if ($_POST['stock_minimo'] <= 999999) {
-                                                                if (isset($_POST['bodega'])) {
-                                                                    if ($producto->setBodega($_POST['bodega'])) {
-                                                                        if (isset($_POST['categoria'])) {
-                                                                            if ($producto->setCategoria($_POST['categoria'])) {
-                                                                                if ($_POST['estado_producto'] == 'Agotado' || 'En existencia' || 'Inactivo') {
-                                                                                    if ($producto->setEstado($_POST['estado_producto'])) {
-                                                                                        if (is_uploaded_file($_FILES['archivo_producto']['tmp_name'])) {
-                                                                                            if ($producto->setImagen($_FILES['archivo_producto'])) {
-                                                                                                if ($producto->updateProductos()) {
-                                                                                                    $result['status'] = 1;
-                                                                                                    if ($producto->deleteFile($producto->getRuta(), $data['imagen_producto'])) {
-                                                                                                        $result['message'] = 'Producto modificado correctamente';
+                        if ($producto->setCodigo_producto($_POST['codigo_producto'])) {
+                            if ($producto->setNombre($_POST['nombre_producto'])) {
+                                if ($producto->setPrecio_venta($_POST['precio_venta'])) {
+                                    if ($producto->setPrecio_compra($_POST['precio_compra'])) {
+                                        if ($producto->setDescripcion_producto($_POST['descripcion_producto'])) {
+                                            if ($producto->setCosecha($_POST['cosecha'])) {
+                                                if ($_POST['cosecha'] >= 1650 && $_POST['cosecha'] <= date("Y")) {
+                                                    if ($producto->setAlcohol($_POST['alcohol'])) {
+                                                        if ($_POST['alcohol'] >= 5.5 && $_POST['alcohol'] <= 20) {
+                                                            if ($producto->setStock_minimo($_POST['stock_minimo'])) {
+                                                                if ($_POST['stock_minimo'] <= 999999) {
+                                                                    if (isset($_POST['bodega'])) {
+                                                                        if ($producto->setBodega($_POST['bodega'])) {
+                                                                            if (isset($_POST['categoria'])) {
+                                                                                if ($producto->setCategoria($_POST['categoria'])) {
+                                                                                    if ($_POST['estado_producto'] == 'Agotado' || 'En existencia' || 'Inactivo') {
+                                                                                        if ($producto->setEstado($_POST['estado_producto'])) {
+                                                                                            if (is_uploaded_file($_FILES['archivo_producto']['tmp_name'])) {
+                                                                                                if ($producto->setImagen($_FILES['archivo_producto'])) {
+                                                                                                    if ($producto->updateProductos()) {
+                                                                                                        $result['status'] = 1;
+                                                                                                        if ($producto->deleteFile($producto->getRuta(), $data['imagen_producto'])) {
+                                                                                                            $result['message'] = 'Producto modificado correctamente';
+                                                                                                        } else {
+                                                                                                            $result['message'] = 'Producto modificado pero no se borro la imagen anterior';
+                                                                                                        }
                                                                                                     } else {
-                                                                                                        $result['message'] = 'Producto modificado pero no se borro la imagen anterior';
+                                                                                                        $result['exception'] = Database::getException();
                                                                                                     }
                                                                                                 } else {
-                                                                                                    $result['exception'] = Database::getException();
-                                                                                                } 
+                                                                                                    $result['exception'] = $producto->getImageError();
+                                                                                                }
                                                                                             } else {
-                                                                                                $result['exception'] = $producto->getImageError();
+                                                                                                if ($producto->updateProductos()) {
+                                                                                                    $result['status'] = 1;
+                                                                                                    $result['message'] = 'Producto modificado correctamente';
+                                                                                                } else {
+                                                                                                    $result['exception'] = Database::getException();
+                                                                                                }
                                                                                             }
                                                                                         } else {
-                                                                                            if ($producto->updateProductos()) {
-                                                                                                $result['status'] = 1;
-                                                                                                $result['message'] = 'Producto modificado correctamente';
-                                                                                            } else {
-                                                                                                $result['exception'] = Database::getException();
-                                                                                            }
+                                                                                            $result['exception'] = 'El estado es incorrecto';
                                                                                         }
                                                                                     } else {
-                                                                                        $result['exception'] = 'El estado es incorrecto';
+                                                                                        $result['exception'] = 'El estado elegido es inválido';
                                                                                     }
                                                                                 } else {
-                                                                                    $result['exception'] = 'El estado elegido es inválido';
+                                                                                    $result['exception'] = 'Categoria inválida';
                                                                                 }
                                                                             } else {
-                                                                                $result['exception'] = 'Categoria inválida';
+                                                                                $result['exception'] = 'Seleccione una categoria';
                                                                             }
                                                                         } else {
-                                                                            $result['exception'] = 'Seleccione una categoria';
+                                                                            $result['exception'] = 'Bodega inválida';
                                                                         }
                                                                     } else {
-                                                                        $result['exception'] = 'Bodega inválida';
+                                                                        $result['exception'] = 'Seleccione una bodega';
                                                                     }
                                                                 } else {
-                                                                    $result['exception'] = 'Seleccione una bodega';
+                                                                    $result['exception'] = 'Stock Minímo mayor a 999,999';
                                                                 }
                                                             } else {
-                                                                $result['exception'] = 'Stock Minímo mayor a 999,999';
+                                                                $result['exception'] = 'Stock Minímo invalido';
                                                             }
                                                         } else {
-                                                            $result['exception'] = 'Stock Minímo invalido';
+                                                            $result['exception'] = 'Porcentaje de Alcohol menor a 5.5% o mayor a 20%';
                                                         }
                                                     } else {
-                                                        $result['exception'] = 'Porcentaje de Alcohol menor a 5.5% o mayor a 20%';
+                                                        $result['exception'] = 'Porcentaje de Alcohol invalido';
                                                     }
                                                 } else {
-                                                    $result['exception'] = 'Porcentaje de Alcohol invalido';
+                                                    $result['exception'] = 'Año de cosecha ingresado menor a 1650 o mayor a ' . date("Y");
                                                 }
                                             } else {
-                                                $result['exception'] = 'Año de cosecha ingresado menor a 1650 o mayor a '.date("Y");
+                                                $result['exception'] = 'Año de cosecha invalido';
                                             }
                                         } else {
-                                            $result['exception'] = 'Año de cosecha invalido';
+                                            $result['exception'] = 'Descripción invalida';
                                         }
                                     } else {
-                                        $result['exception'] = 'Descripción invalida';
+                                        $result['exception'] = 'Precio Compra invalido';
                                     }
                                 } else {
-                                    $result['exception'] = 'Precio Compra invalido';
+                                    $result['exception'] = 'Precio Venta invalido';
                                 }
                             } else {
-                                $result['exception'] = 'Precio Venta invalido';
-                            }    
+                                $result['exception'] = 'Nombre invalido';
+                            }
                         } else {
-                            $result['exception'] = 'Nombre invalido';
+                            $result['exception'] = 'Codigo invalido';
                         }
                     } else {
                         $result['exception'] = 'Producto inexistente';
@@ -260,4 +265,3 @@ if (isset($_GET['action'])) {
 } else {
     exit('Recurso denegado');
 }
-?>

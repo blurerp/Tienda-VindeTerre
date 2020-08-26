@@ -15,6 +15,7 @@ function fillTable( dataset )
         // Se crean y concatenan las filas de la tabla con los datos de cada registro.
         content += `
             <tr>
+                <td>${row.codigo_producto}</td>
                 <td>${row.nombre_producto}</td>
                 <td><img src="../../resources/img/productos/${row.imagen_producto}" class="materialboxed" height="100"></td>
                 <td>${row.descripcion_producto}</td>
@@ -119,6 +120,7 @@ function openUpdateModal( id )
     .done(function( response ) {
         if ( response.status ) {
             $( '#id_producto' ).val( response.dataset.id_producto );
+            $( '#codigo_producto' ).val( response.dataset.codigo_producto );
             $( '#nombre_producto' ).val( response.dataset.nombre_producto );
             $( '#precio_venta' ).val( response.dataset.precio_venta );
             $( '#precio_compra' ).val( response.dataset.precio_compra );

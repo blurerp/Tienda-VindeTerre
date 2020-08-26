@@ -17,6 +17,8 @@ Dashboard::headerTemplate('productos');
                             <table id="tabla" class="table table-striped table-bordered table-condensed" style="width: 100%;">
                                 <thead class="text-center">
                                     <tr>
+
+                                        <th>Codigo</th>
                                         <th>Nombre</th>
                                         <th>Imagen</th>
                                         <th>Descripción</th>
@@ -52,6 +54,10 @@ Dashboard::headerTemplate('productos');
                         <form method="post" class="needs-validation" id="save-form" enctype="multipart/form-data" novalidate>
                             <input id="id_producto" class="invisible" name="id_producto"/>
                                 <div class="form-row m-3">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="codigo_producto">Codigo producto</label>
+                                        <input id="codigo_producto" type="text" class="form-control" name="codigo_producto" required>
+                                    </div>
                                     <div class="col-md-8 mb-3">
                                         <label for="nombre_producto">Nombre</label>
                                         <input id="nombre_producto" type="text" class="form-control" name="nombre_producto" required>

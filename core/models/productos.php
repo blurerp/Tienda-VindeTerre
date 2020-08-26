@@ -10,6 +10,7 @@ class Productos extends Validator
     private $precio_venta = null;
     private $precio_compra = null;
     private $categoria = null;
+    private $codigo_producto = null;
     private $descripcion_producto = null;
     private $bodega = null;
     private $cosecha = null;
@@ -74,6 +75,16 @@ class Productos extends Validator
     {
         if ($this->validateNaturalNumber($value)) {
             $this->categoria = $value;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function setCodigo_producto($value)
+    {
+        if ($this->validateString($value, 1, 10)) {
+            $this->codigo_producto = $value;
             return true;
         } else {
             return false;
@@ -185,6 +196,11 @@ class Productos extends Validator
         return $this->categoria;
     }
 
+    public function getCodigo_producto()
+    {
+        return $this->codigo_producto;
+    }
+
     public function getDescripcion_producto()
     {
         return $this->descripcion_producto;
@@ -250,7 +266,7 @@ class Productos extends Validator
 
     public function readAllProductos()
     {
-        $sql = 'SELECT id_producto, nombre_producto, imagen_producto, precio_venta, precio_compra, categoria, descripcion_producto, id_bodega, cosecha, alcohol, stock_activo, stock_minimo, estado_producto
+        $sql = 'SELECT id_producto,codigo_producto, nombre_producto, imagen_producto, precio_venta, precio_compra, categoria, descripcion_producto, id_bodega, cosecha, alcohol, stock_activo, stock_minimo, estado_producto
                     FROM Productos INNER JOIN Categoria USING (id_categoria)
                     ORDER BY nombre_producto';
         $params = null;
@@ -259,36 +275,37 @@ class Productos extends Validator
 
     public function readOneProductos()
     {
-        $sql = 'SELECT p.id_producto, nombre_producto, imagen_producto, precio_venta, precio_compra, id_categoria, descripcion_producto, id_bodega, cosecha, alcohol, stock_activo, stock_minimo, estado_producto,CAST(AVG(puntuacion) as DECIMAL(3,2)) as puntuacion
-                FROM Productos p, Valoración v
-                WHERE p.id_producto = v.id_producto  and p.id_producto = ?
-                group by p.id_producto order by nombre_producto ';
+        $sql = 'SELECT id_producto,codigo_producto, nombre_producto, imagen_producto, precio_venta, precio_compra, id_categoria, descripcion_producto, id_bodega, cosecha, alcohol, stock_activo, stock_minimo, estado_producto
+        FROM Productos 
+        WHERE id_producto = ?
+        group by id_producto order by nombre_producto';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
 
-    public function readProductosCategoria()
+    public function readProductosCategoria()    
     {
-        $sql = "SELECT categoria, p.id_producto, imagen_producto, nombre_producto, descripcion_producto, precio_venta, puntuacion
-                FROM productos p, valoración v, categoria c
-                WHERE p.id_producto = v.id_producto AND c.id_categoria = p.id_categoria
-                AND p.id_categoria = ? AND p.estado_producto = 'En existencia'
-                ORDER BY nombre_producto";
+        $sql = "SELECT p.id_producto,p.nombre_producto,p.imagen_producto,c.categoria,p.descripcion_producto,p.precio_venta,p.estado_producto
+        FROM productos p 
+        INNER JOIN categoria c ON p.id_categoria = c.id_categoria	
+        WHERE c.id_categoria = ? AND p.estado_producto = 'Agotado' ORDER BY nombre_producto
+        ";
         $params = array($this->categoria);
         return Database::getRows($sql, $params);
     }
+    
     public function updateProductos()
     {
         if ($this->saveFile($this->archivo, $this->ruta, $this->imagen)) {
             $sql = 'UPDATE Productos 
-                        SET nombre_producto = ?, imagen_producto = ?, precio_venta = ?, precio_compra = ?, id_categoria = ?, descripcion_producto = ?, id_bodega = ?, cosecha = ?, alcohol = ?, stock_minimo = ?, estado_producto = ?
+                        SET codigo_producto = ?, nombre_producto = ?, imagen_producto = ?, precio_venta = ?, precio_compra = ?, id_categoria = ?, descripcion_producto = ?, id_bodega = ?, cosecha = ?, alcohol = ?, stock_minimo = ?, estado_producto = ?
                         WHERE id_producto = ?';
-            $params = array($this->nombre, $this->imagen, $this->precio_venta, $this->precio_compra, $this->categoria, $this->descripcion_producto, $this->bodega, $this->cosecha, $this->alcohol, $this->stock_minimo, $this->estado, $this->id);
+            $params = array($this->codigo_producto,$this->nombre, $this->imagen, $this->precio_venta, $this->precio_compra, $this->categoria, $this->descripcion_producto, $this->bodega, $this->cosecha, $this->alcohol, $this->stock_minimo, $this->estado, $this->id);
         } else {
             $sql = 'UPDATE Productos 
-                        SET nombre_producto = ?, precio_venta = ?, precio_compra = ?, id_categoria = ?, descripcion_producto = ?, id_bodega = ?, cosecha = ?, alcohol = ?, stock_minimo = ?, estado_producto = ?
+                        SET codigo_producto = ?, nombre_producto = ?, precio_venta = ?, precio_compra = ?, id_categoria = ?, descripcion_producto = ?, id_bodega = ?, cosecha = ?, alcohol = ?, stock_minimo = ?, estado_producto = ?
                         WHERE id_producto = ?';
-            $params = array($this->nombre, $this->precio_venta, $this->precio_compra, $this->categoria, $this->descripcion_producto, $this->bodega, $this->cosecha, $this->alcohol, $this->stock_minimo, $this->estado, $this->id);
+            $params = array($this->codigo_producto,$this->nombre, $this->precio_venta, $this->precio_compra, $this->categoria, $this->descripcion_producto, $this->bodega, $this->cosecha, $this->alcohol, $this->stock_minimo, $this->estado, $this->id);
         }
         return Database::executeRow($sql, $params);
     }

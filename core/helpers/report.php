@@ -10,6 +10,7 @@ class Report extends FPDF
 {
     // Propiedad para guardar el título del reporte.
     private $title = null;
+    private $user_name = null;
 
     /*
     *   Método para iniciar el reporte con el encabezado del documento.
@@ -27,7 +28,7 @@ class Report extends FPDF
         // Se verifica si un administrador ha iniciado sesión para generar el documento, de lo contrario se direcciona a main.php
         if (isset($_SESSION['id_usuario'])) {
             // Se asigna el título del documento a la propiedad de la clase.
-            $this->title = $title;
+            $this->title = $title;            
             // Se establece el título del documento (true = utf-8).
             $this->SetTitle($this->title, true);
             // Se establecen los margenes del documento (izquierdo, superior y derecho).
@@ -53,6 +54,10 @@ class Report extends FPDF
         $this->Cell(20);
         $this->SetFont('Arial', 'B', 15);
         $this->Cell(166, 10, utf8_decode($this->title), 0, 1, 'C');
+        //Se asigna el nombre del usuario que genera el reporte.
+        $this->Cell(20);
+        $this->SetFont('Arial', '', 10);
+        $this->Cell(166, 10, 'Reporte generado por: '.$this->user_name = $_SESSION['nombre_usuario'], 0, 1, 'C');
         // Se ubica la fecha y hora del servidor.
         $this->Cell(20);
         $this->SetFont('Arial', '', 10);
