@@ -21,7 +21,6 @@ Dashboard::headerTemplate('entradas');
                                         <th>Cantidad ingresada</th>                      
                                         <th>Fecha y Hora</th>
                                         <th>Proveedor</th>
-                                        <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbody-rows">

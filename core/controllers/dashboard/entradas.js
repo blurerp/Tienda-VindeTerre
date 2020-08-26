@@ -19,9 +19,6 @@ function fillTable( dataset )
                 <td>${row.cantidad_ingresar}</td>
                 <td>${row.fecha_hora}</td>
                 <td>${row.nombre_proveedor}</td>           
-                <td>                    
-                    <button onclick= "openDeleteDialog(${row.id_entrada})" class="btn btn-danger btn_eliminar">Eliminar</button>
-                </td>
             </tr>
         `;
     });
@@ -88,9 +85,3 @@ $( '#save-form' ).submit(function( event ) {
         saveRow( API_ENTRADAS, 'create', this, 'save-modal' );
     }
 });
-
-function openDeleteDialog( id )
-{
-    let identifier = { id_entrada: id };
-    confirmDelete( API_ENTRADAS, identifier );
-}
