@@ -119,5 +119,13 @@
                 $params = array($this->id);
                 return Database::executeRow($sql, $params);
             }
+
+            public function readAllActions()
+            {
+                $sql = 'SELECT id_bitacora, accion, fecha_hora FROM Bitacora ORDER BY accion';
+                $params = null;
+                return Database::getRows($sql, $params);
+            }
+
     }
 ?>

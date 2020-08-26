@@ -8,7 +8,7 @@ require('../../models/productos.php');
 // Se instancia la clase para crear el reporte.
 $pdf = new Report;
 // Se inicia el reporte con el encabezado del documento.
-$pdf->startReport('Productos por categoría');
+$pdf->startReport('Productos por categoría y En existencia');
 
 // Se instancia el módelo Categorías para obtener los datos.
 $categoria = new Categorias;
@@ -33,7 +33,8 @@ if ($dataCategorias = $categoria->readAllCategorias()) {
                 // Se establece la fuente para los encabezados.
                 $pdf->SetFont('Helvetica', 'B', 11);
                 // Se imprimen las celdas con los encabezados.
-                $pdf->Cell(100, 10, utf8_decode('Nombre'), 1, 0, 'C', 1);
+                $pdf->Cell(60, 10, utf8_decode('Nombre'), 1, 0, 'C', 1);
+                $pdf->Cell(40, 10, utf8_decode('Estado'), 1, 0, 'C', 1);
                 $pdf->Cell(40, 10, utf8_decode('Imagen'), 1, 0, 'C', 1);
                 $pdf->Cell(46, 10, utf8_decode('Precio (US$)'), 1, 1, 'C', 1);
                 // Se establece la fuente para los datos de los productos.
@@ -41,7 +42,8 @@ if ($dataCategorias = $categoria->readAllCategorias()) {
                 // Se recorren los registros ($dataProductos) fila por fila ($rowProducto).
                 foreach ($dataProductos as $rowProducto) {
                     // Se imprimen las celdas con los datos de los productos.
-                    $pdf->Cell(100, 20, utf8_decode($rowProducto['nombre_producto']), 1, 0);
+                    $pdf->Cell(60, 20, utf8_decode($rowProducto['nombre_producto']), 1, 0);
+                    $pdf->Cell(40, 20, utf8_decode($rowProducto['estado_producto']), 1, 0);
                     $pdf->Cell(40, 20,$pdf->Image('../../../resources/img/productos/'.$rowProducto['imagen_producto'] , $pdf->GetX(), $pdf->GetY(),20,20) ,1,0);
                     $pdf->Cell(46, 20, $rowProducto['precio_venta'], 1, 1);
                 }

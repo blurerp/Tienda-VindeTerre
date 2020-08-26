@@ -40,7 +40,7 @@
                             <a href="entradas.php" class="list-group-item list-group-item-action bg-light p-3 border=0"><i class="far fa-shopping-bag p-2 border-0"></i> Entradas</a>                            
                             <a href="proveedores.php" class="list-group-item list-group-item-action bg-light p-3 border=0"><i class="fas fa-exchange p-2 border-0"></i> Proveedores</a>
                             <a href="reclamos.php" class="list-group-item list-group-item-action bg-light p-3 border=0"><i class="far fa-exclamation-square p-2 border-0"></i> Reclamos</a>
-                            <a href="bitacora.php" class="list-group-item list-group-item-action bg-light p-3 border=0"><i class="far fa-clipboard-list p-2 border-0"></i> Bitacora</a>
+                            <a href="reportes.php" class="list-group-item list-group-item-action bg-light p-3 border=0"><i class="far fa-clipboard-list p-2 border-0"></i> Reportes </a>
                         </div>
                     </div>
             

@@ -274,4 +274,30 @@ class Clientes extends Validator
         $params = array($this->nombre_cliente, $this->apellido_cliente, $this->email_cliente, $this->dui_cliente, $this->telefono_cliente, $this->nit_cliente, $this->id);
         return Database::executeRow($sql, $params);
     }
+
+    public function countTypeClientes()
+    {
+        $activo= 'Activo';
+        
+
+        
+        $sql = 'SELECT tipo_cliente, COUNT(*) ncliente
+        FROM Clientes WHERE estado_cliente = '.$activo.'
+        GROUP BY tipo_cliente';
+        $params = null;
+        return Database::getRows($sql, $params);
+    
+    
+}
+    public function countTypeClientesI()
+    {
+
+    $inactivo= 'Inactivo';
+    $sql = 'SELECT tipo_cliente
+        FROM Clientes WHERE estado_cliente = ?
+        GROUP BY tipo_cliente';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+    
 }
