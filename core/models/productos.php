@@ -288,7 +288,7 @@ class Productos extends Validator
         $sql = "SELECT p.id_producto,p.nombre_producto,p.imagen_producto,c.categoria,p.descripcion_producto,p.precio_venta,p.estado_producto
         FROM productos p 
         INNER JOIN categoria c ON p.id_categoria = c.id_categoria	
-        WHERE c.id_categoria = ? AND p.estado_producto = 'Agotado' ORDER BY nombre_producto
+        WHERE c.id_categoria = ? AND p.estado_producto = 'En existencia' ORDER BY nombre_producto
         ";
         $params = array($this->categoria);
         return Database::getRows($sql, $params);

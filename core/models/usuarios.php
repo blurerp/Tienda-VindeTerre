@@ -275,4 +275,27 @@ class Usuarios extends Validator
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
+
+    //Consulta para repotrtes
+    public function countTypeUsuarios($value)
+    {
+        $activo= 'Activo';
+        $inactivo= 'Inctivo';
+
+        if($value == 1){
+        $sql = 'SELECT tipo_cliente, COUNT(*) occurrences
+        FROM Clientes WHERE estado_cliente = '.$activo.'
+        GROUP BY tipo_cliente
+        HAVING COUNT(*) > 1';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+    if($value == 2)
+    $sql = 'SELECT tipo_cliente, COUNT(*) occurrences
+        FROM Clientes WHERE estado_cliente = '.$inactivo.'
+        GROUP BY tipo_cliente
+        HAVING COUNT(*) > 1';
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
 }
