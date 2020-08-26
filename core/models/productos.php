@@ -259,10 +259,10 @@ class Productos extends Validator
 
     public function readOneProductos()
     {
-        $sql = 'SELECT p.id_producto, nombre_producto, imagen_producto, precio_venta, precio_compra, id_categoria, descripcion_producto, id_bodega, cosecha, alcohol, stock_activo, stock_minimo, estado_producto,CAST(AVG(puntuacion) as DECIMAL(3,2)) as puntuacion
-                FROM Productos p, Valoración v
-                WHERE p.id_producto = v.id_producto  and p.id_producto = ?
-                group by p.id_producto order by nombre_producto ';
+        $sql = 'SELECT id_producto, nombre_producto, imagen_producto, precio_venta, precio_compra, id_categoria, descripcion_producto, id_bodega, cosecha, alcohol, stock_activo, stock_minimo, estado_producto
+                FROM Productos 
+                WHERE id_producto = ?
+                group by id_producto order by nombre_producto';
         $params = array($this->id);
         return Database::getRow($sql, $params);
     }
