@@ -273,6 +273,16 @@ class Productos extends Validator
         return Database::getRows($sql, $params);
     }
 
+    public function readOneProductos2()
+    {
+        $sql = 'SELECT p.id_producto, nombre_producto, imagen_producto, precio_venta, precio_compra, id_categoria, descripcion_producto, id_bodega, cosecha, alcohol, stock_activo, stock_minimo, estado_producto,CAST(AVG(puntuacion) as DECIMAL(3,2)) as puntuacion
+                FROM Productos p, Valoración v
+                WHERE p.id_producto = v.id_producto  and p.id_producto = ?
+                group by p.id_producto order by nombre_producto';
+        $params = array($this->id);
+        return Database::getRows($sql, $params);
+    }
+
     public function readOneProductos()
     {
         $sql = 'SELECT id_producto,codigo_producto, nombre_producto, imagen_producto, precio_venta, precio_compra, id_categoria, descripcion_producto, id_bodega, cosecha, alcohol, stock_activo, stock_minimo, estado_producto
@@ -288,7 +298,7 @@ class Productos extends Validator
         $sql = "SELECT p.id_producto,p.nombre_producto,p.imagen_producto,c.categoria,p.descripcion_producto,p.precio_venta,p.estado_producto
         FROM productos p 
         INNER JOIN categoria c ON p.id_categoria = c.id_categoria	
-        WHERE c.id_categoria = ? AND p.estado_producto = 'Agotado' ORDER BY nombre_producto
+        WHERE c.id_categoria = ? AND p.estado_producto = 'En existencia' ORDER BY nombre_producto
         ";
         $params = array($this->categoria);
         return Database::getRows($sql, $params);

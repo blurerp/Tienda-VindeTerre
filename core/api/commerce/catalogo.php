@@ -20,6 +20,13 @@ if (isset($_GET['action'])) {
                 $result['exception'] = 'Contenido no disponible';
             }
             break;
+        case 'readAll2':
+            if ($result['dataset'] = $producto->readAllProductos()) {
+                $result['status'] = 1;
+            } else {
+                $result['exception'] = 'Contenido no disponible';
+            }
+            break;
         case 'readProductosCategoria':
             if ($producto->setCategoria($_POST['id_categoria'])) {
                 if ($result['dataset'] = $producto->readProductosCategoria()) {

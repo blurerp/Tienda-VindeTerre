@@ -151,10 +151,11 @@
 
         public function readAllProveedores()
             {
+                $hnombre_proveedor = 'Viña San Pedro';
                 $sql = 'SELECT id_proveedor, nombre_proveedor, correo_proveedor, telefono_proveedor, direccion_proveedor, url_proveedor, tipo_documento, numero_documento
-                        FROM Proveedores 
+                        FROM Proveedores Where nombre_proveedor = ?
                         ORDER BY nombre_proveedor';
-                $params = null;
+                $params = array($hnombre_proveedor);
                 return Database::getRows($sql, $params);
             }
 

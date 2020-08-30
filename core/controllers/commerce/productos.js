@@ -12,7 +12,8 @@ $( document ).ready(function() {
     readProductosCategoria( ID, NAME );
 });
 
-const starTotal = 5;
+/*
+    const starTotal = 5;
     for(const rating in ratings) {  
     // 2
     const starPercentage = (ratings[rating] / starTotal) * 100;
@@ -21,6 +22,7 @@ const starTotal = 5;
     // 4
     document.querySelector(`.${rating} .stars-inner`).style.width = starPercentageRounded; 
     }
+*/
 
 // Función para obtener y mostrar los productos de acuerdo a la categoría seleccionada.
 function readProductosCategoria( id, categoria )

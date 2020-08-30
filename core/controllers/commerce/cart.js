@@ -39,10 +39,7 @@ function readCart()
                         </td>  
                         <td>
                             <a href="#" onclick="openDeleteDialog(${row.id_det_pedido})" class="btn btn-primary btn-sm">X</a>
-                        </td>   
-                        <td>
-                            ${row.id_det_pedido}
-                        </td>                                           
+                        </td>                                      
                     </tr>
                 `;
             });
@@ -50,6 +47,7 @@ function readCart()
             $( '#tbody-rows' ).html( content );
             // Se muestra el total a pagar con dos decimales.
             $( '#pago' ).text( total.toFixed(2) );
+            
         } else {
             sweetAlert( 4, response.exception, 'index.php' );
         }
@@ -118,12 +116,14 @@ function finishOrder()
         closeOnEsc: false
     })
     .then(function( value ) {
+        let totalf = $( '#pago' ).text();
         // Se verifica si fue cliqueado el botón Sí para realizar la petición respectiva, de lo contrario no se hace nada.
         if ( value ) {
             $.ajax({
                 type: 'post',
                 url: API_PEDIDOS + 'finishOrder',
-                dataType: 'json'
+                dataType: 'json',
+                data: { pago : totalf }
             })
             .done(function( response ) {
                 // Se comprueba si la API ha retornado una respuesta satisfactoria, de lo contrario se muestra un mensaje de error.

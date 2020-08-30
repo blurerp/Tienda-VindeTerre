@@ -15,7 +15,7 @@ if (isset($_GET['action'])) {
     if (isset($_SESSION['id_cliente'])) {
         $result['session'] = 1;
         // Se compara la acción a realizar cuando un cliente ha iniciado sesión.
-        switch ($_GET['action']) {
+        switch ($_GET['action']) {            
             case 'createDetail':
                 if ($pedido->setCliente($_SESSION['id_cliente'])) {
                     if ($pedido->readOrder()) {
@@ -61,6 +61,28 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Cliente incorrecto';
                 }
                 break;
+            case 'readPedidos':      
+                if ($pedido->setCliente($_SESSION['id_cliente'])) {
+                    if ($result['dataset'] = $pedido->readPedidos()) {
+                        $result['status'] = 1;
+                        $_SESSION['id_pedido'] = $pedido->getId();
+                    } else {
+                        $result['exception'] = 'No tiene productos en su pedido';
+                    }
+                } else {
+                    $result['exception'] = 'Cliente incorrecto';
+                }
+                break; 
+                /*if ($pedido->setCliente($_SESSION['id_cliente'])) {                            
+                    if ($result['dataset'] = $pedido->readPedidos()) {
+                        $result['status'] = 1;                    
+                    } else {
+                        $result['exception'] = 'Hubo un problema al mostrar los pedidos, vuelva a intentarlo en un momento';
+                    }    
+                } else {
+                    $result['exception'] = 'Cliente incorrecto';
+                }
+                break;*/
             case 'updateDetail':
                 if ($pedido->setId($_SESSION['id_pedido'])) {
                     $_POST = $pedido->validateForm($_POST);
@@ -101,12 +123,16 @@ if (isset($_GET['action'])) {
             case 'finishOrder':
                 if ($pedido->setId($_SESSION['id_pedido'])) {
                     if ($pedido->setEstado('Procesado')) {
-                        if ($pedido->updateOrderStatus()) {
-                            $result['status'] = 1;
-                            $result['message'] = 'Pedido finalizado correctamente';
+                        if ($pedido->setMonto_total($_POST['pago'])) {
+                            if ($pedido->updateOrderStatus()) {
+                                $result['status'] = 1;
+                                $result['message'] = 'Pedido finalizado correctamente';
+                            } else {
+                                $result['exception'] = 'Ocurrió un problema al finalizar el pedido';
+                            }
                         } else {
-                            $result['exception'] = 'Ocurrió un problema al finalizar el pedido';
-                        }
+                            $result['exception'] = 'El Total de la compra es invalido';
+                        }                        
                     } else {
                         $result['exception'] = 'Estado incorrecto';
                     }

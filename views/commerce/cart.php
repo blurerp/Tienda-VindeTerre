@@ -46,7 +46,7 @@ Commerce::headerTemplate('Carrito de compra');
                                 <span class="text-black">Total</span>
                             </div>
                             <div class="col-md-6 text-right">
-                                <strong class="text-black" id="pago"></strong>
+                                <strong name="pago" class="text-black" id="pago"></strong>
                             </div>
                         </div>
 

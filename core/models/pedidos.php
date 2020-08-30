@@ -26,6 +26,16 @@
             }
         }
 
+        public function setMonto_total($value)
+        {
+            if ($this->validateMoney($value)) {
+                $this->monto_total = $value;
+                return true;
+            } else {
+                return false;
+            }
+        }
+
         public function setIdDetalle($value)
         {
             if ($this->validateNaturalNumber($value)) {
@@ -126,6 +136,35 @@
             return $this->numero_casa_direccion;
         }
 
+        public function getCliente()
+        {
+            return $this->cliente;
+        }
+
+        public function readOrder()
+        {
+            $hestado = 'En carrito';
+            $sql = 'SELECT id_pedido
+                    FROM Pedidos
+                    WHERE estado_pedido = ? AND id_cliente = ?';
+            $params = array($hestado, $this->cliente);
+            if ($data = Database::getRow($sql, $params)) {
+                $this->id = $data['id_pedido'];
+                return true;
+            } else {
+                $sql = 'INSERT INTO pedidos(id_cliente, fecha_pedido)
+                        VALUES(?, current_timestamp)';
+                $params = array($this->cliente);
+                if (Database::executeRow($sql, $params)) {
+                    // Se obtiene el ultimo valor insertado en la llave primaria de la tabla pedidos.
+                    $this->id = Database::getLastRowId();
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+
         public function readAllPedidos()
         {
             $sql = 'SELECT id_pedido, numero_orden, nombre_cliente, apellido_cliente, monto_total, estado_pedido, fecha_pedido, fecha_entrega, direccion_pedido, codigo_postal, numero_casa_direccion
@@ -135,13 +174,13 @@
             return Database::getRows($sql, $params);
         }
 
-        public function readAllPedidosxCliente()
+        public function readPedidos()
         {
-            $sql = 'SELECT id_pedido, numero_orden, id_cliente, monto_total, estado_pedido, fecha_pedido, fecha_entrega, direccion_pedido, codigo_postal, numero_casa_direccion
+            $sql = 'SELECT id_pedido, numero_orden, monto_total, estado_pedido, fecha_pedido, fecha_entrega
                     FROM Pedidos
                     WHERE id_cliente = ?';
-            $params = array($this->id);
-            return Database::getRow($sql, $params);
+            $params = array($this->cliente);
+            return Database::getRows($sql, $params);
         }
 
         public function readOnePedidos()
@@ -162,37 +201,14 @@
                     WHERE id_pedido = ?';
             $params = array($this->id);
             return Database::getRow($sql, $params);
-        }
-
-        public function readOrder()
-        {
-            $sql = "SELECT id_pedido
-                    FROM pedidos
-                    WHERE estado_pedido = 'En carrito' AND id_cliente = ?";
-            $params = array($this->cliente);
-            if ($data = Database::getRow($sql, $params)) {
-                $this->id_pedido = $data['id_pedido'];
-                return true;
-            } else {
-                $sql = 'INSERT INTO pedidos(id_cliente)
-                        VALUES(?)';
-                $params = array($this->cliente);
-                if (Database::executeRow($sql, $params)) {
-                    // Se obtiene el ultimo valor insertado en la llave primaria de la tabla pedidos.
-                    $this->id_pedido = Database::getLastRowId();
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
+        }        
     
         // Método para agregar un producto al carrito de compras.
         public function createDetail()
         {
             $sql = 'INSERT INTO Detalle_Pedido(id_producto, precio_producto_det, cantidad_detalle, id_pedido)
                     VALUES(?, ?, ?, ?)';
-            $params = array($this->producto, $this->precio, $this->cantidad, $this->id_pedido);
+            $params = array($this->producto, $this->precio, $this->cantidad, $this->id);
             return Database::executeRow($sql, $params);
         }
     
@@ -202,7 +218,7 @@
             $sql = 'SELECT id_det_pedido, nombre_producto, d.precio_producto_det, d.cantidad_detalle
                     FROM pedidos e, detalle_pedido d, productos p
                     WHERE e.id_pedido = d.id_pedido and p.id_producto = d.id_producto and d.id_pedido = ?';
-            $params = array($this->id_pedido);
+            $params = array($this->id);
             return Database::getRows($sql, $params);
         }
     
@@ -210,9 +226,9 @@
         public function updateOrderStatus()
         {
             $sql = 'UPDATE pedidos
-                    SET estado_pedido = ?
+                    SET estado_pedido = ?, monto_total = ?
                     WHERE id_pedido = ?';
-            $params = array($this->estado, $this->id_pedido);
+            $params = array($this->estado, $this->monto_total, $this->id);
             return Database::executeRow($sql, $params);
         }
     
@@ -221,8 +237,8 @@
         {
             $sql = 'UPDATE detalle_pedido
                     SET cantidad_producto = ?
-                    WHERE id_pedido = ? AND id_detalle = ?';
-            $params = array($this->cantidad, $this->id_pedido, $this->id_detalle);
+                    WHERE id_pedido = ? AND id_det_pedido = ?';
+            $params = array($this->cantidad, $this->id, $this->id_detalle);
             return Database::executeRow($sql, $params);
         }
     
@@ -230,8 +246,8 @@
         public function deleteDetail()
         {
             $sql = 'DELETE FROM detalle_pedido
-                    WHERE id_pedido = ? AND id_detalle = ?';
-            $params = array($this->id_pedido, $this->id_detalle);
+                    WHERE id_pedido = ? AND id_det_pedido = ?';
+            $params = array($this->id, $this->id_detalle);
             return Database::executeRow($sql, $params);
         }
     }
