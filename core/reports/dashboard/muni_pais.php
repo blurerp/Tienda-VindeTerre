@@ -1,7 +1,7 @@
 <?php
 require('../../helpers/report.php');
 require('../../models/categorias.php');
-require('../../models/productos.php');
+require('../../models/proveedores.php');
 
 
 
@@ -11,9 +11,9 @@ $pdf = new Report;
 $pdf->startReport('Productos por categoría y En existencia');
 
 // Se instancia el módelo Categorías para obtener los datos.
-$categoria = new Categorias;
+$categoria = new Productos;
 // Se verifica si existen registros (categorías) para mostrar, de lo contrario se imprime un mensaje.
-if ($dataCategorias = $categoria->readAllCategorias()) {
+if ($dataCategorias = $categoria->readAllProductos()) {
     // Se recorren los registros ($dataCategorias) fila por fila ($rowCategoria).
     foreach ($dataCategorias as $rowCategoria) {
         // Se establece un color de relleno para mostrar el nombre de la categoría.

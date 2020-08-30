@@ -1,7 +1,7 @@
 <?php
 require('../../helpers/report.php');
-require('../../models/categorias.php');
-require('../../models/productos.php');
+require('../../models/entradas.php');
+
 
 
 
@@ -11,9 +11,9 @@ $pdf = new Report;
 $pdf->startReport('Productos por categoría y En existencia');
 
 // Se instancia el módelo Categorías para obtener los datos.
-$categoria = new Categorias;
+$ped = new Entradas;
 // Se verifica si existen registros (categorías) para mostrar, de lo contrario se imprime un mensaje.
-if ($dataCategorias = $categoria->readAllCategorias()) {
+if ($dataPedidos = $ped->readAllEntrada()) {
     // Se recorren los registros ($dataCategorias) fila por fila ($rowCategoria).
     foreach ($dataCategorias as $rowCategoria) {
         // Se establece un color de relleno para mostrar el nombre de la categoría.
@@ -25,7 +25,7 @@ if ($dataCategorias = $categoria->readAllCategorias()) {
         // Se instancia el módelo Productos para obtener los datos.
         $producto = new Productos;
         // Se establece la categoría para obtener sus productos, de lo contrario se imprime un mensaje de error.
-        if ($producto->setCategoria($rowCategoria['id_categoria'])) {
+        if ($producto->setPedido($rowCategoria['id_categoria'])) {
             // Se verifica si existen registros (productos) para mostrar, de lo contrario se imprime un mensaje.
             if ($dataProductos = $producto->readProductosCategoria()) {
                 // Se establece un color de relleno para los encabezados.
@@ -33,10 +33,8 @@ if ($dataCategorias = $categoria->readAllCategorias()) {
                 // Se establece la fuente para los encabezados.
                 $pdf->SetFont('Helvetica', 'B', 11);
                 // Se imprimen las celdas con los encabezados.
-                $pdf->Cell(60, 10, utf8_decode('Nombre'), 1, 0, 'C', 1);
-                $pdf->Cell(40, 10, utf8_decode('Estado'), 1, 0, 'C', 1);
-                $pdf->Cell(40, 10, utf8_decode('Imagen'), 1, 0, 'C', 1);
-                $pdf->Cell(46, 10, utf8_decode('Precio (US$)'), 1, 1, 'C', 1);
+                $pdf->Cell(60, 10, utf8_decode('Pedido'), 1, 0, 'C', 1);
+                $
                 // Se establece la fuente para los datos de los productos.
                 $pdf->SetFont('Helvetica', '', 11);
                 // Se recorren los registros ($dataProductos) fila por fila ($rowProducto).
