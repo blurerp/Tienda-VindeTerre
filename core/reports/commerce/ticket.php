@@ -1,5 +1,5 @@
 <?php
-require('../../helpers/report.php');
+require('../../helpers/ticket.php');
 require('../../models/categorias.php');
 require('../../models/productos.php');
 

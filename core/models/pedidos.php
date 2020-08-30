@@ -176,7 +176,7 @@
 
         public function readPedidos()
         {
-            $sql = 'SELECT id_pedido, numero_orden, monto_total, estado_pedido, fecha_pedido, fecha_entrega
+            $sql = 'SELECT id_pedido, numero_orden, monto_total, estado_pedido, fecha_pedido, fecha_entrega, id_cliente
                     FROM Pedidos
                     WHERE id_cliente = ?';
             $params = array($this->cliente);

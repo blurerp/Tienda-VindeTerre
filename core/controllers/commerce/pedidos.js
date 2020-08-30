@@ -16,10 +16,11 @@ function readPedidos()
             // Se declara e inicializa una variable para concatenar las filas de la tabla en la vista.
             let content = '';
             // Se recorre el conjunto de registros (dataset) fila por fila a través del objeto row.
+            let url = '';
             response.dataset.forEach(function( row ) {  
+                url = `ticket.php?id=${row.id_pedido}&c=${row.id_cliente}`;
                 let fe = ''; 
                 fe += row.fecha_entrega; 
-                console.log(fe);
                 if (fe == 'null') {
                     content += `                   
                     <div class="col-sm-3 mb-3 m-2">
@@ -35,7 +36,7 @@ function readPedidos()
                             </ul>
                             <div class="card-body">
                                 <a href="#" class="card-link">Ver Detalle</a>
-                                <a href="#" class="card-link">Generar Ticket</a>
+                                <a href="../../core/reports/commerce/ticket.php" target="_blank" class="card-link">Generar Ticket</a>
                             </div>
                         </div> 
                     </div>                      
@@ -55,7 +56,7 @@ function readPedidos()
                             </ul>
                             <div class="card-body">
                                 <a href="#" class="card-link">Ver Detalle</a>
-                                <a href="#" class="card-link">Generar Ticket</a>
+                                <a href="../../core/reports/commerce/ticket.php" target="_blank" class="card-link">Generar Ticket</a>
                             </div>
                         </div> 
                     </div>                      
