@@ -13,6 +13,21 @@ Dashboard::headerTemplate('Iniciar sesión');
     </div>
   </div>
 </div>
+<div class="row">
+    <div class="col-xl-3 col-lg-6">
+        <canvas id="chart1"></canvas>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-3 col-lg-6">
+        <canvas id="chart2"></canvas>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-3 col-lg-6">
+        <canvas id="chart3"></canvas>
+    </div>
+</div>
 <section class="py-3">
   <div class="row">
     <div class="col-xl-3 col-lg-6">
