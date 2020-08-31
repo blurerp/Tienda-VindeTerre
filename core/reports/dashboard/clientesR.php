@@ -24,35 +24,27 @@ if ($dataCliente = $cliente->readC()) {
     
     foreach ($dataCliente as $rowCategoria) {
         // Se establece un color de relleno para mostrar el nombre de la categoría.
-        $pdf->SetFillColor(78, 137, 174);
+        
         // Se establece la fuente para el nombre de la categoría.
-        $pdf->SetFont('Helvetica', 'B', 12);
-        // Se imprime una celda con el nombre de la categoría.
+        $pdf->SetFont('Helvetica', 'B', 12);                  
+        // Se establece un color de relleno para los encabezados.
+        $pdf->SetFillColor(255, 163, 114);
+        // Se establece la fuente para los encabezados.
+        $pdf->SetFont('Helvetica', 'B', 11);
+        // Se imprimen las celdas con los encabezados.
+        $pdf->Cell(40, 10, utf8_decode('Usuario'), 1, 0, 'C', 1);
+        $pdf->Cell(70, 10, utf8_decode('Correo'), 1, 0, 'C', 1);
+        $pdf->Cell(30, 10, utf8_decode('Telefono'), 1, 0, 'C', 1);
+        $pdf->Cell(46, 10, utf8_decode('Estado'), 1, 1, 'C', 1);
+        // Se establece la fuente para los datos de los productos.
+        $pdf->SetFont('Helvetica', '', 11);
+        // Se recorren los registros ($dataProductos) fila por fila ($rowProducto).
         
-        // Se instancia el módelo Productos para obtener los datos.
-       
-        // Se establece la categoría para obtener sus productos, de lo contrario se imprime un mensaje de error.
-        
-            // Se verifica si existen registros (productos) para mostrar, de lo contrario se imprime un mensaje.
-            
-                // Se establece un color de relleno para los encabezados.
-                $pdf->SetFillColor(255, 163, 114);
-                // Se establece la fuente para los encabezados.
-                $pdf->SetFont('Helvetica', 'B', 11);
-                // Se imprimen las celdas con los encabezados.
-                $pdf->Cell(40, 10, utf8_decode('Usuario'), 1, 0, 'C', 1);
-                $pdf->Cell(70, 10, utf8_decode('Correo'), 1, 0, 'C', 1);
-                $pdf->Cell(30, 10, utf8_decode('Telefono'), 1, 0, 'C', 1);
-                $pdf->Cell(46, 10, utf8_decode('Estado'), 1, 1, 'C', 1);
-                // Se establece la fuente para los datos de los productos.
-                $pdf->SetFont('Helvetica', '', 11);
-                // Se recorren los registros ($dataProductos) fila por fila ($rowProducto).
-                
-                    // Se imprimen las celdas con los datos de los productos.
-                    $pdf->Cell(40, 20, utf8_decode($rowCategoria['usuario_cliente']), 1, 0);
-                    $pdf->Cell(70, 20, utf8_decode($rowCategoria['email_cliente']), 1, 0);
-                    $pdf->Cell(30, 20, utf8_decode($rowCategoria['telefono_cliente']), 1, 0);
-                    $pdf->Cell(46, 20, utf8_decode($rowCategoria['estado_cliente']), 1, 1);
+            // Se imprimen las celdas con los datos de los productos.
+            $pdf->Cell(40, 20, utf8_decode($rowCategoria['usuario_cliente']), 1, 0);
+            $pdf->Cell(70, 20, utf8_decode($rowCategoria['email_cliente']), 1, 0);
+            $pdf->Cell(30, 20, utf8_decode($rowCategoria['telefono_cliente']), 1, 0);
+            $pdf->Cell(46, 20, utf8_decode($rowCategoria['estado_cliente']), 1, 1);
                     
     }
     
@@ -64,7 +56,7 @@ $pdf->Cell(36, 10, utf8_decode(''), 0, 1);
 
 
 if ($dataCliente = $cliente->readC2()) {
-    $pdf->SetFillColor(175);
+    $pdf->SetFillColor(78, 137, 174);
     $pdf->SetFont('Helvetica', 'B', 12);
     $pdf->Cell(0, 10, utf8_decode('Cliente tipo: Empresa'), 1, 1, 'C', 1);
     // Se recorren los registros ($dataCategorias) fila por fila ($rowCategoria).

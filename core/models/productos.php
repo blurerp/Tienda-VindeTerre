@@ -327,4 +327,25 @@ class Productos extends Validator
         $params = array($this->id);
         return Database::executeRow($sql, $params);
     }
+
+    public function readAllReclamos1(){
+        $estado_reclamo = 'Sin resolver';
+        $sql = 'SELECT p.numero_orden, r.detalle, r.fecha_hora_ingreso, r.tipo_reclamo FROM reclamos r INNER JOIN pedidos p ON p.id_pedido=r.id_pedido WHERE estado_reclamo = ?';
+        $params = array($estado_reclamo);
+        return Database::executeRow($sql, $params);
+    }
+    
+    public function readAllReclamos2(){
+        $estado_reclamo = 'En proceso';
+        $sql = 'SELECT p.numero_orden,r.detalle,r.fecha_hora_ingreso,r.tipo_reclamo from reclamos r INNER JOIN pedidos p ON p.id_pedido=r.id_pedido where estado_reclamo = ?';
+        $params = array($estado_reclamo);
+        return Database::executeRow($sql, $params);
+    }
+    
+    public function readAllReclamos3(){
+        $estado_reclamo = 'Resuelto';
+        $sql = 'SELECT p.numero_orden,r.detalle,r.fecha_hora_ingreso,r.tipo_reclamo from reclamos r INNER JOIN pedidos p ON p.id_pedido=r.id_pedido where estado_reclamo = ?';
+        $params = null;
+        return Database::executeRow($sql, $params);
+    }
 }

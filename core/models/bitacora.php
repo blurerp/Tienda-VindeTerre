@@ -1,5 +1,5 @@
 <?php
-    class Bodegas extends Validator
+    class Bitacora extends Validator
     {
         private $id = null;
         private $capacidad = null;
@@ -122,7 +122,7 @@
 
             public function readAllActions()
             {
-                $sql = 'SELECT id_bitacora, accion, fecha_hora FROM Bitacora ORDER BY accion';
+                $sql = 'SELECT id_bitacora, accion, fecha_hora FROM Bitacora ORDER BY fecha_hora';
                 $params = null;
                 return Database::getRows($sql, $params);
             }
