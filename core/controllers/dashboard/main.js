@@ -1,4 +1,6 @@
-const API = '../../core/api/dashboard/productos.php?action=';
+const API_prod = '../../core/api/dashboard/productos.php?action=';
+const API_clientes = '../../core/api/dashboard/clientes.php?action=';
+const API_pedidos = '../../core/api/dashboard/pedidos.php?action=';
 // Función para graficar la cantidad de productos por categoría.
 function graficaCategorias()
 {
