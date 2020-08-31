@@ -295,7 +295,7 @@ class Productos extends Validator
 
     public function readProductosCategoria()    
     {
-        $sql = "SELECT p.id_producto,p.nombre_producto,p.imagen_producto,c.categoria,p.descripcion_producto,p.precio_venta,p.estado_producto
+        $sql = "SELECT p.id_producto,p.nombre_producto,p.imagen_producto,c.categoria,p.descripcion_producto,p.precio_venta,p.estado_producto, p.stock_activo
         FROM productos p 
         INNER JOIN categoria c ON p.id_categoria = c.id_categoria	
         WHERE c.id_categoria = ? AND p.estado_producto = 'En existencia' ORDER BY nombre_producto

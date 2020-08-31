@@ -259,5 +259,16 @@
             $params = array($this->id, $this->id_detalle);
             return Database::executeRow($sql, $params);
         }
+
+        public function readP()
+        {
+            $value = 'Procesado';
+            $sql = 'SELECT id_pedido, numero_orden, nombre_cliente, apellido_cliente, monto_total, estado_pedido, fecha_pedido, fecha_entrega, direccion_pedido, codigo_postal, numero_casa_direccion
+            FROM Pedidos INNER JOIN Clientes USING (id_cliente)
+             where estado_pedido = '.$value.'ORDER BY estado_pedido';
+            $params = null;
+            return Database::getRows($sql, $params);
+        }
+
     }
 ?>
