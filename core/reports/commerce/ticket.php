@@ -59,7 +59,7 @@ if ($_SESSION['id_cliente'] == $params['c']) {
                         $pdf->Cell(40, 10, $rowDetalle['cantidad_detalle'], 1, 0);
                         $pdf->Cell(40, 10, utf8_decode($rowDetalle['descripcion_producto']), 1, 0);
                         $pdf->Cell(50, 10, $rowDetalle['precio_producto_det'], 1, 0);
-                        $pdf->Cell(40, 10, $rowDetalle['precio_producto_det'], 1, 1);
+                        $pdf->Cell(40, 10, ($rowDetalle['precio_producto_det'] * $rowDetalle['cantidad_detalle']), 1, 1);
                     }           
                 }  else {
                     $pdf->Cell(0, 10, utf8_decode('Ocurrio un problema al intentar generar el ticket'), 1, 1);
