@@ -45,7 +45,7 @@ if ($_SESSION['id_cliente'] == $params['c']) {
 
             $detalle = new Pedidos; 
             if ($detalle->setId($params['id'])) {
-                if ($dataDetalles = $detalle->readOneDetalle()) {  
+                if ($dataDetalles = $detalle->readDetalle()) {  
                     $pdf->SetFillColor(225);
                     // Se establece la fuente para los encabezados.
                     $pdf->SetFont('Helvetica', 'B', 11);

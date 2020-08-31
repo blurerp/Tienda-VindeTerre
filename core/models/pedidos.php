@@ -220,7 +220,18 @@
                     WHERE id_pedido = ?';
             $params = array($this->id);
             return Database::getRow($sql, $params);
-        }        
+        }    
+        
+        public function readDetalle()
+        {
+            $sql = 'SELECT id_det_pedido, numero_orden, nombre_producto, descripcion_producto, precio_producto_det, cantidad_detalle
+                    FROM Detalle_Pedido 
+                    INNER JOIN Productos USING (id_producto)
+                    INNER JOIN Pedidos USING (id_pedido)
+                    WHERE id_pedido = ?';
+            $params = array($this->id);
+            return Database::getRows($sql, $params);
+        }    
     
         // Método para agregar un producto al carrito de compras.
         public function createDetail()
