@@ -101,6 +101,16 @@
             return $this->id;
         }
 
+        public function getPrecio()
+        {
+            return $this->precio;
+        }
+        
+        public function getCantidad()
+        {
+            return $this->cantidad;
+        }
+
         public function getMonto_total()
         {
             return $this->monto_total;

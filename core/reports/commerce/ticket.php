@@ -1,4 +1,3 @@
-
 <?php
 require('../../helpers/ticket.php');
 require('../../models/pedidos.php');
@@ -26,9 +25,6 @@ if ($_SESSION['id_cliente'] == $params['c']) {
             // Se establece la fuente para los encabezados.
             $pdf->SetFont('Helvetica', 'B', 11);
             $pdf->Ln();
-            /*id_pedido, numero_orden
-            , monto_total, , , , , 
-            , */
             // Se imprimen las celdas con los encabezados.            
 
             $pdf->Cell(60, 10, utf8_decode('Cliente: '.$dataPedidos['nombre_cliente']), 0, 0, 'L', 1);
@@ -47,8 +43,9 @@ if ($_SESSION['id_cliente'] == $params['c']) {
             $pdf->Cell(60, 10, utf8_decode('Email: '.$dataPedidos['email_cliente']), 0, 0, 'L', 1);
             $pdf->Cell(60, 10, utf8_decode('Tipo Cliente: '.$dataPedidos['tipo_cliente']), 0, 1, 'R', 1);                        
 
-            if ($pedido->setId($id_p)) {
-                if ($dataDetalles = $pedido->readOneDetalle()) {
+            $detalle = new Pedidos; 
+            if ($detalle->setId($params['id'])) {
+                if ($dataDetalles = $detalle->readOneDetalle()) {  
                     $pdf->SetFillColor(225);
                     // Se establece la fuente para los encabezados.
                     $pdf->SetFont('Helvetica', 'B', 11);
@@ -56,26 +53,23 @@ if ($_SESSION['id_cliente'] == $params['c']) {
                     $pdf->Cell(40, 10, utf8_decode('CANTIDAD'), 1, 0, 'C', 1);
                     $pdf->Cell(40, 10, utf8_decode('DESCRIPCIÓN'), 1, 0, 'C', 1);
                     $pdf->Cell(50, 10, utf8_decode('PRECIO UNITARIO (US$)'), 1, 0, 'C', 1);
-                    $pdf->Cell(40, 10, utf8_decode('VENTAS AFECTAS'), 1, 1, 'C', 1);                
-                    // Se establece la fuente para los datos de los productos.
-                    $pdf->SetFont('Helvetica', '', 11);
-                    // Se recorren los registros ($dataProductos) fila por fila ($rowProducto).
+                    $pdf->Cell(40, 10, utf8_decode('VENTAS AFECTAS'), 1, 1, 'C', 1);      
+                    $pdf->SetFont('Helvetica', '', 11);    
                     foreach ($dataDetalles as $rowDetalle) {
-                        // Se imprimen las celdas con los datos de los productos.
-                        $pdf->Cell(40, 20, utf8_decode($rowDetalle['cantidad_detalle']), 1, 0);
-                        $pdf->Cell(40, 20, utf8_decode($rowDetalle['descripcion_producto']), 1, 0);                    
-                        $pdf->Cell(50, 20, $rowDetalle['precio_producto_det'], 1, 0);
-                        $pdf->Cell(40, 20, $rowDetalle['precio_producto_det'], 1, 1);
-                    }
+                        $pdf->Cell(40, 10, $rowDetalle['cantidad_detalle'], 1, 0);
+                        $pdf->Cell(40, 10, utf8_decode($rowDetalle['descripcion_producto']), 1, 0);
+                        $pdf->Cell(50, 10, $rowDetalle['precio_producto_det'], 1, 0);
+                        $pdf->Cell(40, 10, $rowDetalle['precio_producto_det'], 1, 1);
+                    }           
                 }  else {
                     $pdf->Cell(0, 10, utf8_decode('Ocurrio un problema al intentar generar el ticket'), 1, 1);
                 }
             } else {
                 $pdf->Cell(0, 10, utf8_decode('Ocurrio un problema al intentar generar el ticket'), 1, 1);
             }
-            $pdf->Cell(60, 10, utf8_decode('Monto: '.$dataPedidos['monto_total']), 0, 0, 'C', 1);
-            // Se establece la fuente para los datos de los productos.
-            $pdf->SetFont('Helvetica', '', 11);            
+            $pdf->Ln();
+            $pdf->Cell(60, 10, utf8_decode('Monto: '.$dataPedidos['monto_total']), 0, 0, 'R', 1);
+            // Se establece la fuente para los datos de los productos.           
         } else {
             $pdf->Cell(0, 10, utf8_decode('Ocurrio un problema al intentar generar el ticket'), 1, 1);
         }
@@ -83,7 +77,7 @@ if ($_SESSION['id_cliente'] == $params['c']) {
         $pdf->Cell(0, 10, utf8_decode('Ocurrio un problema al intentar generar el ticket'), 1, 1);
     }
 } else {
-
+    $pdf->Cell(0, 10, utf8_decode('Ocurrio un problema al intentar generar el ticket'), 1, 1);
 }
 
     // Se establece la categoría para obtener sus productos, de lo contrario se imprime un mensaje de error.
