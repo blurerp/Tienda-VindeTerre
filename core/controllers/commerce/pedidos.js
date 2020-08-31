@@ -36,7 +36,7 @@ function readPedidos()
                             </ul>
                             <div class="card-body">
                                 <a href="#" class="card-link">Ver Detalle</a>
-                                <a href="../../core/reports/commerce/ticket.php" target="_blank" class="card-link">Generar Ticket</a>
+                                <a href="../../core/reports/commerce/${url}" target="_blank" class="card-link">Generar Ticket</a>
                             </div>
                         </div> 
                     </div>                      
@@ -56,7 +56,7 @@ function readPedidos()
                             </ul>
                             <div class="card-body">
                                 <a href="#" class="card-link">Ver Detalle</a>
-                                <a href="../../core/reports/commerce/ticket.php" target="_blank" class="card-link">Generar Ticket</a>
+                                <a href="../../core/reports/commerce/${url}" target="_blank" class="card-link">Generar Ticket</a>
                             </div>
                         </div> 
                     </div>                      
