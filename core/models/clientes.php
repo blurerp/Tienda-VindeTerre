@@ -277,14 +277,12 @@ class Clientes extends Validator
 
     public function countTypeClientes()
     {
-        $activo= 'Activo';
+        $activo= 'Empresa';
         
 
         
-        $sql = 'SELECT tipo_cliente, COUNT(*) ncliente
-        FROM Clientes WHERE estado_cliente = '.$activo.'
-        GROUP BY tipo_cliente';
-        $params = null;
+        $sql = 'SELECT count(tipo_cliente) as tipo_cliente from clientes where tipo_cliente= ?';
+        $params = array($activo);
         return Database::getRows($sql, $params);
     
     
@@ -292,11 +290,29 @@ class Clientes extends Validator
     public function countTypeClientesI()
     {
 
-    $inactivo= 'Inactivo';
-    $sql = 'SELECT tipo_cliente
-        FROM Clientes WHERE estado_cliente = ?
-        GROUP BY tipo_cliente';
-        $params = null;
+    $inactivo= 'Persona Natural';
+    $sql = 'SELECT count(tipo_cliente) as cant from clientes where tipo_cliente= ?';
+        $params = array($inactivo);
+        return Database::getRows($sql, $params);
+    }
+
+    public function readC()
+    {
+        $pn= 'Persona Natural';
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, usuario_cliente, foto_cliente, estado_cliente, tipo_cliente, dui_cliente, email_cliente, telefono_cliente, nit_cliente
+                    FROM Clientes
+                    where tipo_cliente= ? ORDER BY estado_cliente';
+        $params = array($pn);
+        return Database::getRows($sql, $params);
+    }
+
+    public function readC2()
+    {
+        $pn= 'Empresa';
+        $sql = 'SELECT id_cliente, nombre_cliente, apellido_cliente, usuario_cliente, foto_cliente, estado_cliente, tipo_cliente, dui_cliente, email_cliente, telefono_cliente, nit_cliente
+                    FROM Clientes
+                    where tipo_cliente= ? ORDER BY estado_cliente';
+        $params = array($pn);
         return Database::getRows($sql, $params);
     }
     
