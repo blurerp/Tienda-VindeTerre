@@ -54,14 +54,26 @@ class Report extends FPDF
         $this->Cell(20);
         $this->SetFont('Arial', 'B', 15);
         $this->Cell(166, 10, utf8_decode($this->title), 0, 1, 'C');
-        //Se asigna el nombre del usuario que genera el reporte.
+
         $this->Cell(20);
-        $this->SetFont('Arial', '', 10);
-        //$this->Cell(166, 10, 'Compra realizada por: '.$this->user_name = $_SESSION['nombre_usuario'], 0, 1, 'C');
+        $this->SetFont('Arial', '', 9);
+        $this->Cell(166, 10, utf8_decode('Venta de vinos importados'), 0, 1, 'C');
         // Se ubica la fecha y hora del servidor.
         $this->Cell(20);
         $this->SetFont('Arial', '', 10);
-        $this->Cell(166, 10, 'Fecha/Hora: '.date('d-m-Y H:i:s'), 0, 1, 'C');
+        $this->Cell(166, 10, utf8_decode('TICKET'), 0, 1, 'C');
+
+        $this->Cell(20);
+        $this->SetFont('Arial', '', 10);
+        $this->Cell(166, 10, utf8_decode('REGISTRO N° 123456-7'), 0, 1, 'C');
+
+        $this->Cell(20);
+        $this->SetFont('Arial', '', 10);
+        $this->Cell(166, 10, utf8_decode('NIT: 1234-312132-102-0'), 0, 1, 'C');
+
+        $this->Cell(20);
+        $this->SetFont('Arial', '', 10);
+        $this->Cell(166, 10, utf8_decode('Fecha de Creación del TICKET: '.date('d-m-Y H:i:s')), 0, 1, 'C');
         // Se agrega un salto de línea para mostrar el contenido principal del documento.
         $this->Ln(10);
     }

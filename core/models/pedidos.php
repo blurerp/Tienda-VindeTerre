@@ -192,9 +192,18 @@
             return Database::getRow($sql, $params);
         }
 
+        public function readOnePedidoTicket()
+        {
+            $sql = 'SELECT id_pedido, numero_orden, nombre_cliente, telefono_cliente, apellido_cliente, tipo_cliente, dui_cliente, email_cliente, monto_total, estado_pedido, fecha_pedido, fecha_entrega, direccion_pedido, codigo_postal, numero_casa_direccion
+                    FROM Pedidos INNER JOIN Clientes USING  (id_cliente)
+                    WHERE id_pedido = ?';
+            $params = array($this->id);
+            return Database::getRow($sql, $params);
+        }
+
         public function readOneDetalle()
         {
-            $sql = 'SELECT id_det_pedido, numero_orden, nombre_producto, precio_producto_det, cantidad_detalle
+            $sql = 'SELECT id_det_pedido, numero_orden, nombre_producto, descripcion_producto, precio_producto_det, cantidad_detalle
                     FROM Detalle_Pedido 
                     INNER JOIN Productos USING (id_producto)
                     INNER JOIN Pedidos USING (id_pedido)
