@@ -95,6 +95,7 @@ Dashboard::headerTemplate('Iniciar sesión');
 </div>
 </div>
 </div>
+<script src="../../resources/js/chart.js"></script>
 <?php
-Dashboard::footerTemplate('index.js');
+Dashboard::footerTemplate('main.js');
 ?>

@@ -39,6 +39,14 @@ if (isset($_GET['action'])) {
                     $result['exception'] = 'Ingrese un valor para buscar';
                 }
                 break;
+            case 'readProductosCategoria':                
+                    if ($result['dataset'] = $producto->cantidadProductosCategoria()) {
+                        $result['status'] = 1;
+                    }else {
+                        $result['message'] = 'No hay datos disponibles';
+                    }                     
+                            
+            break;
             case 'create':
                 $_POST = $producto->validateForm($_POST);
                 if ($producto->setNombre($_POST['nombre_producto'])) {

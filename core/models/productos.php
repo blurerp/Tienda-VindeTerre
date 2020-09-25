@@ -303,6 +303,15 @@ class Productos extends Validator
         $params = array($this->categoria);
         return Database::getRows($sql, $params);
     }
+
+    public function cantidadProductosCategoria()    
+    {
+        $sql = "SELECT categoria,count(id_producto) as cantidad from productos INNER JOIN categoria using(id_categoria) group by (categoria)";
+        $params = null;
+        return Database::getRows($sql, $params);
+    }
+
+
     
     public function updateProductos()
     {
@@ -332,20 +341,20 @@ class Productos extends Validator
         $estado_reclamo = 'Sin resolver';
         $sql = 'SELECT p.numero_orden, r.detalle, r.fecha_hora_ingreso, r.tipo_reclamo FROM reclamos r INNER JOIN pedidos p ON p.id_pedido=r.id_pedido WHERE estado_reclamo = ?';
         $params = array($estado_reclamo);
-        return Database::executeRow($sql, $params);
+        return Database::getRows($sql, $params);
     }
     
     public function readAllReclamos2(){
         $estado_reclamo = 'En proceso';
         $sql = 'SELECT p.numero_orden,r.detalle,r.fecha_hora_ingreso,r.tipo_reclamo from reclamos r INNER JOIN pedidos p ON p.id_pedido=r.id_pedido where estado_reclamo = ?';
         $params = array($estado_reclamo);
-        return Database::executeRow($sql, $params);
+        return Database::getRows($sql, $params);
     }
     
     public function readAllReclamos3(){
         $estado_reclamo = 'Resuelto';
         $sql = 'SELECT p.numero_orden,r.detalle,r.fecha_hora_ingreso,r.tipo_reclamo from reclamos r INNER JOIN pedidos p ON p.id_pedido=r.id_pedido where estado_reclamo = ?';
         $params = null;
-        return Database::executeRow($sql, $params);
+        return Database::getRows($sql, $params);
     }
 }

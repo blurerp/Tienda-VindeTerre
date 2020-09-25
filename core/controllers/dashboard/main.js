@@ -1,12 +1,19 @@
 const API_prod = '../../core/api/dashboard/productos.php?action=';
 const API_clientes = '../../core/api/dashboard/clientes.php?action=';
 const API_pedidos = '../../core/api/dashboard/pedidos.php?action=';
+
+$( document ).ready(function() {
+    graficaCategorias();
+    graficaClientes();
+    graficaPedidos();
+});
+
 // Función para graficar la cantidad de productos por categoría.
 function graficaCategorias()
 {
     $.ajax({
         dataType: 'json',
-        url: API + 'cantidadProductosCategoria',
+        url: API_prod + 'readProductosCategoria',
         data: null
     })
     .done(function( response ) {
@@ -18,11 +25,11 @@ function graficaCategorias()
             // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
             response.dataset.forEach(function( row ) {
                 // Se asignan los datos a los arreglos.
-                categorias.push( row.nombre_categoria );
+                categorias.push( row.categoria );
                 cantidad.push( row.cantidad );
             });
             // Se llama a la función que genera y muestra una gráfica de barras. Se encuentra en el archivo components.js
-            barGraph( 'chart', categorias, cantidad, 'Cantidad de productos', 'Cantidad de productos por categoría' );
+            barGraph( 'chart1', categorias, cantidad, 'Cantidad de productos', 'Cantidad de productos por categoría' );
         } else {
             $( '#chart1' ).remove();
         }
@@ -41,7 +48,7 @@ function graficaClientes()
 {
     $.ajax({
         dataType: 'json',
-        url: API + 'cantidadClientesRegistrados',
+        url: API_clientes + 'cantidadClientesRegistrados',
         data: null
     })
     .done(function( response ) {
@@ -77,7 +84,7 @@ function graficaPedidos()
 {
     $.ajax({
         dataType: 'json',
-        url: API + 'cantidadPedidosEntregados',
+        url: API_pedidos + 'cantidadPedidosEntregados',
         data: null
     })
     .done(function( response ) {

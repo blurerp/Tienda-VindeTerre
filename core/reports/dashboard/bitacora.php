@@ -14,7 +14,7 @@ $pdf->startReport('Reporte de Acciones CRUD en el sistema');
 $bitacora = new Bitacora;
 // Se verifica si existen registros (categorías) para mostrar, de lo contrario se imprime un mensaje.
 if ($dataAccion = $bitacora->readAllActions()) {
-    echo($dataAccion);
+    
     $pdf->SetFillColor(78, 137, 174);
     $pdf->SetFont('Helvetica', 'B', 12);
     $pdf->Cell(0, 10, utf8_decode('Acciones realizadas en el sistema'), 1, 1, 'C', 1);
