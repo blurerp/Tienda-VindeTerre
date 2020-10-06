@@ -16,7 +16,9 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un administrador ha iniciado sesión.
         switch ($_GET['action']) {
             case 'logout':
-                if (session_destroy()) {
+                if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombre_usuario'])) {
+                    unset($_SESSION['id_usuario']);
+                    unset($_SESSION['nombre_usuario']);
                     $result['status'] = 1;
                     $result['message'] = 'Sesión eliminada correctamente';
                 } else {
@@ -38,12 +40,12 @@ if (isset($_GET['action'])) {
                 if ($usuario->setId($_SESSION['id_usuario'])) {
                     if ($usuario->readOneUsuario()) {
                         $_POST = $usuario->validateForm($_POST);
-                        if ($usuario->setNombres($_POST['nombres_perfil'])) {
-                            if ($usuario->setApellidos($_POST['apellidos_perfil'])) {
-                                if ($usuario->setCorreo($_POST['correo_perfil'])) {
-                                    if ($usuario->setUsuario($_POST['alias_perfil'])) {
+                        if ($usuario->setNombres($_POST['nombre_usuario'])) {
+                            if ($usuario->setApellidos($_POST['apellido_usuario'])) {
+                                if ($usuario->setCorreo($_POST['email_usuario'])) {
+                                    if ($usuario->setUsuario($_POST['usuario'])) {
                                         if ($usuario->editProfile()) {
-                                            $_SESSION['alias_usuario'] = $usuario->getUsuario();
+                                            $_SESSION['nombre_usuario'] = $usuario->getUsuario();
                                             $result['status'] = 1;
                                             $result['message'] = 'Perfil modificado correctamente';
                                         } else {
@@ -75,15 +77,19 @@ if (isset($_GET['action'])) {
                         if ($usuario->setClave($_POST['clave_actual_1'])) {
                             if ($usuario->checkPassword($_POST['clave_actual_1'])) {
                                 if ($_POST['clave_nueva_1'] == $_POST['clave_nueva_2']) {
-                                    if ($usuario->setClave($_POST['clave_nueva_1'])) {
-                                        if ($usuario->changePassword()) {
-                                            $result['status'] = 1;
-                                            $result['message'] = 'Contraseña cambiada correctamente';
+                                    if ($_POST['clave_actual_1'] != $_POST['clave_nueva_1']) {
+                                        if ($usuario->setClave($_POST['clave_nueva_1'])) {
+                                            if ($usuario->changePassword()) {
+                                                $result['status'] = 1;
+                                                $result['message'] = 'Contraseña cambiada correctamente';
+                                            } else {
+                                                $result['exception'] = Database::getException();
+                                            }
                                         } else {
-                                            $result['exception'] = Database::getException();
+                                            $result['exception'] = 'Clave nueva menor a 6 caracteres';
                                         }
                                     } else {
-                                        $result['exception'] = 'Clave nueva menor a 6 caracteres';
+                                        $result['exception'] = 'Clave actual y clave nueva no pueden ser iguales';
                                     }
                                 } else {
                                     $result['exception'] = 'Claves nuevas diferentes';

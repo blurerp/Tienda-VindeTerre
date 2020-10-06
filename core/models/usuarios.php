@@ -209,9 +209,9 @@ class Usuarios extends Validator
     public function editProfile()
     {
         $sql = 'UPDATE usuarios
-                SET nombre_usuario = ?, apellido_usuario = ?, email_usuario = ?,fecha_nacimiento = ?,dui_usuario =?, usuario = ?
+                SET nombre_usuario = ?, apellido_usuario = ?, email_usuario = ?, usuario = ?
                 WHERE id_usuario = ?';
-        $params = array($this->nombres, $this->apellidos, $this->correo, $this->fecha, $this->dui, $this->usuario, $this->id);
+        $params = array($this->nombres, $this->apellidos, $this->correo, $this->usuario, $this->id);
 
         return Database::executeRow($sql, $params);
     }

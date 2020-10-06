@@ -1,44 +1,44 @@
-(function() {
+(function () {
     'use strict';
-    window.addEventListener('load', function() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName('needs-validation');
-      // Loop over them and prevent submission
-      var validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener('submit', function(event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          form.classList.add('was-validated');
-        }, false);
-      });
+    window.addEventListener('load', function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+            form.addEventListener('submit', function (event) {
+                if (form.checkValidity() === false) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
     }, false);
-  })();
+})();
 
-  $('.btn-number').click(function(e){
+$('.btn-number').click(function (e) {
     e.preventDefault();
-    
+
     fieldName = $(this).attr('data-field');
-    type      = $(this).attr('data-type');
-    var input = $("input[name='"+fieldName+"']");
+    type = $(this).attr('data-type');
+    var input = $("input[name='" + fieldName + "']");
     var currentVal = parseInt(input.val());
     if (!isNaN(currentVal)) {
-        if(type == 'minus') {
-            
-            if(currentVal > input.attr('min')) {
+        if (type == 'minus') {
+
+            if (currentVal > input.attr('min')) {
                 input.val(currentVal - 1).change();
-            } 
-            if(parseInt(input.val()) == input.attr('min')) {
+            }
+            if (parseInt(input.val()) == input.attr('min')) {
                 $(this).attr('disabled', true);
             }
 
-        } else if(type == 'plus') {
+        } else if (type == 'plus') {
 
-            if(currentVal < input.attr('max')) {
+            if (currentVal < input.attr('max')) {
                 input.val(currentVal + 1).change();
             }
-            if(parseInt(input.val()) == input.attr('max')) {
+            if (parseInt(input.val()) == input.attr('max')) {
                 $(this).attr('disabled', true);
             }
 
@@ -47,66 +47,66 @@
         input.val(0);
     }
 });
-$('.input-number').focusin(function(){
-   $(this).data('oldValue', $(this).val());
+$('.input-number').focusin(function () {
+    $(this).data('oldValue', $(this).val());
 });
-$('.input-number').change(function() {
-    
-    minValue =  parseInt($(this).attr('min'));
-    maxValue =  parseInt($(this).attr('max'));
+$('.input-number').change(function () {
+
+    minValue = parseInt($(this).attr('min'));
+    maxValue = parseInt($(this).attr('max'));
     valueCurrent = parseInt($(this).val());
-    
+
     name = $(this).attr('name');
-    if(valueCurrent >= minValue) {
-        $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled')
+    if (valueCurrent >= minValue) {
+        $(".btn-number[data-type='minus'][data-field='" + name + "']").removeAttr('disabled')
     } else {
         alert('La cantidad no debe ser menor a 1');
         $(this).val($(this).data('oldValue'));
     }
-    if(valueCurrent <= maxValue) {
-        $(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled')
+    if (valueCurrent <= maxValue) {
+        $(".btn-number[data-type='plus'][data-field='" + name + "']").removeAttr('disabled')
     } else {
         alert('La cantidad no debe ser mayor a 1000');
         $(this).val($(this).data('oldValue'));
     }
-    
+
 });
 
-$("#menu-toggle").click(function(e) {
+$("#menu-toggle").click(function (e) {
     e.preventDefault();
     $('#content-wrapper').toggleClass("toggled");
 });
 
 
-$(document).ready(function(){
+$(document).ready(function () {
     $('.count').prop('disabled', true);
-       $(document).on('click','.plus',function(){
-        $('.count').val(parseInt($('.count').val()) + 1 );
+    $(document).on('click', '.plus', function () {
+        $('.count').val(parseInt($('.count').val()) + 1);
     });
-    $(document).on('click','.minus',function(){
-        $('.count').val(parseInt($('.count').val()) - 1 );
-            if ($('.count').val() == 0) {
-                $('.count').val(1);
-            }
-        });
- });
- 
-$(function(){
+    $(document).on('click', '.minus', function () {
+        $('.count').val(parseInt($('.count').val()) - 1);
+        if ($('.count').val() == 0) {
+            $('.count').val(1);
+        }
+    });
+});
+
+$(function () {
     var dtToday = new Date();
 
     var month = dtToday.getMonth() + 1;// jan=0; feb=1 .......
     var day = dtToday.getDate();
     var year = dtToday.getFullYear() - 18;
-    if(month < 10)
+    if (month < 10)
         month = '0' + month.toString();
-    if(day < 10)
+    if (day < 10)
         day = '0' + day.toString();
     var minDate = year + '-' + month + '-' + day;
     var maxDate = year + '-' + month + '-' + day;
     $('#fecha_nacimiento').attr('max', maxDate);
 });
 
-$('.archivo_categoria').on('change',function(){
+$('.archivo_categoria').on('change', function () {
     var fileName = $(this).val();
     $(this).next('.custom-file-label').html(fileName);
 })
@@ -115,40 +115,39 @@ var dropdown = document.getElementsByClassName("dropdown-btn");
 var i;
 
 for (i = 0; i < dropdown.length; i++) {
-  dropdown[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var dropdownContent = this.nextElementSibling;
-    if (dropdownContent.style.display === "block") {
-      dropdownContent.style.display = "none";
-    } else {
-      dropdownContent.style.display = "block";
-    }
-  });
+    dropdown[i].addEventListener("click", function () {
+        this.classList.toggle("active");
+        var dropdownContent = this.nextElementSibling;
+        if (dropdownContent.style.display === "block") {
+            dropdownContent.style.display = "none";
+        } else {
+            dropdownContent.style.display = "block";
+        }
+    });
 }
 
 //ejemplo coffeshop
-function readRows( api )
-{
+function readRows(api) {
     $.ajax({
         dataType: 'json',
         url: api + 'readAll'
     })
-    .done(function( response ) {
-        // Si no hay datos se muestra un mensaje indicando la situación.
-        if ( ! response.status ) {
-            sweetAlert( 4, response.exception, null );
-        }
-        // Se envían los datos a la función del controlador para que llene la tabla en la vista.
-        fillTable( response.dataset );
-    })
-    .fail(function( jqXHR ) {
-        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
-        if ( jqXHR.status == 200 ) {
-            console.log( jqXHR.responseText );
-        } else {
-            console.log( jqXHR.status + ' ' + jqXHR.statusText );
-        }
-    });
+        .done(function (response) {
+            // Si no hay datos se muestra un mensaje indicando la situación.
+            if (!response.status) {
+                sweetAlert(4, response.exception, null);
+            }
+            // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+            fillTable(response.dataset);
+        })
+        .fail(function (jqXHR) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + ' ' + jqXHR.statusText);
+            }
+        });
 }
 
 /*
@@ -158,32 +157,31 @@ function readRows( api )
 *
 *   Retorno: ninguno.
 */
-function searchRows( api, form )
-{
+function searchRows(api, form) {
     $.ajax({
         type: 'post',
         url: api + 'search',
-        data: $( '#' + form.id ).serialize(),
+        data: $('#' + form.id).serialize(),
         dataType: 'json'
     })
-    .done(function( response ) {
-        // Se comprueba si la API ha retornado una respuesta satisfactoria, de lo contrario se muestra un mensaje de error.
-        if ( response.status ) {
-            // Se envían los datos a la función del controlador para que llene la tabla en la vista.
-            fillTable( response.dataset );
-            sweetAlert( 1, response.message, null );
-        } else {
-            sweetAlert( 2, response.exception, null );
-        }
-    })
-    .fail(function( jqXHR ) {
-        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
-        if ( jqXHR.status == 200 ) {
-            console.log( jqXHR.responseText );
-        } else {
-            console.log( jqXHR.status + ' ' + jqXHR.statusText );
-        }
-    });
+        .done(function (response) {
+            // Se comprueba si la API ha retornado una respuesta satisfactoria, de lo contrario se muestra un mensaje de error.
+            if (response.status) {
+                // Se envían los datos a la función del controlador para que llene la tabla en la vista.
+                fillTable(response.dataset);
+                sweetAlert(1, response.message, null);
+            } else {
+                sweetAlert(2, response.exception, null);
+            }
+        })
+        .fail(function (jqXHR) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + ' ' + jqXHR.statusText);
+            }
+        });
 }
 
 /*
@@ -193,15 +191,14 @@ function searchRows( api, form )
 *
 *   Retorno: ninguno.
 */
-function saveRow( api, action, form, modalId)
-{
+function saveRow(api, action, form, modalId) {
     let request = null;
     // Se verifica si el formulario cuenta con un campo de tipo archivo, de lo contrario la petición se hace normal.
-    if ( form.enctype == 'multipart/form-data' ) {
+    if (form.enctype == 'multipart/form-data') {
         request = $.ajax({
             type: 'post',
             url: api + action,
-            data: new FormData( $( '#' + form.id )[0] ),
+            data: new FormData($('#' + form.id)[0]),
             dataType: 'json',
             cache: false,
             contentType: false,
@@ -211,28 +208,28 @@ function saveRow( api, action, form, modalId)
         request = $.ajax({
             type: 'post',
             url: api + action,
-            data: $( '#' + form.id ).serialize(),
+            data: $('#' + form.id).serialize(),
             dataType: 'json'
         });
     }
-    request.done(function( response ) {
+    request.done(function (response) {
         // Se comprueba si la API ha retornado una respuesta satisfactoria, de lo contrario se muestra un mensaje de error.
-        if ( response.status ) {
+        if (response.status) {
             // Se cargan nuevamente las filas en la tabla de la vista después de agregar o modificar un registro.
-            readRows( api );
-            sweetAlert( 1, response.message, null );
+            readRows(api);
+            sweetAlert(1, response.message, null);
             // Se cierra la caja de dialogo (modal) donde está el formulario.
-            $( '#' + modalId ).modal( 'close' );
+            $('#' + modalId).modal('close');
         } else {
-            sweetAlert( 2, response.exception, null );
+            sweetAlert(2, response.exception, null);
         }
     });
-    request.fail(function( jqXHR ) {
+    request.fail(function (jqXHR) {
         // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
-        if ( jqXHR.status == 200 ) {
-            console.log( jqXHR.responseText );
+        if (jqXHR.status == 200) {
+            console.log(jqXHR.responseText);
         } else {
-            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+            console.log(jqXHR.status + ' ' + jqXHR.statusText);
         }
     });
 }
@@ -246,8 +243,7 @@ function saveRow( api, action, form, modalId)
 */
 var myModal = $('#save-modal');
 
-function confirmDelete( api, identifier )
-{
+function confirmDelete(api, identifier) {
     swal({
         title: 'Advertencia',
         text: '¿Desea eliminar el registro?',
@@ -256,35 +252,35 @@ function confirmDelete( api, identifier )
         closeOnClickOutside: false,
         closeOnEsc: false
     })
-    .then(function( value ) {
-        // Se verifica si fue cliqueado el botón Aceptar para hacer la petición de borrado, de lo contrario no se hace nada.
-        if ( value ) {
-            $.ajax({
-                type: 'post',
-                url: api + 'delete',
-                data: identifier,
-                dataType: 'json'
-            })
-            .done(function( response ) {
-                // Se comprueba si la API ha retornado una respuesta satisfactoria, de lo contrario se muestra un mensaje de error.
-                if ( response.status ) {
-                    // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro.
-                    readRows( api );
-                    sweetAlert( 1, response.message, null );        
-                } else {
-                    sweetAlert( 2, response.exception, null );
-                }
-            })
-            .fail(function( jqXHR ) {
-                // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
-                if ( jqXHR.status == 200 ) {
-                    console.log( jqXHR.responseText );
-                } else {
-                    console.log( jqXHR.status + ' ' + jqXHR.statusText );
-                }
-            });
-        }
-    });
+        .then(function (value) {
+            // Se verifica si fue cliqueado el botón Aceptar para hacer la petición de borrado, de lo contrario no se hace nada.
+            if (value) {
+                $.ajax({
+                    type: 'post',
+                    url: api + 'delete',
+                    data: identifier,
+                    dataType: 'json'
+                })
+                    .done(function (response) {
+                        // Se comprueba si la API ha retornado una respuesta satisfactoria, de lo contrario se muestra un mensaje de error.
+                        if (response.status) {
+                            // Se cargan nuevamente las filas en la tabla de la vista después de borrar un registro.
+                            readRows(api);
+                            sweetAlert(1, response.message, null);
+                        } else {
+                            sweetAlert(2, response.exception, null);
+                        }
+                    })
+                    .fail(function (jqXHR) {
+                        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+                        if (jqXHR.status == 200) {
+                            console.log(jqXHR.responseText);
+                        } else {
+                            console.log(jqXHR.status + ' ' + jqXHR.statusText);
+                        }
+                    });
+            }
+        });
 }
 
 /*
@@ -294,10 +290,9 @@ function confirmDelete( api, identifier )
 *
 *   Retorno: ninguno.
 */
-function sweetAlert( type, text, url )
-{
+function sweetAlert(type, text, url) {
     // Se compara el tipo de mensaje a mostrar.
-    switch ( type ) {
+    switch (type) {
         case 1:
             title = "Éxito";
             icon = "success";
@@ -316,7 +311,7 @@ function sweetAlert( type, text, url )
     }
     // Si existe una ruta definida, se muestra el mensaje y se direcciona a dicha ubicación, de lo contrario solo se muestra el mensaje.
     if (title == "Éxito") {
-        if ( url ) {
+        if (url) {
             swal({
                 title: title,
                 text: text,
@@ -325,10 +320,10 @@ function sweetAlert( type, text, url )
                 closeOnClickOutside: false,
                 closeOnEsc: false
             })
-            .then(function() {
-                location.href = url
-                myModal.modal('hide');
-            });
+                .then(function () {
+                    location.href = url
+                    myModal.modal('hide');
+                });
         } else {
             swal({
                 title: title,
@@ -337,12 +332,12 @@ function sweetAlert( type, text, url )
                 button: 'Aceptar',
                 closeOnClickOutside: false,
                 closeOnEsc: false
-            }).then(function() {
+            }).then(function () {
                 myModal.modal('hide');
             });
         }
     } else {
-        if ( url ) {
+        if (url) {
             swal({
                 title: title,
                 text: text,
@@ -351,9 +346,9 @@ function sweetAlert( type, text, url )
                 closeOnClickOutside: false,
                 closeOnEsc: false
             })
-            .then(function() {
-                location.href = url
-            });
+                .then(function () {
+                    location.href = url
+                });
         } else {
             swal({
                 title: title,
@@ -374,49 +369,48 @@ function sweetAlert( type, text, url )
 *
 *   Retorno: ninguno.
 */
-function fillSelect( api, selectId, selected )
-{
+function fillSelect(api, selectId, selected) {
     $.ajax({
         dataType: 'json',
         url: api
     })
-    .done(function( response ) {
-        // Se comprueba si la API ha retornado una respuesta satisfactoria para mostrar los datos, de lo contrario se muestra un mensaje de error.
-        if ( response.status ) {
-            let content = '';
-            // Si no existe un valor previo para seleccionar, se muestra una opción para indicarlo.
-            if ( ! selected ) {
-                content += '<option value="0" disabled selected>Seleccione una opción</option>';
-            }
-            // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
-            response.dataset.forEach(function( row ) {
-                // Se obtiene el valor del primer campo de la sentencia SQL (valor para cada opción).
-                value = Object.values( row )[0];
-                // Se obtiene el valor del segundo campo de la sentencia SQL (texto para cada opción).
-                text = Object.values( row )[1];
-                // Se verifica si el valor de la API es diferente al valor seleccionado para enlistar una opción, de lo contrario se establece la opción como seleccionada.
-                if ( value != selected ) {
-                    content += `<option value="${value}">${text}</option>`;
-                } else {
-                    content += `<option value="${value}" selected>${text}</option>`;
+        .done(function (response) {
+            // Se comprueba si la API ha retornado una respuesta satisfactoria para mostrar los datos, de lo contrario se muestra un mensaje de error.
+            if (response.status) {
+                let content = '';
+                // Si no existe un valor previo para seleccionar, se muestra una opción para indicarlo.
+                if (!selected) {
+                    content += '<option value="0" disabled selected>Seleccione una opción</option>';
                 }
-            });
-            // Se agregan las opciones a la etiqueta select mediante su id.
-            $( '#' + selectId ).html( content );
-        } else {
-            $( '#' + selectId ).html( '<option value="">No hay opciones disponibles</option>' );
-        }
-        // Se inicializa el componente Select del formulario para que muestre las opciones.
-        //$( 'select' ).selectpicker();
-    })
-    .fail(function( jqXHR ) {
-        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
-        if ( jqXHR.status == 200 ) {
-            console.log( jqXHR.responseText );
-        } else {
-            console.log( jqXHR.status + ' ' + jqXHR.statusText );
-        }
-    });
+                // Se recorre el conjunto de registros devuelto por la API (dataset) fila por fila a través del objeto row.
+                response.dataset.forEach(function (row) {
+                    // Se obtiene el valor del primer campo de la sentencia SQL (valor para cada opción).
+                    value = Object.values(row)[0];
+                    // Se obtiene el valor del segundo campo de la sentencia SQL (texto para cada opción).
+                    text = Object.values(row)[1];
+                    // Se verifica si el valor de la API es diferente al valor seleccionado para enlistar una opción, de lo contrario se establece la opción como seleccionada.
+                    if (value != selected) {
+                        content += `<option value="${value}">${text}</option>`;
+                    } else {
+                        content += `<option value="${value}" selected>${text}</option>`;
+                    }
+                });
+                // Se agregan las opciones a la etiqueta select mediante su id.
+                $('#' + selectId).html(content);
+            } else {
+                $('#' + selectId).html('<option value="">No hay opciones disponibles</option>');
+            }
+            // Se inicializa el componente Select del formulario para que muestre las opciones.
+            //$( 'select' ).selectpicker();
+        })
+        .fail(function (jqXHR) {
+            // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+            if (jqXHR.status == 200) {
+                console.log(jqXHR.responseText);
+            } else {
+                console.log(jqXHR.status + ' ' + jqXHR.statusText);
+            }
+        });
 }
 
 /*
@@ -426,18 +420,17 @@ function fillSelect( api, selectId, selected )
 *
 *   Retorno: ninguno.
 */
-function barGraph( canvas, xAxis, yAxis, legend, title )
-{
+function barGraph(canvas, xAxis, yAxis, legend, title) {
     // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
     let colors = [];
     // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar en el eje X y se van agregando al arreglo.
-    for ( i = 0; i < xAxis.length; i++ ) {
-        colors.push( '#' + ( Math.random().toString( 16 )).substring( 2, 8 ) );
+    for (i = 0; i < xAxis.length; i++) {
+        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
     }
     // Se establece el contexto donde se mostrará el gráfico, es decir, se define la etiqueta canvas a utilizar.
-    const context = $( '#' + canvas );
+    const context = $('#' + canvas);
     // Se crea una instancia para generar la gráfica con los datos recibidos.
-    const chart = new Chart( context, {
+    const chart = new Chart(context, {
         type: 'bar',
         data: {
             labels: xAxis,
@@ -469,18 +462,17 @@ function barGraph( canvas, xAxis, yAxis, legend, title )
     });
 }
 /**Seguundo grafico */
-function barGraph( canvas, xAxis, yAxis, legend, title )
-{
+function barGraph(canvas, xAxis, yAxis, legend, title) {
     // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
     let colors = [];
     // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar en el eje X y se van agregando al arreglo.
-    for ( i = 0; i < xAxis.length; i++ ) {
-        colors.push( '#' + ( Math.random().toString( 16 )).substring( 2, 8 ) );
+    for (i = 0; i < xAxis.length; i++) {
+        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
     }
     // Se establece el contexto donde se mostrará el gráfico, es decir, se define la etiqueta canvas a utilizar.
-    const context = $( '#' + canvas );
+    const context = $('#' + canvas);
     // Se crea una instancia para generar la gráfica con los datos recibidos.
-    const chart = new Chart( context, {
+    const chart = new Chart(context, {
         type: 'bar',
         data: {
             labels: xAxis,
@@ -511,18 +503,17 @@ function barGraph( canvas, xAxis, yAxis, legend, title )
         }
     });
 }
-function barGraph2( canvas, xAxis, yAxis, legend, title )
-{
+function barGraph2(canvas, xAxis, yAxis, legend, title) {
     // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
     let colors = [];
     // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar en el eje X y se van agregando al arreglo.
-    for ( i = 0; i < xAxis.length; i++ ) {
-        colors.push( '#' + ( Math.random().toString( 16 )).substring( 2, 8 ) );
+    for (i = 0; i < xAxis.length; i++) {
+        colors.push('#' + (Math.random().toString(16)).substring(2, 8));
     }
     // Se establece el contexto donde se mostrará el gráfico, es decir, se define la etiqueta canvas a utilizar.
-    const context = $( '#' + canvas );
+    const context = $('#' + canvas);
     // Se crea una instancia para generar la gráfica con los datos recibidos.
-    const chart = new Chart( context, {
+    const chart = new Chart(context, {
         type: 'bar',
         data: {
             labels: xAxis,
@@ -553,46 +544,45 @@ function barGraph2( canvas, xAxis, yAxis, legend, title )
         }
     });
 
-    function barGraph3( canvas, xAxis, yAxis, legend, title )
-{
-    // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
-    let colors = [];
-    // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar en el eje X y se van agregando al arreglo.
-    for ( i = 0; i < xAxis.length; i++ ) {
-        colors.push( '#' + ( Math.random().toString( 16 )).substring( 2, 8 ) );
-    }
-    // Se establece el contexto donde se mostrará el gráfico, es decir, se define la etiqueta canvas a utilizar.
-    const context = $( '#' + canvas );
-    // Se crea una instancia para generar la gráfica con los datos recibidos.
-    const chart = new Chart( context, {
-        type: 'bar',
-        data: {
-            labels: xAxis,
-            datasets: [{
-                label: legend,
-                data: yAxis,
-                backgroundColor: colors,
-                borderColor: '#000000',
-                borderWidth: 1
-            }]
-        },
-        options: {
-            legend: {
-                display: false
-            },
-            title: {
-                display: true,
-                text: title
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        stepSize: 1
-                    }
-                }]
-            }
+    function barGraph3(canvas, xAxis, yAxis, legend, title) {
+        // Se declara un arreglo para guardar códigos de colores en formato hexadecimal.
+        let colors = [];
+        // Se generan códigos hexadecimales de 6 cifras de acuerdo con el número de datos a mostrar en el eje X y se van agregando al arreglo.
+        for (i = 0; i < xAxis.length; i++) {
+            colors.push('#' + (Math.random().toString(16)).substring(2, 8));
         }
-    });
-}
+        // Se establece el contexto donde se mostrará el gráfico, es decir, se define la etiqueta canvas a utilizar.
+        const context = $('#' + canvas);
+        // Se crea una instancia para generar la gráfica con los datos recibidos.
+        const chart = new Chart(context, {
+            type: 'bar',
+            data: {
+                labels: xAxis,
+                datasets: [{
+                    label: legend,
+                    data: yAxis,
+                    backgroundColor: colors,
+                    borderColor: '#000000',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                legend: {
+                    display: false
+                },
+                title: {
+                    display: true,
+                    text: title
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1
+                        }
+                    }]
+                }
+            }
+        });
+    }
 }

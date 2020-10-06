@@ -72,8 +72,100 @@ function checkUsuarios() {
                     sweetAlert(4, 'Puede continuar con la sesión', null);
                 }
             });
-
-                
-
     }
+
+    // Función para mostrar el formulario de editar perfil con los datos del usuario que ha iniciado sesión.
+$( document ).ready(function() {
+    // Se llama a la función que obtiene los registros para llenar los campos. Se encuentra en el archivo components.js
+    $.ajax({
+        dataType: 'json',
+        url: API + 'readProfile'
+    })
+    .done(function( response ) {
+        // Se comprueba si la API ha retornado una respuesta satisfactoria, de lo contrario se muestra un mensaje de error.
+        if ( response.status ) {
+            // Se inicializan los campos del formulario con los datos del usuario que ha iniciado sesión.
+            $( '#usuario' ).val( response.dataset.usuario );
+            $( '#nombre_usuario' ).val( response.dataset.nombre_usuario );
+            $( '#apellido_usuario' ).val( response.dataset.apellido_usuario);
+            $( '#fecha_nacimiento' ).val( response.dataset.fecha_nacimiento);
+            $( '#dui_usuario' ).val( response.dataset.dui_usuario);
+            $( '#email_usuario' ).val( response.dataset.email_usuario );
+            
+            // Se actualizan los campos para que las etiquetas (labels) no queden sobre los datos.
+            
+        } else {
+            sweetAlert( 2, response.exception, null );
+        }
+    })
+    .fail(function( jqXHR ) {
+        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if ( jqXHR.status == 200 ) {
+            console.log( jqXHR.responseText );
+        } else {
+            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+        }
+    });
+});
+
+
+// Evento para editar el perfil del usuario que ha iniciado sesión.
+$( '#profile-form' ).submit(function( event ) {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    $.ajax({
+        type: 'post',
+        url: API + 'editProfile',
+        data: $( '#profile-form' ).serialize(),
+        dataType: 'json'
+    })
+    .done(function( response ) {
+        // Se comprueba si la API ha retornado una respuesta satisfactoria, de lo contrario se muestra un mensaje de error.
+        if ( response.status ) {
+            // Se cierra la caja de dialogo (modal) que contiene el formulario para editar perfil, ubicado en el archivo de las plantillas.
+            
+            sweetAlert( 1, response.message, 'main.php' );
+        } else {
+            sweetAlert( 2, response.exception, null );
+        }
+    })
+    .fail(function( jqXHR ) {
+        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if ( jqXHR.status == 200 ) {
+            console.log( jqXHR.responseText );
+        } else {
+            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+        }
+    });
+});
+
+// Evento para cambiar la contraseña del usuario que ha iniciado sesión.
+$( '#password-form' ).submit(function( event ) {
+    // Se evita recargar la página web después de enviar el formulario.
+    event.preventDefault();
+    $.ajax({
+        type: 'post',
+        url: API + 'password',
+        data: $( '#password-form' ).serialize(),
+        dataType: 'json'
+    })
+    .done(function( response ) {
+        // Se comprueba si la API ha retornado una respuesta satisfactoria, de lo contrario se muestra un mensaje de error.
+        if ( response.status ) {
+            // Se cierra la caja de dialogo (modal) que contiene el formulario para cambiar contraseña, ubicado en el archivo de las plantillas.
+            $( '#password-modal' ).modal( 'close' );
+            sweetAlert( 1, response.message, null );
+        } else {
+            sweetAlert( 2, response.exception, null );
+        }
+    })
+    .fail(function( jqXHR ) {
+        // Se verifica si la API ha respondido para mostrar la respuesta, de lo contrario se presenta el estado de la petición.
+        if ( jqXHR.status == 200 ) {
+            console.log( jqXHR.responseText );
+        } else {
+            console.log( jqXHR.status + ' ' + jqXHR.statusText );
+        }
+    });
+});
 
