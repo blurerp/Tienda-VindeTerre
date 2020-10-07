@@ -31,49 +31,85 @@ if (isset($_GET['action'])) {
         switch ($_GET['action']) {
             case 'register':
                 $_POST = $cliente->validateForm($_POST);
-                if ($cliente->setUsuario_cliente($_POST['usuario_cliente']))
-                    if ($cliente->setNombre_cliente($_POST['nombre_cliente'])) {
-                        if ($cliente->setApellido_cliente($_POST['apellido_cliente'])) {
-                            if ($cliente->setDui_cliente($_POST['dui_cliente'])) {
-                                if ($cliente->setEmail_cliente($_POST['email_cliente'])) {
-                                    if ($cliente->setTelefono_cliente($_POST['telefono_cliente'])) {
-                                        if ($cliente->setNit_cliente($_POST['nit_cliente'])) {
-                                            if($cliente->setTipo_cliente($_POST['tipo_cliente']))
-                                            if ($_POST['contrasena_cliente'] == $_POST['confirmar_contrasena']) {
-                                                if ($cliente->setContrasena_cliente($_POST['contrasena_cliente'])) {
-                                                    if ($cliente->createRow()) {
-                                                        $result['status'] = 1;
-                                                        $result['message'] = 'Cliente registrado correctamente';
+                // Se sanea el valor del token para evitar datos maliciosos.
+                $token = filter_input(INPUT_POST, 'g-recaptcha-response', FILTER_SANITIZE_STRING);
+                if ($token) {
+                    $secretKey = '6LecoNQZAAAAAKoaH9Up328ptosIhL3LzXGVyhUE';
+                    $ip = $_SERVER['REMOTE_ADDR'];
+
+                    $data = array(
+                        'secret' => $secretKey,
+                        'response' => $token,
+                        'remoteip' => $ip
+                    );
+
+                    $options = array(
+                        'http' => array(
+                            'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
+                            'method'  => 'POST',
+                            'content' => http_build_query($data)
+                        ),
+                        'ssl' => array(
+                            'verify_peer' => false,
+                            'verify_peer_name' => false
+                        )
+                    );
+
+                    $url = 'https://www.google.com/recaptcha/api/siteverify';
+                    $context  = stream_context_create($options);
+                    $response = file_get_contents($url, false, $context);
+                    $captcha = json_decode($response, true);
+                    if ($captcha['success']) {
+                        if ($cliente->setUsuario_cliente($_POST['usuario_cliente'])) {
+                            if ($cliente->setNombre_cliente($_POST['nombre_cliente'])) {
+                                if ($cliente->setApellido_cliente($_POST['apellido_cliente'])) {
+                                    if ($cliente->setDui_cliente($_POST['dui_cliente'])) {
+                                        if ($cliente->setEmail_cliente($_POST['email_cliente'])) {
+                                            if ($cliente->setTelefono_cliente($_POST['telefono_cliente'])) {
+                                                if ($cliente->setNit_cliente($_POST['nit_cliente'])) {
+                                                    if($cliente->setTipo_cliente($_POST['tipo_cliente']))
+                                                    if ($_POST['contrasena_cliente'] == $_POST['confirmar_contrasena']) {
+                                                        if ($cliente->setContrasena_cliente($_POST['contrasena_cliente'])) {
+                                                            if ($cliente->createRow()) {
+                                                                $result['status'] = 1;
+                                                                $result['message'] = 'Cliente registrado correctamente';
+                                                            } else {
+                                                                $result['exception'] = 'Ocurrió un problema al registrar el cliente';
+                                                            }
+                                                        } else {
+                                                            $result['exception'] = 'Clave menor a 8 caracteres';
+                                                        }
                                                     } else {
-                                                        $result['exception'] = 'Ocurrió un problema al registrar el cliente';
+                                                        $result['exception'] = 'Claves diferentes';
                                                     }
                                                 } else {
-                                                    $result['exception'] = 'Clave menor a 8 caracteres';
+                                                    $result['exception'] = 'NIT invalido';
                                                 }
                                             } else {
-                                                $result['exception'] = 'Claves diferentes';
+                                                $result['exception'] = 'Telefóno invalido';
                                             }
                                         } else {
-                                            $result['exception'] = 'NIT invalido';
+                                            $result['exception'] = 'Correo Electrónico invalido';
                                         }
                                     } else {
-                                        $result['exception'] = 'Telefóno invalido';
+                                        $result['exception'] = 'DUI invalido';
                                     }
                                 } else {
-                                    $result['exception'] = 'Correo Electrónico invalido';
+                                    $result['exception'] = 'Apellidos invalidos';
                                 }
                             } else {
-                                $result['exception'] = 'DUI invalido';
+                                $result['exception'] = 'Nombres invalidos';
                             }
                         } else {
-                            $result['exception'] = 'Apellidos invalidos';
+                            $result['exception'] = 'Usuario invalido';
                         }
                     } else {
-                        $result['exception'] = 'Nombres invalidos';
+                        $result['exception'] = 'No eres un humano';
                     }
-                else {
-                    $result['exception'] = 'Usuario invalido';
-                }
+                } else {
+                    $result['exception'] = 'Ocurrió un problema al cargar el reCAPTCHA';
+                }  
+                    
                 break;
             case 'login':
                 $_POST = $cliente->validateForm($_POST);

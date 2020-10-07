@@ -16,7 +16,8 @@ Commerce::headerTemplate('Registrarse');
     </div>
     <div class="col-md-8 py-5 border">
       <!-- Form de registrarse-->
-      <form method="post" class="needs-validation" id="register-form" novalidate>
+      <form method="post" class="needs-validation" id="register-form" autocomplete="off" novalidate>
+      <input id="g-recaptcha-response" class="invisible" name="g-recaptcha-response"/>
         <div class="form-row m-3">
           <div class="col-md-3 mb-3">
             <label for="nombre_cliente">Usuario</label>
@@ -91,6 +92,9 @@ Commerce::headerTemplate('Registrarse');
     </div>
   </div>
 </div>
+
+<script src="https://www.google.com/recaptcha/api.js?render=6LecoNQZAAAAAAHPv8qNTjXp3bCmcBQpCV5pFmy7"></script>
+
 <?php
 Commerce::footerTemplate('signin.js');
 ?>

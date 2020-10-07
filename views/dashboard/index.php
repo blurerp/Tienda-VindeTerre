@@ -12,7 +12,7 @@ Dashboard::headerLogin('Iniciar sesión');
                             <img src="../../resources/img/logo.png">
                         </div>
                         <h3 class="text-center">Iniciar Sesión</h3>
-                        <form method="post" class="needs-validation" id="sesion-form" novalidate>
+                        <form method="post" class="needs-validation" id="sesion-form" autocomplete="off" novalidate>
                             <div class="input-group input-focus mb-3">
                                 <div class="input-group-prepend">   
                                     <span class="input-group-text bg-white"><i class="far fa-user-alt"></i></span>

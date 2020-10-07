@@ -285,43 +285,47 @@ if (isset($_GET['action'])) {
                 break;
             case 'register':
                 $_POST = $usuario->validateForm($_POST);
-                if ($usuario->setNombres($_POST['nombre_usuario'])) {
-                    if ($usuario->setApellidos($_POST['apellido_usuario'])) {
-                        if ($usuario->setCorreo($_POST['email_usuario'])) {
-                            if ($usuario->setUsuario($_POST['usuario'])) {
-                                if ($usuario->setFecha($_POST['fecha_nacimiento'])) {
-                                    if ($usuario->setDui($_POST['dui_usuario'])) {
-                                        if ($_POST['contrasenia_usuario'] == $_POST['contrasenia_usuario2']) {
-                                            if ($usuario->setClave($_POST['contrasenia_usuario'])) {
-                                                if ($usuario->createUsuario()) {
-                                                    $result['status'] = 1;
-                                                    $result['message'] = 'Usuario registrado correctamente';
+                if ($result['dataset'] = $usuario->readAllUsuarios()) {               
+                    $result['exception'] = 'Ya hay un usuario registrado';
+                } else {                    
+                    if ($usuario->setNombres($_POST['nombre_usuario'])) {
+                        if ($usuario->setApellidos($_POST['apellido_usuario'])) {
+                            if ($usuario->setCorreo($_POST['email_usuario'])) {
+                                if ($usuario->setUsuario($_POST['usuario'])) {
+                                    if ($usuario->setFecha($_POST['fecha_nacimiento'])) {
+                                        if ($usuario->setDui($_POST['dui_usuario'])) {
+                                            if ($_POST['contrasenia_usuario'] == $_POST['contrasenia_usuario2']) {
+                                                if ($usuario->setClave($_POST['contrasenia_usuario'])) {
+                                                    if ($usuario->createUsuario()) {
+                                                        $result['status'] = 1;
+                                                        $result['message'] = 'Usuario registrado correctamente';
+                                                    } else {
+                                                        $result['exception'] = Database::getException();
+                                                    }
                                                 } else {
-                                                    $result['exception'] = Database::getException();
+                                                    $result['exception'] = 'Clave menor a 6 caracteres';
                                                 }
                                             } else {
-                                                $result['exception'] = 'Clave menor a 6 caracteres';
+                                                $result['exception'] = 'Claves diferentes';
                                             }
                                         } else {
-                                            $result['exception'] = 'Claves diferentes';
+                                            $result['exception'] = 'DUI incorrecto';
                                         }
                                     } else {
-                                        $result['exception'] = 'DUI incorrecto';
+                                        $result['exception'] = 'Fecha incorrecta';
                                     }
                                 } else {
-                                    $result['exception'] = 'Fecha incorrecta';
+                                    $result['exception'] = 'Usuario incorrecto';
                                 }
                             } else {
-                                $result['exception'] = 'Usuario incorrecto';
+                                $result['exception'] = 'Correo incorrecto';
                             }
                         } else {
-                            $result['exception'] = 'Correo incorrecto';
+                            $result['exception'] = 'Apellidos incorrectos';
                         }
                     } else {
-                        $result['exception'] = 'Apellidos incorrectos';
+                        $result['exception'] = 'Nombres incorrectos';
                     }
-                } else {
-                    $result['exception'] = 'Nombres incorrectos';
                 }
                 break;
             case 'login':

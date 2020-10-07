@@ -16,7 +16,7 @@ Commerce::headerTemplate('Iniciar sesión');
         </div>
         <div class="col-md-8 py-5 border">
           <!-- Form de inicio de sesión-->
-          <form method="post" class="needs-validation" id="session-form" novalidate>
+          <form method="post" class="needs-validation" id="session-form" autocomplete="off" novalidate>
             <div class="form-row m-3">
               <div class="col-md-5 mb-3">
                 <label for="email_cliente">Correo Electrónico</label>

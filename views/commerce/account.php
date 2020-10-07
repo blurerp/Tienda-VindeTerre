@@ -39,7 +39,7 @@ Commerce::headerTemplate('Tu tienda de café');
             <div class="tab-content">
                 <div class="tab-pane active" id="home">
                     <hr>
-                    <form class="form" action="##" method="post" id="registrationForm">
+                    <form class="form" action="##" method="post" id="registrationForm" autocomplete="off">
                         <div class="form-group">
 
                             <div class="col-xs-6">

@@ -45,7 +45,7 @@ Dashboard::headerTemplate('usuarios');
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form method="post" class="needs-validation" id="save-form" enctype="multipart/form-data" novalidate>
+                        <form method="post" class="needs-validation" id="save-form" enctype="multipart/form-data" autocomplete="off" novalidate>
                             <input id="id_usuario" class="invisible" name="id_usuario"/>
                             <div class="form-row m-3">
                                 <div class="col-md-4 mb-3">

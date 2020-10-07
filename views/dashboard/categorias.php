@@ -39,7 +39,7 @@ Dashboard::headerTemplate('categorias');
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form method="post" class="needs-validation" id="save-form" enctype="multipart/form-data" novalidate>
+                        <form method="post" class="needs-validation" id="save-form" enctype="multipart/form-data" autocomplete="off" novalidate>
                             <input id="id_categoria" class="invisible" name="id_categoria"/>
                             <div class="form-row m-3">
                                 <div class="col-md-8 mb-3">

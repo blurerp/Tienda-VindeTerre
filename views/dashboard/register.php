@@ -21,7 +21,8 @@
                 
             </div>
             <div class="col-md-9 register-right">
-                <form method="post" id="register-form">
+                <form method="post" id="register-form" autocomplete="off">
+
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                             <h3 class="register-heading">Registrarse</h3>

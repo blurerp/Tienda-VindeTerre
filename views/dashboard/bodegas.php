@@ -40,7 +40,7 @@ Dashboard::headerTemplate('bodegas');
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form method="post" class="needs-validation" id="save-form" enctype="multipart/form-data" novalidate>
+                        <form method="post" class="needs-validation" id="save-form" enctype="multipart/form-data" autocomplete="off" novalidate>
                             <input id="id_bodega" class="invisible" name="id_bodega"/>
                             <div class="form-row m-3">
                                 <div class="col-md-12 mb-3">

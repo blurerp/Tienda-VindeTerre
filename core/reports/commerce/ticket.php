@@ -16,6 +16,7 @@ $url_components = parse_url($url);
 parse_str($url_components['query'], $params); 
 $id_p = $params['id'];
 $msg = "Ocurrio un error fatal al intentar imprimir el pdf";
+
 if ($_SESSION['id_cliente'] == $params['c']) {
     if ($pedido->setId($params['id'])) {
         // Se verifica si existen registros (productos) para mostrar, de lo contrario se imprime un mensaje.
