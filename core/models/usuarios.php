@@ -15,6 +15,7 @@ class Usuarios extends Validator
     private $correo = null;
     private $estado = null;
     private $tipo = null;
+    private $codigo_pass_usuario = null;
 
     /*
     *   Métodos para asignar valores a los atributos.
@@ -114,6 +115,11 @@ class Usuarios extends Validator
             return false;
         }
     } 
+
+    public function setCodigoPassUsuario($value)
+    {
+        $this->codigo_pass_usuario = $value;
+    } 
     
     /*
     *   Métodos para obtener valores de los atributos.
@@ -166,6 +172,11 @@ class Usuarios extends Validator
     public function getTipo()
     {
         return $this->tipo;
+    }
+
+    public function getCodigoPassUsuario()
+    {
+        return $this->codigo_pass_usuario;
     }
 
 
@@ -278,4 +289,21 @@ class Usuarios extends Validator
 
     //Consulta para repotrtes
     
+
+    // Metodo para ingresar codigo de recuperacion
+    public function ingresarCodigoPassUsuario()
+    {
+        $sql = 'UPDATE Usuarios SET codigo_pass_usuario = ? WHERE email_usuario = ?';
+        $params = array($this->codigo_pass_usuario, $this->correo);
+        return Database::executeRow($sql, $params);
+    }
+
+    //Metodo Para borrar codigo de recuperación
+    public function eliminarCodigoPassUsuario()
+    {
+        $nullCode = null;
+        $sql = 'UPDATE Usuarios SET codigo_pass_usuario = ? WHERE email_usuario = ?';
+        $params = array($nullCode, $this->correo);
+        return Database::executeRow($sql, $params);
+    }
 }
