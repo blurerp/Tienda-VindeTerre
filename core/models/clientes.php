@@ -9,6 +9,7 @@ class Clientes extends Validator
     private $imagen = null;
     private $archivo = null;
     private $ruta = '../../../resources/img/clientes/';
+    private $dias = null;
     private $estado_cliente = null;
     private $tipo_cliente = null;
     private $dui_cliente = null;
@@ -160,6 +161,11 @@ class Clientes extends Validator
         return $this->ruta;
     }
 
+    public function getDias()
+    {
+        return $this->dias;
+    }
+
     public function getEstado_cliente()
     {
         return $this->estado_cliente;
@@ -234,11 +240,12 @@ class Clientes extends Validator
     */
     public function checkUser($email_cliente)
     {
-        $sql = 'SELECT id_cliente, estado_cliente FROM clientes WHERE email_cliente = ?';
+        $sql = 'SELECT id_cliente, estado_cliente, (now()::date - ultima_act::date) as dias FROM clientes WHERE email_cliente = ?';
         $params = array($email_cliente);
         if ($data = Database::getRow($sql, $params)) {
             $this->id = $data['id_cliente'];
             $this->estado_cliente = $data['estado_cliente'];
+            $this->dias = $data['dias'];
             $this->email_cliente = $email_cliente;
             return true;
         } else {

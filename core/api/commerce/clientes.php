@@ -16,7 +16,7 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un cliente ha iniciado sesión.
         switch ($_GET['action']) {
             case 'logout':
-                if (session_destroy()) {
+                if (session_destroy('id_cliente')) {
                     $result['status'] = 1;
                     $result['message'] = 'Sesión eliminada correctamente';
                 } else {
@@ -59,6 +59,7 @@ if (isset($_GET['action'])) {
                     $context  = stream_context_create($options);
                     $response = file_get_contents($url, false, $context);
                     $captcha = json_decode($response, true);
+
                     if ($captcha['success']) {
                         if ($cliente->setUsuario_cliente($_POST['usuario_cliente'])) {
                             if ($cliente->setNombre_cliente($_POST['nombre_cliente'])) {
@@ -74,7 +75,8 @@ if (isset($_GET['action'])) {
                                                                 $result['status'] = 1;
                                                                 $result['message'] = 'Cliente registrado correctamente';
                                                             } else {
-                                                                $result['exception'] = 'Ocurrió un problema al registrar el cliente';
+                                                                $result['exception'] = Database::getException();
+                                                                //$result['exception'] = 'Ocurrió un problema al registrar el cliente';
                                                             }
                                                         } else {
                                                             $result['exception'] = 'Clave menor a 8 caracteres';
@@ -115,13 +117,17 @@ if (isset($_GET['action'])) {
                 $_POST = $cliente->validateForm($_POST);
                 if ($cliente->checkUser($_POST['email_cliente'])) {
                     if ($cliente->getEstado_cliente() == 'Activo') {
-                        if ($cliente->checkPassword($_POST['contrasena_cliente'])) {
-                            $_SESSION['id_cliente'] = $cliente->getId();
-                            $_SESSION['email_cliente'] = $cliente->getEmail_cliente();
-                            $result['status'] = 1;
-                            $result['message'] = 'Autenticación correcta';
+                        if ($cliente->getDias() < 90) {
+                            if ($cliente->checkPassword($_POST['contrasena_cliente'])) {
+                                $_SESSION['id_cliente'] = $cliente->getId();
+                                $_SESSION['email_cliente'] = $cliente->getEmail_cliente();
+                                $result['status'] = 1;
+                                $result['message'] = 'Autenticación correcta';
+                            } else {
+                                $result['exception'] = 'Clave incorrecta';
+                            }
                         } else {
-                            $result['exception'] = 'Clave incorrecta';
+                            $result['exception'] = 'Por motivos de seguridad debe actualizar su contraseña';                           
                         }
                     } else {
                         $result['exception'] = 'Su cuenta ha sido desactivada';
