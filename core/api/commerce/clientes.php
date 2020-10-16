@@ -16,7 +16,8 @@ if (isset($_GET['action'])) {
         // Se compara la acción a realizar cuando un cliente ha iniciado sesión.
         switch ($_GET['action']) {
             case 'logout':
-                if (session_destroy('id_cliente')) {
+                if (isset($_SESSION['id_cliente'])) {
+                    unset($_SESSION['id_cliente']);
                     $result['status'] = 1;
                     $result['message'] = 'Sesión eliminada correctamente';
                 } else {
