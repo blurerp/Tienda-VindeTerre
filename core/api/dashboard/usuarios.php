@@ -1,13 +1,16 @@
 <?php
 require_once('../../helpers/database.php');
 require_once('../../helpers/validator.php');
+require_once('../../helpers/phpmailerPassfordRecovery.php');
 require_once('../../models/usuarios.php');
 
+$smail = new SendMail;
 // Se comprueba si existe una acción a realizar, de lo contrario se finaliza el script con un mensaje de error.
 if (isset($_GET['action'])) {
     // Se crea una sesión o se reanuda la actual para poder utilizar variables de sesión en el script.
     session_start();
     // Se instancia la clase correspondiente.
+    
     $usuario = new Usuarios;
     // Se declara e inicializa un arreglo para guardar el resultado que retorna la API.
     $result = array('status' => 0, 'message' => null, 'exception' => null);
@@ -341,6 +344,34 @@ if (isset($_GET['action'])) {
                     }
                 } else {
                     $result['exception'] = 'Usuario incorrecto';
+                }
+                break;
+            case 'readOneEmail':
+                if ($usuario->setCorreo($_POST['r_email_usuario'])) {
+                    if ($result['dataset'] = $usuario->readOneEmail()) {
+                        if ($smail->sendRMail()) {
+                            $result['status'] = 1;
+                            $result['message'] = 'Se envio un correo de confirmación a su email';
+                        } else {
+                            $result['exception'] = 'Error de envio';
+                        }                    
+                    } else {
+                        $result['exception'] = 'Correo inexistente';
+                    }
+                } else {
+                    $result['exception'] = 'Correo incorrecto';
+                }
+                break;
+            case 'readOneCode':
+                if ($usuario->setCorreo($_POST['r_email_usuario'])) {
+                    if ($result['dataset'] = $usuario->readOneCode()) {
+                        $result['status'] = 1;
+                        $result['message'] = 'Codigo aceptado';
+                    } else {
+                        $result['exception'] = 'Codigo inexistente';
+                    }
+                } else {
+                    $result['exception'] = 'Codigo incorrecto';
                 }
                 break;
             default:

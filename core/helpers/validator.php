@@ -1,4 +1,5 @@
 <?php
+
 class Validator
 {
     // Propiedades para manejar la validación de archivos de imagen.

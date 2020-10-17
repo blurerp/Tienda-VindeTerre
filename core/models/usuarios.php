@@ -1,4 +1,5 @@
 <?php
+
 /*
 *	Clase para manejar la tabla usuarios de la base de datos. Es clase hija de Validator.
 */
@@ -118,7 +119,12 @@ class Usuarios extends Validator
 
     public function setCodigoPassUsuario($value)
     {
-        $this->codigo_pass_usuario = $value;
+        if ($this->validateAlphanumeric($value, 1, 7)) {
+            $this->codigo_pass_usuario = $value;
+            return true;
+        } else {
+            return false;
+        }        
     } 
     
     /*
@@ -289,7 +295,7 @@ class Usuarios extends Validator
 
     //Consulta para repotrtes
     
-
+    //Correos
     // Metodo para ingresar codigo de recuperacion
     public function ingresarCodigoPassUsuario()
     {
@@ -297,7 +303,6 @@ class Usuarios extends Validator
         $params = array($this->codigo_pass_usuario, $this->correo);
         return Database::executeRow($sql, $params);
     }
-
     //Metodo Para borrar codigo de recuperación
     public function eliminarCodigoPassUsuario()
     {
@@ -306,4 +311,25 @@ class Usuarios extends Validator
         $params = array($nullCode, $this->correo);
         return Database::executeRow($sql, $params);
     }
+
+    //Leer un correo
+    public function readOneEmail()
+    {
+        $sql = 'SELECT id_usuario, usuario, nombre_usuario, apellido_usuario, fecha_nacimiento, dui_usuario, email_usuario, id_tipo_usuario, estado_usuario,codigo_pass_usuario 
+        FROM Usuarios  
+        where email_usuario = ?';
+        $params = array($this->correo);
+        return Database::getRow($sql, $params);
+    }
+    public function readOneCode()
+    {
+        $sql = 'SELECT id_usuario, usuario, nombre_usuario, apellido_usuario, fecha_nacimiento, dui_usuario, email_usuario, id_tipo_usuario, estado_usuario,codigo_pass_usuario 
+        FROM Usuarios  
+        where codigo_pass_usuario = ?';
+        $params = array($this->codigo_pass_usuario);
+        return Database::getRow($sql, $params);
+    }
+
+    
+    
 }

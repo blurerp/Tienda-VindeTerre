@@ -15,7 +15,7 @@ Dashboard::headerTemplate('Iniciar sesión');
 </div>
 <div class="row">
     <div class="col-xl-3 col-lg-6">
-        <canvas id="chart1"></canvas>
+        <canvas id="chart"></canvas>
     </div>
 </div>
 <div class="row">
